@@ -204,11 +204,11 @@ class AppServiceProvider extends ServiceProvider
             view()->share('deliverycharge',$deliverycharge);
         }
 
-        $parceltypes = Parceltype::orderBy('sl', 'ASC')->get();
-        view()->share('parceltypes',$parceltypes);
+        // $parceltypes = Parceltype::orderBy('sl', 'ASC')->get();
+        // view()->share('parceltypes',$parceltypes);
         
-        $allnotelist = Note::get();
-        view()->share('allnotelist',$allnotelist);
+        // $allnotelist = Note::get();
+        // view()->share('allnotelist',$allnotelist);
 
     }
 }
