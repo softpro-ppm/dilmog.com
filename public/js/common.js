@@ -31,7 +31,9 @@
 
 
 $(document).ready(function () {
-    $('#phonenumber, #phone, #phoneNumber, #sender_mobile, #recivier_mobile').on('input', function () {
+
+    $('input#phonenumber, input#phone, input#phoneNumber, input#sender_mobile, input#recivier_mobile').on('input', function () {
+        if (typeof this.value !== 'string') return;
         let value = this.value.replace(/\D/g, ''); // Remove non-numeric characters
 
         // Ensure the first digit is '0'

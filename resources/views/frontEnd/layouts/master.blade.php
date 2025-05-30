@@ -392,7 +392,27 @@
     });
         </script>
 
-        <!-- LifeSure Template Scripts -->
+        <!-- Include WOW.js library BEFORE main.js and custom scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+        <script>
+            if (typeof WOW !== 'undefined') { new WOW().init(); }
+        </script>
+
+        <!-- Include CounterUp and dependencies BEFORE main.js and custom scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                if ($.fn.counterUp) {
+                    $('.counter').counterUp({
+                        delay: 10,
+                        time: 1000
+                    });
+                }
+            });
+        </script>
+
+        <!-- LifeSure Template Scripts (should come after plugins) -->
         <script src="{{ asset('LifeSure-1.0.0/js/main.js') }}"></script>
     </body>
 
