@@ -89,7 +89,7 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'Admin', 'middleware' => ['
 });
 
 
-Route::group(['namespace' => 'FrontEnd'], function () {
+Route::group(['namespace' => 'FrontEnd'], function () { 
 
      // Merchant Operation
      Route::get('merchant/register', 'MerchantController@registerpage');

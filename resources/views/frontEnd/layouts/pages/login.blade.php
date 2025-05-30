@@ -1,5 +1,5 @@
 @extends('frontEnd.layouts.master')
-@section('title','Login')
+@section('title','Login') 
 @section('content')
 <!-- Breadcrumb -->
         <div class="breadcrumbs" style="background:#db0022;">

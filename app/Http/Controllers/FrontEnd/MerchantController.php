@@ -7,7 +7,7 @@ use App\Deliveryman;
 use App\Disclamer;
 use App\Exports\ParcelExport;
 use App\History;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use App\Imports\ParcelImport;
 use App\Mail\MerchantRegisterAlertMailable;
 use App\Mail\MerchantRegistrationEmail;
