@@ -19,12 +19,15 @@ class DashboardController extends Controller
 
         $parceltype = Parceltype::where('slug', 'return-to-merchant')->first();
 
-		$marchents = Merchant::select(['id', 'companyName', 'paymentMethod'])
-			->with(['parcels' => function ($query) use ($parceltype) {
-				$query->where('status', $parceltype->id)
-					->where('deliveryCharge', '>', 0)
-					->where('pay_return', 0);
-			}])->get();
+        $marchents = collect(); // default to empty collection
+        if ($parceltype) {
+            $marchents = Merchant::select(['id', 'companyName', 'paymentMethod'])
+                ->with(['parcels' => function ($query) use ($parceltype) {
+                    $query->where('status', $parceltype->id)
+                        ->where('deliveryCharge', '>', 0)
+                        ->where('pay_return', 0);
+                }])->get();
+        }
 
 		// Calculate total charge directly using sum()
 		$totalReturnMercahntDue = $marchents->sum(function ($merchant) {
@@ -76,6 +79,7 @@ class DashboardController extends Controller
 		$data['totalReturnMercahntDue'] = $totalReturnMercahntDue;
 		$data['deliveredParcels'] = $deliveredParcels;
 		$data['pickupParcels'] = $pickupParcels;
+		$data['parceltypes'] = Parceltype::all();
 
      
     	return view('backEnd.superadmin.dashboard', $data);
