@@ -159,8 +159,8 @@ class AppServiceProvider extends ServiceProvider
 
             $merchantspaid=Parcel::sum('merchantPaid');
             view()->share('merchantspaid',$merchantspaid);
-            $todaymerchantspaid=Parcel::where('merchantpayStatus',1)->whereDate('updated_at', Carbon::today())->sum('merchantPaid');
-            view()->share('todaymerchantspaid',$todaymerchantspaid);
+            $todaymerchantspaid = Parcel::whereDate('updated_at', Carbon::today())->sum('merchantPaid');
+            view()->share('todaymerchantspaid', $todaymerchantspaid);
 
             $deliverycharges=Parcel::sum('deliveryCharge');
             view()->share('deliverycharges',$deliverycharges);
