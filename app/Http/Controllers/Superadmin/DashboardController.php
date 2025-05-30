@@ -82,6 +82,7 @@ class DashboardController extends Controller
 		$data['totalReturnMercahntDue'] = $totalReturnMercahntDue;
 		$data['deliveredParcels'] = $deliveredParcels;
 		$data['pickupParcels'] = $pickupParcels;
+		$data['parceltypes'] = Parceltype::all();
 
 
     	return view('backEnd.superadmin.dashboard', $data);
