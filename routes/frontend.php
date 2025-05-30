@@ -60,4 +60,10 @@ Route::group(['namespace' => 'FrontEnd'], function () {
 
 Route::get('/web/get-town/{cityid}', [TownController::class, 'getTown']);
 Route::get('/web/get-tarrif/{cityid}', [ChargeTarifController::class, 'getTarrif']);
+Route::get('/services/domestic', [\App\Http\Controllers\FrontEnd\DomesticController::class, 'index'])->name('frontend.services.domestic');
+Route::get('/services/ecommerce', [\App\Http\Controllers\FrontEnd\EcommerceController::class, 'index'])->name('frontend.services.ecommerce');
+Route::get('/services/corporate', [\App\Http\Controllers\FrontEnd\CorporateController::class, 'index'])->name('frontend.services.corporate');
+Route::get('/services/air-parcel', [\App\Http\Controllers\FrontEnd\AirParcelController::class, 'index'])->name('frontend.services.air-parcel');
+Route::get('/services/pick-drop', [\App\Http\Controllers\FrontEnd\PickDropController::class, 'index'])->name('frontend.services.pick-drop');
+Route::get('/offices', [\App\Http\Controllers\FrontEnd\OfficesController::class, 'index'])->name('frontend.offices');
 

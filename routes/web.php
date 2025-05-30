@@ -599,3 +599,11 @@ Route::get('session/destroy', function ($sessionName) {
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
 
+Route::get('/services', function () {
+    return view('frontEnd.layouts.pages.service');
+});
+
+Route::get('/shipping-plans', function () {
+    return view('frontEnd.layouts.pages.shipping-plans');
+});
+

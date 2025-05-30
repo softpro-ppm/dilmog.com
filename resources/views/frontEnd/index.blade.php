@@ -12,7 +12,7 @@
                         <div class="input-group banner-input-group-inner">
                             <input type="text" class="form-control banner-input" placeholder="Type your tracking number" aria-label="Tracking Number">
                             <button class="btn btn-primary banner-track-btn" type="button">
-                                Track Parcel
+                                Track Parcel 
                             </button>
                             <button class="btn btn-outline-primary banner-book-btn" type="button">
                                 <i class="fa fa-truck me-2"></i>Book Parcel

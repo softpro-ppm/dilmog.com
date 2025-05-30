@@ -12,16 +12,16 @@
     <!-- Title Tag  -->
     <title>@yield('title', 'always on time')</title>
 
-    @if (View::hasSection('meta_description'))
-    <meta name="description" content="@yield('meta_description', 'ZiDrop | Nigeria’s Leading Logistics Company | As Quick as a Click')">
-    @endif
+    <!-- @if (View::hasSection('meta_description'))
+    <meta name="description" content="@yield('meta_description', 'ZiDrop | Nigeria's Leading Logistics Company | As Quick as a Click')">
+    @endif -->
 
     <?php 
 
-        if ($_SERVER['REQUEST_URI'] === '/public/' || $_SERVER['REQUEST_URI'] === '/public') {
-            header("Location: https://zidrop.com/", true, 301);
-            exit;
-        }
+        // if ($_SERVER['REQUEST_URI'] === '/public/' || $_SERVER['REQUEST_URI'] === '/public') {
+        //     header("Location: https://zidrop.com/", true, 301);
+        //     exit;
+        // }
 
     ?>
 
@@ -64,6 +64,9 @@
     <link rel="stylesheet" href="{{ asset('frontEnd/') }}/css/responsive.css">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
 
+    <!-- LifeSure Template Styles -->
+    <link rel="stylesheet" href="{{ asset('LifeSure-1.0.0/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('LifeSure-1.0.0/css/style.css') }}">
 
     <!-- Meta Pixel Code -->
 
@@ -215,20 +218,6 @@
                                                                         href="{{ route('frontend.subscriptions') }}">Subscriptions</a>
                                                                 </li>
                                                                 {{-- <li class="nav-item"><a href="{{url('contact-us')}}">Contact Us</a></li> --}}
-                                                                <div class="button">
-                                                                    <a href="{{ url('merchant/register') }}"
-                                                                        class="quickTech-btn register"><i
-                                                                            class="fa fa-file-text-o me-1"></i>
-                                                                        Register</a>
-                                                                    <a href="{{ url('merchant/login') }}"
-                                                                        class="quickTech-btn login"><i
-                                                                            class="fa fa-user me-1"></i> Login</a>
-                                                                    <a href="https://support.zidrop.com/"
-                                                                        class="quickTech-btn login" target="_blank"><i
-                                                                            class="fa fa-paper-plane-o me-1"></i>
-                                                                        Submit Ticket</a>
-
-                                                                </div>
                                                             </ul>
                                                             <!--/ End Naviagiton -->
                                                         </div>
@@ -250,144 +239,7 @@
         </header>
         <!--/ End Header -->
 
-
-
-
         @yield('content')
-
-        <?php /*
-        <!-- Footer -->
-        <footer class="footer" style="background-image: url({{asset('frontEnd/images/footer.svg')}});">
-            <!-- Footer Top -->
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Footer Links -->
-                            <div class="single-widget f-link widget">
-                                <h3 class="widget-title">Services</h3>
-                                <ul>
-                                    <li><a href="{{url('/')}}">Home Delivery</a></li>
-                                    <li><a href="{{url('/')}}">Warehousing</a></li>
-                                    <li><a href="{{url('/')}}">Pick and Drop</a></li>
-                                </ul>
-                            </div>
-                            <!--/ End Footer Links -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Footer Links -->
-                            <div class="single-widget f-link widget">
-                                <h3 class="widget-title">Earn</h3>
-                                <ul>
-                                    <li><a href="{{url('/')}}">Become Merchant</a></li>
-                                    <li><a href="{{url('/')}}">Become Rider</a></li>
-                                    <li><a href="{{url('/')}}">Become Delivery Man</a></li>
-                                </ul>
-                            </div>
-                            <!--/ End Footer Links -->
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-12">
-                            <!-- Footer Links -->
-                            <div class="single-widget f-link widget">
-                                <h3 class="widget-title">Company</h3>
-                                <ul>
-                                    <li><a href="{{url('about-us')}}">About Us</a></li>
-                                    <li><a href="{{url('contact-us')}}">Contact us</a></li>
-                                    <li><a href="{{url('/')}}">Our Goal</a></li>
-                                                                        <li><a href="{{route('frontend.understanding-tracking-status')}}">Understanding Tracking Status</a></li>
-
-                                </ul>
-                            </div>
-                            <!--/ End Footer Links -->
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <!-- Footer Contact -->
-                            <div class="single-widget footer_contact widget">
-                                <h3 class="widget-title">Contact</h3>
-                                <p>Don’t miss any updates of our Offer</p>
-                                <div class="newsletter"  style="border-color: #0a0603;">
-                                    <form action="" class="d-flex flex-nowrap">
-                                        <div class="form-group h-100 m-0 p-2 w-100">
-                                            <input type="email" placeholder="Email Address" class="form-control px-1 bg-transparent h-100 border-0 without-focus"/>
-                                        </div>
-                                        <button type="button" class=" btn font-20 font-light m-1" style="background-color: #0a0603;color:white">Subscribe</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!--/ End Footer Contact -->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            
-            
-            
-            
-            
-        
-            <!-- Copyright -->
-            <div class="copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="copyright-content">
-                                <div class="img-logo text-left">
-                                    <a href="{{url('/')}}">
-                                    @foreach($whitelogo as $wlogo)
-                                        <img src="{{asset($wlogo->image)}}" alt="">
-                                    @endforeach
-                                    </a>
-                                </div>
-                                
-                                
-                                <ul class="address-widget-list">
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-phone" style="color: #0a0603;"></i>{{ $contact_info->phone1 }}</li>
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-mobile-phone" style="color: #0a0603;"></i></i>{{ $contact_info->phone2 }}</li>
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-envelope" style="color: #0a0603;"></i> {{ $contact_info->email }}</li>
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-map-marker" style="color: #0a0603;"></i>{{ $contact_info->address }}</li>
-                                </ul>
-                                
-                                
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-5">
-                            <div class="align-items-center copyright-content d-flex justify-content-center">
-                                <!-- Copyright Text -->
-                                <p style="color: #0a0603;">© Copyright Zidrop Logistics 2021.</p>
-                            </div>
-                        </div>
-               
-                        
-                        
-                        <div class="col-sm-3">
-                            <div class="align-items-center copyright-content d-flex justify-content-end">
-                                
-                                <ul class="social-widget-list">
-                                    @foreach($socialmedia as $key=>$value)
-                                    <li class="footer-mobile-number"><a href="{{$value->link}}"><i class="{{$value->icon}}"></i></a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!--/ End Copyright -->
-            
-            
-            
-            
-   
-
-        </footer>
-
-        */
-        ?>
-
 
         <!-- New footer started  -->
 
@@ -405,21 +257,14 @@
                         </div>
                     </div>
                     <div class="col-lg-5 mt-4">
-                        <?php
-                        use Illuminate\Support\Facades\DB;
-                        $socialMediaLinks = DB::table('socialmedia')->where('status', 1)->get();
-                        ?>
+                        @php
+                        $socialMediaLinks = \Illuminate\Support\Facades\DB::table('socialmedia')->where('status', 1)->get();
+                        @endphp
                         <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
                             @foreach ($socialMediaLinks as $social)
-                                @if (!empty($social->link))
-                                    <a class="btn btn-light btn-md-square me-3" href="{{ $social->link }}"><i
-                                            class="{{ $social->icon }}"></i></a>
-                                @endif
-
-                                <!-- <a class="btn btn-light btn-md-square me-3" href="{{ $social->link }}"><i class="fa fa-facebook-f"></i></a>
-                        <a class="btn btn-light btn-md-square me-3" href="{{ $social->icon }}"><i class="fa fa-twitter"></i></a>
-                        <a class="btn btn-light btn-md-square me-3" href="{{ $social->icon }}"><i class="fa fa-instagram"></i></a>
-                        <a class="btn btn-light btn-md-square me-0" href="{{ $social->icon }}"><i class="fa fa-linkedin"></i></a> -->
+                                <a class="btn btn-light btn-md-square me-3" href="{{ $social->link }}">
+                                    <i class="fa {{ $social->icon }}"></i>
+                                </a>
                             @endforeach
                         </div>
                     </div>
@@ -460,10 +305,9 @@
                         </div>
                     </div>
 
-                    <?php
-                    
-                    $contactInfos = DB::table('contacts')->get();
-                    ?>
+                    @php
+                    $contactInfos = \Illuminate\Support\Facades\DB::table('contacts')->get();
+                    @endphp
                     <div class="col-md-6 col-lg-6 col-xl-3 mb-5">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="text-white mb-4">Contact Info</h4>
@@ -586,7 +430,10 @@
         });
     });
         </script>
-</body>
+
+        <!-- LifeSure Template Scripts -->
+        <script src="{{ asset('LifeSure-1.0.0/js/main.js') }}"></script>
+    </body>
 
 
 </html>
