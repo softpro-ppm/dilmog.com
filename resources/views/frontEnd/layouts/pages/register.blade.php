@@ -2,50 +2,91 @@
 @section('content')
 
     <style>
-        #sent_mail {
-            position: absolute;
-            top: 3.5px;
-            right: 18px !important;
-            margin: 2px;
-            font-size: .8rem;
+        body {
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+            background-size: cover;
         }
-
-        .align_btn_input {
-            vertical-align: middle;
-            display: -webkit-box;
+        .middle-header {
+        transition: none;
+        display: none;
+    }
+    .footer {
+    background: var(--bs-dark);
+    display: none;
+}
+.copyright {
+    display: none;
+}
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        #sent_mail:hover {
-            /* color: #fff !important; */
-            opacity: .7;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 40px 30px 30px 30px;
+            max-width: 450px;
+            width: 100%;
         }
-
-        .btn.focus,
-        .btn:focus {
-            outline: 0;
-            box-shadow: none !important;
+        .glass-card h2 {
+            color: #db0022;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .glass-card .form-group {
+            margin-bottom: 20px;
+        }
+        .glass-card input[type="email"],
+        .glass-card input[type="password"],
+        .glass-card input[type="text"],
+        .glass-card input[type="tel"] {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+        .glass-card input:focus {
+            box-shadow: 0 0 0 2px #db0022;
+        }
+        .glass-card .submit {
+            width: 100%;
+            padding: 12px;
+            background: #db0022;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .glass-card .submit:hover {
+            background: #a8001a;
+        }
+        .glass-card .form-check-label a {
+            color: #db0022;
+            text-decoration: underline;
+        }
+        @media (max-width: 500px) {
+            .glass-card {
+                padding: 30px 10px;
+            }
         }
     </style>
     <!-- Breadcrumb -->
-    <div class="breadcrumbs" style="background: #db0022">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="bread-inner">
-                        <!-- Bread Menu -->
-                        <div class="bread-menu">
-                            <ul>
-                                <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="#"> Sign Up</a></li>
-                            </ul>
-                        </div>
-                        <!-- Bread Title -->
-                        <!--<div class="bread-title"><h2>Merchant Sign Up</h2></div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  
     <!-- / End Breadcrumb -->
     <!-- Contact Us -->
     <section class="contact-us">
@@ -145,108 +186,41 @@
                                         </div>
                                     @endif
 
-                                    <form action="{{ url('auth/merchant/register') }}" method="POST" id="registerForm">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <!-- <div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
-                            <input type="email" class="form-control" required="" id="email_data" name="emailAddress" placeholder="Email" value="{{ old('emailAddress') }}" />
-                            <button type="button" class="btn btn-primary" id="sent_mail" style="right: 0px;color: white !important;background-color: #af251b;border: 2px solid #af251b !important;border-radius: 0px 4px 4px 0px !important;">Get OTP </button>
-                          </div> -->
-                                                <div class="align_btn_input">
-                                                    <div class="form-group" role="group" aria-label="Basic example"
-                                                        style="width: 100%;">
-                                                        <input type="email" class="form-control" required=""
-                                                            id="email_data" name="emailAddress" placeholder="Email"
-                                                            value="{{ old('emailAddress') }}" />
-
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-primary" id="sent_mail"
-                                                            style="right: 0px;color: white !important;background-color: #af251b;border: 2px solid #af251b !important;border-radius: 4px !important;">Get
-                                                            OTP </button>
-                                                    </div>
+                                    <div class="register-container">
+                                        <div class="glass-card">
+                                            <h2>Merchant Register</h2>
+                                            <form action="{{ url('auth/merchant/register') }}" method="POST" id="registerForm">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" required id="email_data" name="emailAddress" placeholder="Email" value="{{ old('emailAddress') }}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-primary" id="sent_mail" style="width:100%;background-color: #af251b;border: 2px solid #af251b !important;border-radius: 4px !important;">Get OTP</button>
                                                 </div>
                                                 <div id="emailError"></div>
-
-                                            </div>
-
-                                            <div class="col-sm-12 mt-3">
                                                 <div class="form-group">
-                                                    <input type="tel" name="otp" id="otp_val"
-                                                        class="form-control" pattern="[0-9]{6}" placeholder="OTP"
-                                                        readonly required value="" />
+                                                    <input type="tel" name="otp" id="otp_val" class="form-control" pattern="[0-9]{6}" placeholder="OTP" readonly required value="" />
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" required=""
-                                                        id="companyName_val" name="companyName"
-                                                        placeholder="Name of Business" readonly
-                                                        value="{{ old('companyName') }}" />
+                                                    <input type="text" class="form-control" required id="companyName_val" name="companyName" placeholder="Name of Business" readonly value="{{ old('companyName') }}" />
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input type="tel" name="phoneNumber" id="phoneNumber_val"
-                                                        class="form-control" placeholder="Enter your phone number" required readonly />
+                                                    <input type="tel" name="phoneNumber" id="phoneNumber_val" class="form-control" placeholder="Enter your phone number" required readonly />
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" required=""
-                                                        id="firstName_val" name="firstName" placeholder="Your Name"
-                                                        readonly value="{{ old('firstName') }}" />
+                                                    <input type="password" name="password" class="form-control" required placeholder="Password" />
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" required=""
-                                                        id="password_val" name="password" readonly
-                                                        placeholder="Password" />
+                                                    <input type="password" name="confirmed" id="confirmed" class="form-control" required placeholder="Confirm Password" />
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="password" class="form-control" required=""
-                                                        name="confirmed" readonly id="confirmed_val"
-                                                        placeholder="Confirm Password" />
+                                                <div class="form-check mb-3">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" value="1" name="agree" />
+                                                    <label class="form-check-label" for="exampleCheck1">I agree to <a href="{{ url('termscondition') }}">terms and condition.</a></label>
                                                 </div>
-                                            </div>
+                                                <button type="submit" class="submit">Register</button>
+                                            </form>
                                         </div>
-                                        <div class="form-check pl-4">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck2"
-                                                value="" name="agree" required="" />
-                                            <!--value="1"-->
-                                            <label class="form-check-label" for="exampleCheck2">I agree to <a
-                                                    href="{{ url('termscondition') }}">terms and condition</a></label>
-                                        </div>
-
-                                        {{-- <div class="form-group">
-                                            @if (config('google_captcha.site_key'))
-                                                <div class="g-recaptcha"
-                                                    data-sitekey="{{ config('google_captcha.site_key') }}">
-                                                </div>
-                                                @error('g-recaptcha-response')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="alert alert-danger" id="gcaptcha-error"
-                                                    style="display: none"></div>
-                                            @endif
-                                        </div> --}}
-
-                                        <div class="form-group">
-                                            <button type="submit" class="submit" id="dubmit_data"
-                                                disabled>register</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
