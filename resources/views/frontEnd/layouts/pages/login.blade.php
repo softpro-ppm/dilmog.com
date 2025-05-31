@@ -11,7 +11,7 @@
 <!-- Glassmorphism Login Form (CodePen-inspired) -->
 <style>
 body {
-    background: #f8f9fa url('https://i.postimg.cc/W11cDBzH/desk.jpg') no-repeat center center fixed;
+    background: url('https://i.postimg.cc/W11cDBzH/desk.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 .middle-header {
@@ -32,43 +32,74 @@ body {
     justify-content: center;
 }
 .glass-card {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.10);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-radius: 20px;
-    border: 1px solid rgba(219, 0, 34, 0.18);
+    border: 1.5px solid #fff;
     padding: 40px 30px 30px 30px;
     max-width: 400px;
     width: 100%;
+    position: relative;
 }
 .glass-card h2 {
-    color: #db0022;
+    color: #fff;
     font-weight: 700;
     margin-bottom: 30px;
     text-align: center;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
 }
-.glass-card .form-group {
-    margin-bottom: 20px;
+.form-group {
+    position: relative;
+    margin-bottom: 28px;
 }
-.glass-card input[type="email"],
-.glass-card input[type="password"] {
+.form-group input {
     width: 100%;
-    padding: 12px 15px;
-    border-radius: 10px;
-    border: 2px solid #e0e0e0;
-    background: rgba(255,255,255,0.7);
-    margin-bottom: 10px;
+    padding: 12px 40px 12px 16px;
+    border: none;
+    border-bottom: 1.5px solid #fff;
+    background: transparent;
+    color: #fff;
     font-size: 16px;
     outline: none;
-    transition: border 0.2s, box-shadow 0.2s;
+    border-radius: 0;
+    box-shadow: none;
+    transition: border-color 0.2s;
 }
-.glass-card input[type="email"]:focus,
-.glass-card input[type="password"]:focus {
-    border: 2px solid #db0022;
-    box-shadow: 0 0 0 2px #db0022;
+.form-group input:focus {
+    border-bottom: 2px solid #fff;
+    background: transparent;
 }
-.glass-card .submit, .glass-card .btn-primary {
+.form-group .input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 18px;
+    pointer-events: none;
+}
+.glass-card .options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 15px;
+    color: #fff;
+}
+.glass-card .options-row label {
+    margin-bottom: 0;
+    color: #fff;
+    font-weight: 400;
+}
+.glass-card .options-row a {
+    color: #fff;
+    text-decoration: underline;
+    font-size: 15px;
+}
+.glass-card .submit {
     background: #fff;
     color: #222;
     border-radius: 30px;
@@ -84,50 +115,46 @@ body {
     margin: 0 auto 10px auto;
     letter-spacing: 0.5px;
 }
-.glass-card .submit:hover, .glass-card .btn-primary:hover {
+.glass-card .submit:hover {
     background: #f8f9fa;
     color: #222;
     border: 1px solid #222;
 }
-.glass-card .forgot {
-    display: block;
-    text-align: right;
-    margin-top: 10px;
-    color: #db0022;
-    text-decoration: none;
-    font-size: 14px;
+.glass-card .register-link {
+    color: #fff;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 15px;
 }
-.glass-card .forgot:hover {
+.glass-card .register-link a {
+    color: #fff;
     text-decoration: underline;
+    font-weight: 600;
 }
-@media (max-width: 500px) {
-    .glass-card {
-        padding: 30px 10px;
-    }
-}
+::-webkit-input-placeholder { color: #fff; opacity: 0.8; }
+::-moz-placeholder { color: #fff; opacity: 0.8; }
+:-ms-input-placeholder { color: #fff; opacity: 0.8; }
+::placeholder { color: #fff; opacity: 0.8; }
 </style>
 <div class="login-container">
     <div class="glass-card">
-        <h2>Merchant Login</h2>
+        <h2>Login</h2>
         <form action="{{ url('merchant/login') }}" method="POST" id="loginForm">
             @csrf
             <div class="form-group">
                 <input type="email" name="phoneOremail" class="form-control" required placeholder="Email" />
+                <span class="input-icon"><i class="fa fa-envelope"></i></span>
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" required placeholder="Password" />
+                <span class="input-icon"><i class="fa fa-lock"></i></span>
             </div>
-            <div class="form-group">
-                @if(config('google_captcha.site_key'))
-                    <div class="g-recaptcha" data-sitekey="{{ config('google_captcha.site_key') }}"></div>
-                    @error('g-recaptcha-response')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <div class="alert alert-danger" id="gcaptcha-error" style="display: none"></div>
-                @endif
+            <div class="options-row">
+                <label><input type="checkbox" name="remember" style="margin-right:6px;"> Remember me</label>
+                <a href="{{ url('merchant/forget/password') }}">forgot password?</a>
             </div>
             <button type="submit" class="submit">Login</button>
-            <a href="{{ url('merchant/forget/password') }}" class="forgot">Forget Password?</a>
+            <div class="register-link">Don't have an account? <a href="{{ url('merchant/register') }}">Register</a></div>
         </form>
     </div>
 </div>
