@@ -4,7 +4,7 @@
 <!-- Glassmorphism Login Form (CodePen-inspired) -->
 <style>
 body {
-    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background: #f8f9fa url('https://i.postimg.cc/W11cDBzH/desk.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 .middle-header {
@@ -26,11 +26,11 @@ body {
 }
 .glass-card {
     background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(219, 0, 34, 0.18);
     padding: 40px 30px 30px 30px;
     max-width: 400px;
     width: 100%;
@@ -49,31 +49,38 @@ body {
     width: 100%;
     padding: 12px 15px;
     border-radius: 10px;
-    border: none;
+    border: 2px solid #e0e0e0;
     background: rgba(255,255,255,0.7);
     margin-bottom: 10px;
     font-size: 16px;
     outline: none;
-    transition: box-shadow 0.2s;
+    transition: border 0.2s, box-shadow 0.2s;
 }
 .glass-card input[type="email"]:focus,
 .glass-card input[type="password"]:focus {
+    border: 2px solid #db0022;
     box-shadow: 0 0 0 2px #db0022;
 }
-.glass-card .submit {
-    width: 100%;
-    padding: 12px;
-    background: #db0022;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
+.glass-card .submit, .glass-card .btn-primary {
+    background: #fff;
+    color: #222;
+    border-radius: 30px;
+    font-weight: bold;
     font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
+    padding: 12px 0;
+    border: none;
+    width: 100%;
+    box-shadow: none;
+    text-align: center;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    display: block;
+    margin: 0 auto 10px auto;
+    letter-spacing: 0.5px;
 }
-.glass-card .submit:hover {
-    background: #a8001a;
+.glass-card .submit:hover, .glass-card .btn-primary:hover {
+    background: #f8f9fa;
+    color: #222;
+    border: 1px solid #222;
 }
 .glass-card .forgot {
     display: block;
