@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <!-- Title Tag  -->
-    <title>@yield('title', 'always on time')</title>
+    <title>@yield('title', 'always on time')</title> 
 
    
 

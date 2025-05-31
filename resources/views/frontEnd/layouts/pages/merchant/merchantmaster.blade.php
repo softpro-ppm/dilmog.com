@@ -338,7 +338,7 @@
                         <div class="row">
                             <div class="col-sm-12" style="background-color:#17263A; padding-top:7px;" onmouseover="document.getElementById('noticeMarquee').stop();" onmouseout="document.getElementById('noticeMarquee').start();">
                                 <marquee id="noticeMarquee" style="font-weight: bold; color: white;" class="marqueeTagDIv">
-                                    {{ $merchantNotice->title }}
+                                    {{ $merchantNotice->title ?? '' }}
                                 </marquee>
                             </div>
                         </div>

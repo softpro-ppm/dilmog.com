@@ -408,26 +408,31 @@ class MerchantController extends Controller
         $data['notice']           = Disclamer::find(1);
 
         $merchantdata     = Merchant::where('id', $merchantID)->with('parcels')->first();
+        if (!$merchantdata) {
+            Toastr::error('Session expired or invalid merchant. Please login again.', 'Error!');
+            return redirect('/merchant/login');
+        }
         $data['merchant'] = $merchantdata;
 
         // return merchant
         $parceltype = Parceltype::where('slug', 'return-to-merchant')->first();
-        $merchant   = Merchant::select(['id', 'companyName', 'paymentMethod'])
-            ->where('id', $merchantID)
-            ->with(['parcels' => function ($query) use ($parceltype) {
-                return $query->where('status', '=', $parceltype->id)
-                    ->where('deliveryCharge', '>', 0)
-                    ->where('pay_return', 0);
-            }])->first();
+        $merchant = null;
+        if ($parceltype) {
+            $merchant = Merchant::select(['id', 'companyName', 'paymentMethod'])
+                ->where('id', $merchantID)
+                ->with(['parcels' => function ($query) use ($parceltype) {
+                    return $query->where('status', '=', $parceltype->id)
+                        ->where('deliveryCharge', '>', 0)
+                        ->where('pay_return', 0);
+                }])->first();
+        }
         $retmercharge = 0;
 
-        if ($merchant->parcels->count() > 0 && $merchant->pay_return == 0) {
+        if ($merchant && $merchant->parcels->count() > 0 && $merchant->pay_return == 0) {
             foreach ($merchant->parcels as $p) {
                 $retmercharge += $p->deliveryCharge + $p->tax + $p->insurance;
             }
-
             $data['retmercharge'] = $retmercharge;
-
         }
         // MErchant Due
 
@@ -444,6 +449,11 @@ class MerchantController extends Controller
         $merchantspaid         = Parcel::where('merchantId', $merchantID)->sum('merchantPaid');
         $data['merchantspaid'] = $merchantspaid;
 
+        $parceltypes = Parceltype::all();
+        $data['parceltypes'] = $parceltypes;
+
+        $areas = \App\Nearestzone::where('status', 1)->get();
+        $data['areas'] = $areas;
 
         return view('frontEnd.layouts.pages.merchant.dashboard', $data);
     }
@@ -452,41 +462,29 @@ class MerchantController extends Controller
     public function profile()
     {
         $profileinfos = Merchant::all();
-
-        return view('frontEnd.layouts.pages.merchant.profile', compact('profileinfos',));
-
+        $parceltypes = Parceltype::all();
+        $areas = \App\Nearestzone::where('status', 1)->get();
+        return view('frontEnd.layouts.pages.merchant.profile', compact('profileinfos', 'parceltypes', 'areas'));
     }
 
     public function profileEdit()
     {
-        
         $merchantInfo = Merchant::find(Session::get('merchantId'));
         $nearestzones = Nearestzone::where('status', 1)->get();
-        $results = DB::table('paymentapis')->where('id', 1)->first();
         $merchantSubsPlan = MerchantSubscriptions::where('merchant_id', $merchantInfo->id)->where('is_active', 1)->first();
-        // dd($merchantSubsPlan);
-                
         $SubsHistos = MerchantSubscriptions::with('plan')
-        ->where('merchant_id', Session::get('merchantId'))
-        ->orderByDesc('created_at')
-        ->limit(20)
-        ->get()
-        ->map(function ($item) {
-            $item->formatted_date = \Carbon\Carbon::parse($item->assign_time)->format('d/m/Y');
-            $item->formatted_time = \Carbon\Carbon::parse($item->assign_time)->format('j M Y') . ' To ' . \Carbon\Carbon::parse($item->expired_time)->format('j M Y');
-            return $item;
-        });       
+            ->where('merchant_id', Session::get('merchantId'))
+            ->orderByDesc('created_at')
+            ->limit(20)
+            ->get()
+            ->map(function ($item) {
+                $item->formatted_date = \Carbon\Carbon::parse($item->assign_time)->format('d/m/Y');
+                $item->formatted_time = \Carbon\Carbon::parse($item->assign_time)->format('j M Y') . ' To ' . \Carbon\Carbon::parse($item->expired_time)->format('j M Y');
+                return $item;
+            });
 
-        return view('frontEnd.layouts.pages.merchant.profileedit', compact('nearestzones', 'merchantInfo', 'results', 'merchantSubsPlan', 'SubsHistos'));
-
+        return view('frontEnd.layouts.pages.merchant.profileedit', compact('nearestzones', 'merchantInfo', 'merchantSubsPlan', 'SubsHistos'));
     }
-    // public function subscription_history()
-    // {
-    //     $merchantInfo = Merchant::find(Session::get('merchantId'));
-    //     $merchantSubsPlan = MerchantSubscriptions::where('merchant_id', $merchantInfo->id)->get();       
-    //     return view('frontEnd.layouts.pages.merchant.profileedit', compact('nearestzones', 'merchantInfo', 'results', 'merchantSubsPlan'));
-
-    // }
 
     public function support()
     {

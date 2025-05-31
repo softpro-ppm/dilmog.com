@@ -160,7 +160,8 @@ class MerchantOperationController extends Controller {
             ->select('parcels.*', 'nearestzones.zonename', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
             ->get();
 
-        return view('backEnd.merchant.manage', compact('merchants', 'show_data'));
+        $parceltypes = \App\Parceltype::all();
+        return view('backEnd.merchant.manage', compact('merchants', 'show_data', 'parceltypes'));
     }
 
     public function merchantrequest() {

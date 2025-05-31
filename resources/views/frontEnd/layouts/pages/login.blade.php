@@ -1,100 +1,123 @@
 @extends('frontEnd.layouts.master')
 @section('title','Login') 
 @section('content')
-<!-- Breadcrumb -->
-        <div class="breadcrumbs" style="background:#db0022;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="bread-inner">
-                            <!-- Bread Menu -->
-                            <div class="bread-menu">
-                                <ul>
-                                    <li><a href="{{url('/')}}">Home</a></li>
-                                    <li><a href="#">Log In</a></li>
-                                </ul>
-                            </div>
-                            <!-- Bread Title -->
-                        </div>
-                    </div>
-                </div>
+<!-- Glassmorphism Login Form (CodePen-inspired) -->
+<style>
+body {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background-size: cover;
+}
+.middle-header {
+        transition: none;
+        display: none;
+    }
+    .footer {
+    background: var(--bs-dark);
+    display: none;
+}
+.copyright {
+    display: none;
+}
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 40px 30px 30px 30px;
+    max-width: 400px;
+    width: 100%;
+}
+.glass-card h2 {
+    color: #db0022;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.glass-card .form-group {
+    margin-bottom: 20px;
+}
+.glass-card input[type="email"],
+.glass-card input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+.glass-card input[type="email"]:focus,
+.glass-card input[type="password"]:focus {
+    box-shadow: 0 0 0 2px #db0022;
+}
+.glass-card .submit {
+    width: 100%;
+    padding: 12px;
+    background: #db0022;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.glass-card .submit:hover {
+    background: #a8001a;
+}
+.glass-card .forgot {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    color: #db0022;
+    text-decoration: none;
+    font-size: 14px;
+}
+.glass-card .forgot:hover {
+    text-decoration: underline;
+}
+@media (max-width: 500px) {
+    .glass-card {
+        padding: 30px 10px;
+    }
+}
+</style>
+<div class="login-container">
+    <div class="glass-card">
+        <h2>Merchant Login</h2>
+        <form action="{{ url('merchant/login') }}" method="POST" id="loginForm">
+            @csrf
+            <div class="form-group">
+                <input type="email" name="phoneOremail" class="form-control" required placeholder="Email" />
             </div>
-        </div>
-        <!-- / End Breadcrumb -->
-        
-<!-- Contact Us -->
-<section class="contact-us">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-8">                
-                <div class="mobile-register">
-                    <div class="mobile-register-text">
-                        <h5>Login Now</h5>
-                    </div>
-                    
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
-                            <div class="mobile-register-area">
-                                <form action="{{url('merchant/login')}}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="phoneOremail" required="" placeholder="01XXXXXXXXX" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" name="password" required="" placeholder="Password" />
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="submit">login</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade show active" id="email" role="tabpanel" aria-labelledby="email-tab">
-                            <div class="mobile-register-area">
-                                <form action="{{url('merchant/login')}}" method="POST" id="loginForm">
-                                    @csrf                                    
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" name="phoneOremail" required="" placeholder="Email" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" class="form-control" required="" placeholder="Password" />
-                                    </div>
-                                    <div class="form-group">
-                                        @if(config('google_captcha.site_key'))
-                                            <div class="g-recaptcha"
-                                                data-sitekey="{{config('google_captcha.site_key')}}">
-                                            </div>
-                                            @error('g-recaptcha-response')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                            <div class="alert alert-danger" id="gcaptcha-error" style="display: none"></div>
-                                        @endif
-                                    </div>
-                                    <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="rememberme text-danger">
-{{--                                            <input type="checkbox" name="rememberme" id="rememberme"> <label for="rememberme"> Remember Me</label>--}}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 text-right">
-                                        <a href="{{url('merchant/forget/password')}}" class="text-danger">Forget Password</a>
-                                    </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <button type="submit" class="submit">login</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" required placeholder="Password" />
             </div>
-        </div>
+            <div class="form-group">
+                @if(config('google_captcha.site_key'))
+                    <div class="g-recaptcha" data-sitekey="{{ config('google_captcha.site_key') }}"></div>
+                    @error('g-recaptcha-response')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <div class="alert alert-danger" id="gcaptcha-error" style="display: none"></div>
+                @endif
+            </div>
+            <button type="submit" class="submit">Login</button>
+            <a href="{{ url('merchant/forget/password') }}" class="forgot">Forget Password?</a>
+        </form>
     </div>
-
-</section>
-    @include('frontEnd.layouts._notice_modal')
+</div>
+@include('frontEnd.layouts._notice_modal')
 @endsection
 
 @section('custom_js_script')
@@ -114,7 +137,6 @@
                     e.preventDefault();
                     $("#gcaptcha-error").html('Please complete the captcha');
                     $("#gcaptcha-error").show();
-                    //alert('Please complete the reCAPTCHA.');
                 }     
             });
         @endif
