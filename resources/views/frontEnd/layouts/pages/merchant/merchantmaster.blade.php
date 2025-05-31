@@ -657,70 +657,7 @@
                     .appendTo('#example_wrapper .col-md-6:eq(11)');
             });
         </script>
-        <script>
-            // function calculate_result() {
-            //     $.ajax({
-            //         type: "GET",
-            //         url: "{{ url('cost/calculate/result') }}",
-            //         dataType: "html",
-            //         success: function(deliverycharge) {
-            //             $('.calculate_result').html(deliverycharge)
-            //         }
-            //     });
-            // }
-
-            // $('.calculate').on('keyup paste click', function() {
-            //     var packageid = $('.package').val();
-            //     var cod = $('.cod').val();
-            //     var weight = $('.weight').val() ? $('.weight').val() : 1;
-            //     var reciveZone = $('.reciveZone').val();
-            //     // console.log(reciveZone)
-            //     if (packageid, cod, weight, reciveZone) {
-            //         $.ajax({
-            //             cache: false,
-            //             type: "GET",
-            //             url: "{{ url('cost/calculate') }}/" + packageid + '/' + cod + '/' + weight + '/' + reciveZone,
-            //             dataType: "json",
-            //             success: function(deliverycharge) {
-            //                 return calculate_result();
-            //             }
-            //         });
-            //     }
-            // });
-            // $('#reciveZone').on('change', function() {
-            //     var packageid = $('.package').val();
-            //     var cod = $('.cod').val();
-            //     var weight = $('.weight').val() ? $('.weight').val() : 1;
-            //     var reciveZone = $('.reciveZone').val();
-            //     // console.log(reciveZone)
-            //     if (packageid, cod, weight, reciveZone) {
-            //         $.ajax({
-            //             cache: false,
-            //             type: "GET",
-            //             url: "{{ url('cost/calculate') }}/" + packageid + '/' + cod + '/' + weight + '/' + reciveZone,
-            //             dataType: "json",
-            //             success: function(deliverycharge) {
-            //                 return calculate_result();
-            //             }
-            //         });
-            //     }
-            // });
-
-            // $('.package').on('change', function() {
-            //     var id = $(this).val();
-            //     if (id) {
-            //         $.ajax({
-            //             cache: false,
-            //             type: "GET",
-            //             url: "{{ url('delivery/charge') }}/" + id,
-            //             dataType: "json",
-            //             success: function(deliverycharge) {
-            //                 return calculate_result();
-            //             }
-            //         });
-            //     }
-            // });
-        </script>
+        
         <script>
             flatpickr(".flatDate", {});
         </script>

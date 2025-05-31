@@ -158,7 +158,6 @@ body {
         </form>
     </div>
 </div>
-@include('frontEnd.layouts._notice_modal')
 @endsection
 
 @section('custom_js_script')
