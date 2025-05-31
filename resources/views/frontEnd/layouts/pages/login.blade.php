@@ -8,11 +8,13 @@
     </div>
 </div>
 <!-- Spinner Loader End -->
-<!-- Glassmorphism Login Form (CodePen-inspired) -->
+<!-- Updated Netflix-style design -->
 <style>
 body {
-    background: url('https://i.postimg.cc/W11cDBzH/desk.jpg') no-repeat center center fixed;
+    background: url('/logo/login_bg.jpg') no-repeat center center fixed;
     background-size: cover;
+    color: #fff;
+    font-family: Arial, sans-serif;
 }
 .middle-header {
         transition: none;
@@ -26,115 +28,143 @@ body {
     display: none;
 }
 .login-container {
-    min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 60px;
 }
 .glass-card {
-    background: rgba(255, 255, 255, 0.10);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 20px;
-    border: 1.5px solid #fff;
-    padding: 40px 30px 30px 30px;
-    max-width: 400px;
+    background: rgba(0,0,0,0.75);
+    border-radius: 4px;
+    padding: 48px 40px 36px 40px;
     width: 100%;
-    position: relative;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .glass-card h2 {
     color: #fff;
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-}
-.form-group {
-    position: relative;
-    margin-bottom: 28px;
-}
-.form-group input {
+    text-align: left;
     width: 100%;
-    padding: 12px 40px 12px 16px;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+}
+.glass-card form {
+    width: 100%;
+}
+.glass-card .form-group {
+    width: 100%;
+    margin-bottom: 18px;
+}
+.glass-card input[type="email"],
+.glass-card input[type="text"],
+.glass-card input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    background: #333;
     border: none;
-    border-bottom: 1.5px solid #fff;
-    background: transparent;
+    border-radius: 4px;
     color: #fff;
     font-size: 16px;
-    outline: none;
-    border-radius: 0;
-    box-shadow: none;
-    transition: border-color 0.2s;
-}
-.form-group input:focus {
-    border-bottom: 2px solid #fff;
-    background: transparent;
-}
-.form-group .input-icon {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 18px;
-    pointer-events: none;
-}
-.glass-card .options-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-    font-size: 15px;
-    color: #fff;
-}
-.glass-card .options-row label {
     margin-bottom: 0;
-    color: #fff;
-    font-weight: 400;
+    outline: none;
+    box-sizing: border-box;
 }
-.glass-card .options-row a {
-    color: #fff;
-    text-decoration: underline;
+.glass-card input[type="email"]::placeholder,
+.glass-card input[type="text"]::placeholder,
+.glass-card input[type="password"]::placeholder {
+    color: #8c8c8c;
     font-size: 15px;
 }
 .glass-card .submit {
-    background: #fff;
-    color: #222;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 12px 0;
-    border: none;
     width: 100%;
-    box-shadow: none;
-    text-align: center;
-    transition: background 0.2s, color 0.2s, border 0.2s;
-    display: block;
-    margin: 0 auto 10px auto;
+    padding: 14px 0;
+    background: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
     letter-spacing: 0.5px;
 }
 .glass-card .submit:hover {
-    background: #f8f9fa;
-    color: #222;
-    border: 1px solid #222;
+    background: #f40612;
+}
+.glass-card .or-divider {
+    width: 100%;
+    text-align: center;
+    color: #b3b3b3;
+    margin: 18px 0 16px 0;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.glass-card .alt-btn {
+    width: 100%;
+    padding: 12px 0;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.glass-card .alt-btn:hover {
+    background: #444;
+}
+.glass-card .options-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #b3b3b3;
+}
+.glass-card .options-row label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.glass-card .options-row a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+.glass-card .options-row a:hover {
+    text-decoration: underline;
+    color: #fff;
 }
 .glass-card .register-link {
-    color: #fff;
-    text-align: center;
-    margin-top: 18px;
+    color: #b3b3b3;
     font-size: 15px;
+    margin-top: 18px;
+    text-align: left;
+    width: 100%;
 }
 .glass-card .register-link a {
     color: #fff;
-    text-decoration: underline;
-    font-weight: 600;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 4px;
 }
-::-webkit-input-placeholder { color: #fff; opacity: 0.8; }
-::-moz-placeholder { color: #fff; opacity: 0.8; }
-:-ms-input-placeholder { color: #fff; opacity: 0.8; }
-::placeholder { color: #fff; opacity: 0.8; }
+.glass-card .register-link a:hover {
+    text-decoration: underline;
+}
 .back-to-top-btn {
     position: fixed;
     right: 30px;
@@ -167,23 +197,23 @@ body {
 </style>
 <div class="login-container">
     <div class="glass-card">
-        <h2>Login</h2>
+        <h2>Sign In</h2>
         <form action="{{ url('merchant/login') }}" method="POST" id="loginForm">
             @csrf
             <div class="form-group">
-                <input type="email" name="phoneOremail" class="form-control" required placeholder="Email" />
-                <span class="input-icon"><i class="fa fa-envelope"></i></span>
+                <input type="text" name="phoneOremail" class="form-control" required placeholder="Email or mobile number" />
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" required placeholder="Password" />
-                <span class="input-icon"><i class="fa fa-lock"></i></span>
             </div>
+            <button type="submit" class="submit">Sign In</button>
+            <div class="or-divider">OR</div>
+            <button type="button" class="alt-btn" disabled>Use a sign-in code</button>
             <div class="options-row">
                 <label><input type="checkbox" name="remember" style="margin-right:6px;"> Remember me</label>
-                <a href="{{ url('merchant/forget/password') }}">forgot password?</a>
+                <a href="{{ url('merchant/forget/password') }}">Forgot password?</a>
             </div>
-            <button type="submit" class="submit">Login</button>
-            <div class="register-link">Don't have an account? <a href="{{ url('merchant/register') }}">Register</a></div>
+            <div class="register-link">New to Zidrop? <a href="{{ url('merchant/register') }}">Sign up now.</a></div>
         </form>
     </div>
 </div>

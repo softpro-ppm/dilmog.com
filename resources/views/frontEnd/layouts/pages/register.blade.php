@@ -248,11 +248,15 @@
                                                     <input type="tel" name="phoneNumber" id="phoneNumber_val" class="form-control" placeholder="Enter your phone number" required readonly />
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" name="password" class="form-control" required placeholder="Password" />
+                                                <div class="form-row" style="display: flex; gap: 12px;">
+                                                    <div style="flex: 1;">
+                                                        <input type="password" name="password" class="form-control" required placeholder="Password" />
+                                                    </div>
+                                                    <div style="flex: 1;">
+                                                        <input type="password" name="confirmed" id="confirmed" class="form-control" required placeholder="Confirm Password" />
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <input type="password" name="confirmed" id="confirmed" class="form-control" required placeholder="Confirm Password" />
-                                                </div>
+                                            </div>
                                                 <div class="form-check mb-3">
                                                     <input type="checkbox" class="form-check-input" id="exampleCheck1" value="1" name="agree" />
                                                     <label class="form-check-label" for="exampleCheck1">I agree to <a href="{{ url('termscondition') }}">terms and condition.</a></label>
@@ -272,6 +276,9 @@
     <!-- Scroll to Top Button Start -->
     <a href="#" id="backToTop" class="back-to-top-btn" style="display:none;"><i class="fa fa-arrow-up"></i></a>
     <!-- Scroll to Top Button End -->
+    <!-- Floating Button -->
+    <a href="#" id="backToTop" class="back-to-top-btn"><i class="fa fa-arrow-up"></i></a>
+    <!-- End Floating Button -->
 @endsection
 
 @section('custom_js_script')
