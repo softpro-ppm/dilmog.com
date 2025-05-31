@@ -113,7 +113,7 @@
                                 <div class="text-center">
                                     <h3 class="h5 text-muted text-uppercase">become a merchant</h3>
                                 </div>
-                                <div class="mobile-register-area">
+                                <div class="">
                                     <form action="{{ url('auth/merchant/register') }}" method="POST">
                                         @csrf
                                         <div class="row">
@@ -171,7 +171,7 @@
                                 <div class="text-center">
                                     <h3 class="h5 text-muted text-uppercase">become a merchant</h3>
                                 </div>
-                                <div class="mobile-register-area">
+                                <div class="">
                                     @if (count($errors) > 0)
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                             <button type="button" class="close" data-dismiss="alert"
