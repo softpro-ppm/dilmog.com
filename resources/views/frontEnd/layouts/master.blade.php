@@ -319,8 +319,6 @@
         <script src="{{ asset('frontEnd/') }}/js/bootstrap.min.js"></script>
         <!-- Modernizr JS -->
         <script src="{{ asset('frontEnd/') }}/js/modernizr.min.js"></script>
-        <!-- ScrollUp JS -->
-        <script src="{{ asset('frontEnd/') }}/js/scrollup.js"></script>
         <!-- FacnyBox JS -->
         <script src="{{ asset('frontEnd/') }}/js/jquery-fancybox.min.js"></script>
         <!-- Cube Portfolio JS -->

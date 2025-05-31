@@ -95,6 +95,35 @@
             margin-bottom: 20px;
             letter-spacing: 0.5px;
         }
+        .back-to-top-btn {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 56px;
+            height: 56px;
+            background: #0066d9;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 16px rgba(0,102,217,0.18);
+            z-index: 9999;
+            transition: opacity 0.3s, visibility 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            text-decoration: none;
+        }
+        .back-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            display: flex !important;
+        }
+        .back-to-top-btn:hover {
+            background: #004ea8;
+            color: #fff;
+        }
     </style>
     <!-- Breadcrumb -->
   
@@ -240,6 +269,9 @@
             </div>
         </div>
     </section>
+    <!-- Scroll to Top Button Start -->
+    <a href="#" id="backToTop" class="back-to-top-btn" style="display:none;"><i class="fa fa-arrow-up"></i></a>
+    <!-- Scroll to Top Button End -->
 @endsection
 
 @section('custom_js_script')
@@ -423,6 +455,23 @@
                 var spinner = document.getElementById('spinner');
                 if (spinner) spinner.classList.remove('show');
             }, 1);
+        });
+    </script>
+
+    <script>
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            var btn = document.getElementById('backToTop');
+            if (window.scrollY > 200) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+        // Smooth scroll to top
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 @endsection
