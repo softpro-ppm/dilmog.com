@@ -213,7 +213,7 @@ body {
                 <label><input type="checkbox" name="remember" style="margin-right:6px;"> Remember me</label>
                 <a href="{{ url('merchant/forget/password') }}">Forgot password?</a>
             </div>
-            <div class="register-link">New to Zidrop? <a href="{{ url('merchant/register') }}">Sign up now.</a></div>
+            <div class="register-link">New to Dilmog? <a href="{{ url('merchant/register') }}">Sign up now.</a></div>
         </form>
     </div>
 </div>
