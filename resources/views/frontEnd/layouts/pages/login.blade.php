@@ -35,7 +35,7 @@ body {
     padding-top: 60px;
 }
 .glass-card {
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.65);
     border-radius: 4px;
     padding: 48px 40px 36px 40px;
     width: 100%;
@@ -84,7 +84,7 @@ body {
 .glass-card .submit {
     width: 100%;
     padding: 14px 0;
-    background: #e50914;
+    background: #015fc9;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -97,7 +97,7 @@ body {
     letter-spacing: 0.5px;
 }
 .glass-card .submit:hover {
-    background: #f40612;
+    background: #114d91;
 }
 .glass-card .or-divider {
     width: 100%;
@@ -197,7 +197,7 @@ body {
 </style>
 <div class="login-container">
     <div class="glass-card">
-        <h2>Sign In</h2>
+        <h2 class="text-center">Merchant Login</h2>
         <form action="{{ url('merchant/login') }}" method="POST" id="loginForm">
             @csrf
             <div class="form-group">

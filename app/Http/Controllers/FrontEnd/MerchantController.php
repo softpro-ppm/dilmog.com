@@ -998,8 +998,8 @@ class MerchantController extends Controller
                 ->get();
         }
         $slug       = 'all';
-        $parceltype = [];
-        return view('frontEnd.layouts.pages.merchant.parcels', compact('allparcel', 'slug', 'parceltype'));
+        $parceltypes = Parceltype::all();
+        return view('frontEnd.layouts.pages.merchant.parcels', compact('allparcel', 'slug', 'parceltypes'));
     }
     public function get_parcel_data(Request $request, $slug)
     {
@@ -1749,7 +1749,14 @@ class MerchantController extends Controller
 
     public function index()
     {
-        return view('frontEnd.layouts.pages.merchant.changepass');
+        // Fetch all parcel types for navigation/menu
+        try {
+            $parceltypes = \App\Parceltype::all();
+        } catch (\Throwable $e) {
+            // Fallback for missing model or table
+            $parceltypes = collect([]);
+        }
+        return view('frontEnd.layouts.pages.merchant.changepass', compact('parceltypes'));
     }
 
     public function changepassword(Request $request)

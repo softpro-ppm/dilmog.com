@@ -81,7 +81,7 @@
                     <li> <a href="{{ url('merchant/parcels ') }}"> >> My All Parcel</a> </li>
 
 
-                    @foreach ($parceltypes as $parceltype)
+                    @foreach(($parceltypes ?? []) as $parceltype)
                     @if($parceltype->id == 11)
                       @continue
                       @endif
@@ -191,7 +191,7 @@
                             </a>
                         </li>
 
-                        @foreach ($parceltypes as $parceltype)
+                        @foreach(($parceltypes ?? []) as $parceltype)
                         @if($parceltype->id == 11)
                       @continue
                       @endif
@@ -445,7 +445,7 @@
                                             value="{{ old('reciveZone') }}" name="reciveZone"
                                             placeholder="Delivery Area" required="required">
                                             <option value="">Delivery Area...</option>
-                                            @foreach ($areas as $area)
+                                            @foreach(($areas ?? []) as $area)
                                                 <option value="{{ $area->id }}">{{ $area->zonename }}</option>
                                             @endforeach
                                         </select>
@@ -527,7 +527,7 @@
                                             value="{{ old('reciveZone') }}" name="reciveZone"
                                             placeholder="Delivery Area" required="required">
                                             <option value="">Delivery Area...</option>
-                                            @foreach ($areas as $area)
+                                            @foreach(($areas ?? []) as $area)
                                                 <option value="{{ $area->id }}">{{ $area->zonename }}</option>
                                             @endforeach
                                         </select>

@@ -418,7 +418,7 @@
                 <div class="card-body fade-in-up-light ">
                     <div class="card-body-content ">
                         <div class="row" style="margin-top: 20px; width: 100%;">
-                            @foreach ($parcelTypeDescribes as $key => $value)
+                            @foreach(($parcelTypeDescribes ?? []) as $key => $value)
                                 <div class="col-md-4 mt-5 ">
                                     <div class="status_describe_col ">
                                         <!-- Add anchor link with data attribute -->
@@ -440,7 +440,7 @@
         </div>
         <div class="col-md-6">
            <div class="row">
-            @foreach ($parcelTypeDescribes as $key => $value)
+            @foreach(($parcelTypeDescribes ?? []) as $key => $value)
             <div class="" id="description_link{{ $value->id }}">
                 <div class="col-md-12 mt-5 description">
                     <div class="section-title default text-left">

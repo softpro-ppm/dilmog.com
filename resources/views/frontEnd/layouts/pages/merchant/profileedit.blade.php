@@ -593,7 +593,7 @@
 
             let handler = PaystackPop.setup({
 
-                key: '<?= $results->public ?>', 
+                key: '{{ env('PAYSTACK_PUBLIC_KEY') }}',
                 // key: 'pk_test_9e185aac0936fd9313529f6471cdc37873adc730',
                 email: emailAddress,
                 phone: phoneNumber,
