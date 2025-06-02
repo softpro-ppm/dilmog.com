@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 
 class FeatureController extends Controller {
     public function create_contact_info() {
-        return view('backEnd.feature.contact');
+        $parceltypes = \App\Parceltype::all();
+        return view('backEnd.feature.contact', compact('parceltypes'));
     }
 
     public function store_contact_info(Request $request) {

@@ -22,33 +22,35 @@ class RefreshController extends Controller
     public function index()
     {
         $old_data = DB::table('auto_refresh')->where('id', 1)->first();
+        if (!$old_data) {
+            $old_data = (object)[
+                'time' => 30,
+                'status' => 0
+            ];
+        }
         return view('backEnd.refresh.refresh', compact('old_data'));
     }
 
     public function check(Request $request){
         $this->validate($request,[
             'time'=>'required',
-           // 'status'=>'required',
         ]);
 
-        //print_r($_POST); die;
-
-
-       // Check if the record with id = 1 exists
+        // Check if the record with id = 1 exists
         $recordExists = DB::table('auto_refresh')->where('id', 1)->exists();
 
         if ($recordExists) {
             // If the record exists, update it
             DB::table('auto_refresh')->where('id', 1)->update([
                 'time' => $request->time,
-                'status' => $request->status === 'on' ? 1 : 0,
+                'status' => $request->has('status') ? 1 : 0,
             ]);
         } else {
         // If the record does not exist, insert it
             DB::table('auto_refresh')->insert([
                 'id' => 1,  // You must explicitly set the id when inserting
                 'time' => $request->time,
-                'status' => $request->status === 'on' ? 1 : 0,
+                'status' => $request->has('status') ? 1 : 0,
             ]);
         }
         Toastr::success('message', 'Refresh time update successfully!');

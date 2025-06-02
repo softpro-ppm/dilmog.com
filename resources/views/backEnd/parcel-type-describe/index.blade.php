@@ -55,7 +55,7 @@
                                         @foreach ($parcelTypeDescribes as $key => $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $value->parcelType->title }}</td>
+                                                <td>{{ $value->parcelType->title ?? 'N/A' }}</td>
                                                 <td>{{ $value->description }}</td>
                                                 <td>{{ $value->status == 1 ? 'Active' : 'Inactive' }}</td>
                                                 <td>

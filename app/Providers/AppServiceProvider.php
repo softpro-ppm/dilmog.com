@@ -204,9 +204,28 @@ class AppServiceProvider extends ServiceProvider
             view()->share('deliverycharge',$deliverycharge);
         }
 
-        // $parceltypes = Parceltype::orderBy('sl', 'ASC')->get();
-        // view()->share('parceltypes',$parceltypes);
-        
+        if (Schema::hasTable('parceltypes')) {
+            $parceltypes = Parceltype::orderBy('id', 'ASC')->get();
+            view()->share('parceltypes', $parceltypes);
+        }
+        if (Schema::hasTable('pickups')) {
+            $newpickup = Pickup::where('status',0)
+            ->orderBy('id','DESC')
+            ->get();
+            view()->share('newpickup',$newpickup);
+            $pendingpickup = Pickup::where('status',1)
+            ->orderBy('id','DESC')
+            ->get();
+            view()->share('pendingpickup',$pendingpickup);
+            $acceptedpickup = Pickup::where('status',2)
+            ->orderBy('id','DESC')
+            ->get();
+            view()->share('acceptedpickup',$acceptedpickup);
+            $cancelledpickup = Pickup::where('status',3)
+            ->orderBy('id','DESC')
+            ->get();
+            view()->share('cancelledpickup',$cancelledpickup);
+        }
         // $allnotelist = Note::get();
         // view()->share('allnotelist',$allnotelist);
 

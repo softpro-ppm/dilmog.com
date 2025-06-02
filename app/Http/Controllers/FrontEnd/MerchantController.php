@@ -998,8 +998,9 @@ class MerchantController extends Controller
                 ->get();
         }
         $slug       = 'all';
+        $parceltype = null;
         $parceltypes = Parceltype::all();
-        return view('frontEnd.layouts.pages.merchant.parcels', compact('allparcel', 'slug', 'parceltypes'));
+        return view('frontEnd.layouts.pages.merchant.parcels', compact('allparcel', 'slug', 'parceltype', 'parceltypes'));
     }
     public function get_parcel_data(Request $request, $slug)
     {
