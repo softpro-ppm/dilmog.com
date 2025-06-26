@@ -8,7 +8,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Department;
 use File;
 
-class DepartmentController extends Controller
+class DepartmentController extends BaseAuthorController
 {
     
     public function add(){

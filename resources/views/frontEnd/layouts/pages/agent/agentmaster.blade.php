@@ -18,7 +18,7 @@
     </script>
 
     <!-- //Meta tag Keywords -->
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ $favicon ?? asset('favicon.png') }}">
     <!-- Custom-Files -->
     <link rel="stylesheet" href="{{ asset('frontEnd') }}/css/bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('backEnd/') }}/dist/css/custom.css?v=5.0">

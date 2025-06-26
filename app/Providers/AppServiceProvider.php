@@ -226,8 +226,8 @@ class AppServiceProvider extends ServiceProvider
             ->get();
             view()->share('cancelledpickup',$cancelledpickup);
         }
-        // $allnotelist = Note::get();
-        // view()->share('allnotelist',$allnotelist);
+        $allnotelist = Note::get();
+        view()->share('allnotelist',$allnotelist);
 
     }
 }

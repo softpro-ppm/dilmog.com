@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\City;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use Brian2694\Toastr\Facades\Toastr;
 
-class CityController extends Controller
+class CityController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.

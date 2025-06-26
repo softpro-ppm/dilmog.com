@@ -102,7 +102,7 @@ Route::group(['namespace' => 'FrontEnd'], function () {
     Route::get('agent/login', 'AgentController@loginform');
     Route::post('auth/agent/login', 'AgentController@login');
     Route::get('agent/forget/password', 'AgentController@passreset');
-    Route::post('auth/agent/password/reset', 'AgentController@passfromreset');
+    Route::post('auth/agent/password/reset', 'AgentController@passfromreset'); 
     Route::get('/agent/resetpassword/verify', 'AgentController@resetpasswordverify');
     Route::post('auth/agent/reset/password', 'AgentController@saveResetPassword');
 

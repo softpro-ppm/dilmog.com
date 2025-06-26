@@ -5400,9 +5400,11 @@ p.has-large-font-size {
 }
 
 .modal-content {
-    padding: 50px;
+    /* padding: 50px; */
 }
-
+.btn-primary {
+    background-color: #015fc9 !important;
+}
 .common-login {
     background: #fff;
     padding: 30px;

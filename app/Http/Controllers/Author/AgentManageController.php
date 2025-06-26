@@ -11,7 +11,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use DB;
 use Illuminate\Http\Request;
 
-class AgentManageController extends Controller
+class AgentManageController extends BaseAuthorController
 {
     public function add()
     {

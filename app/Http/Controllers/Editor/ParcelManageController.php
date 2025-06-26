@@ -637,7 +637,7 @@ class ParcelManageController extends Controller
 
         }
 
-        return $data;
+        return response()->json($data);
 
         // return view('backEnd.parcel.parcel', compact('show_data', 'parceltype', 'canEdit', 'agents'));
     }
@@ -838,7 +838,6 @@ class ParcelManageController extends Controller
             $datavalue[6] = $value->recipientName;
             $datavalue[7] = $value->deliverycity->title . '/' . $value->deliverytown->title;
             $datavalue[8] = $value->recipientAddress;
-
             $datavalue[9] = $value->recipientPhone;
 
             if ($value->pickupmanId) {
@@ -887,7 +886,7 @@ class ParcelManageController extends Controller
 
         }
 
-        return $data;
+        return response()->json($data);
     }
 
     public function parceldelete(Request $request, $id)
@@ -2725,7 +2724,7 @@ class ParcelManageController extends Controller
 
             $html .= '</li>';
             // if($value->parcel_source == 'p2p'){
-            //     $html .= '<li class="m-1"><button class="edit_icon" href="#" id="merchantParcel" title="View" data-firstname = "' .$value->p2pParcel->sender_name  .  '" data-type="'. 'p2p' .'" data-phonenumber = "' . $value->p2pParcel->sender_mobile . '" data-emailaddress = "' . $value->p2pParcel->sender_email . '" data-companyname = "' . 'P2P' . '" data-recipientname = "' . $value->recipientName . '" data-recipientaddress = "' . $value->recipientAddress . '" data-zonename = "' . $value->zonename .   '" data-pickup = "' . $value->pickupcity->title. '/'. $value->pickuptown->title .'" data-delivery = "' . $value->deliverycity->title. '/'. $value->deliverytown->title . '" data-title = "' . $value->title . '" data-cod = "' . number_format($value->cod, 2) . '"data-package_value = "' . number_format($value->package_value, 2) . '" data-codcharge = "' . number_format($value->codCharge, 2) . '" data-deliverycharge = "' . number_format($value->deliveryCharge, 2) . '" data-merchantamount = "' . number_format($value->merchantAmount, 2) . '" data-merchantpaid = "' . number_format($value->merchantPaid, 2) . '" data-merchantdue = "' . number_format($value->merchantDue, 2) . '" data-created_at = "' . $value->created_at . '" data-updated_at = "' . $value->updated_at . '" data-tax = "' . number_format($value->tax, 2) . '" data-insurance = "' . number_format($value->insurance, 2) . '" ><i class="fa fa-eye"></i></button></li>';
+            //     $html .= '<li class="m-1"><button class="edit_icon" href="#" id="merchantParcel" title="View" data-firstname = "' .$value->p2pParcel->sender_name  .  '" data-type="'. 'p2p' . '" data-phonenumber = "' . $value->p2pParcel->sender_mobile . '" data-emailaddress = "' . $value->p2pParcel->sender_email . '" data-companyname = "' . 'P2P' . '" data-recipientname = "' . $value->recipientName . '" data-recipientaddress = "' . $value->recipientAddress . '" data-zonename = "' . $value->zonename .   '" data-pickup = "' . $value->pickupcity->title. '/'. $value->pickuptown->title .'" data-delivery = "' . $value->deliverycity->title. '/'. $value->deliverytown->title . '" data-title = "' . $value->title . '" data-cod = "' . number_format($value->cod, 2) . '"data-package_value = "' . number_format($value->package_value, 2) . '" data-codcharge = "' . number_format($value->codCharge, 2) . '" data-deliverycharge = "' . number_format($value->deliveryCharge, 2) . '" data-merchantamount = "' . number_format($value->merchantAmount, 2) . '" data-merchantpaid = "' . number_format($value->merchantPaid, 2) . '" data-merchantdue = "' . number_format($value->merchantDue, 2) . '" data-created_at = "' . $value->created_at . '" data-updated_at = "' . $value->updated_at . '" data-tax = "' . number_format($value->tax, 2) . '" data-insurance = "' . number_format($value->insurance, 2) . '" ><i class="fa fa-eye"></i></button></li>';
             // }else{
             $html .= '<li class="m-1"><button class="edit_icon" href="#" id="merchantParcel" title="View" data-firstname = "' . $merchantDetails->firstName . '" data-order_number = "' . $value->order_number . '" data-lastname = "' . $merchantDetails->lastName . '" data-phonenumber = "' . $merchantDetails->phoneNumber . '" data-emailaddress = "' . $merchantDetails->emailAddress . '" data-companyname = "' . $merchantDetails->companyName . '" data-recipientname = "' . $value->recipientName . '" data-recipientaddress = "' . $value->recipientAddress . '" data-zonename = "' . $value->zonename . '" data-pickup = "' . $value->pickupcity->title . '/' . $value->pickuptown->title . '" data-delivery = "' . $value->deliverycity->title . '/' . $value->deliverytown->title . '" data-title = "' . $value->title . '" data-cod = "' . number_format($value->cod, 2) . '"data-package_value = "' . number_format($value->package_value, 2) . '" data-codcharge = "' . number_format($value->codCharge, 2) . '" data-deliverycharge = "' . number_format($value->deliveryCharge, 2) . '" data-merchantamount = "' . number_format($value->merchantAmount, 2) . '" data-merchantpaid = "' . number_format($value->merchantPaid, 2) . '" data-merchantdue = "' . number_format($value->merchantDue, 2) . '" data-created_at = "' . $value->created_at . '" data-updated_at = "' . $value->updated_at . '" data-tax = "' . number_format($value->tax, 2) . '" data-insurance = "' . number_format($value->insurance, 2) . '" ><i class="fa fa-eye"></i></button></li>';
             // }

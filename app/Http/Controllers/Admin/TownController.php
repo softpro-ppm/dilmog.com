@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Town;
 use Illuminate\Http\Request;
 use App\Imports\TownImport;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use Brian2694\Toastr\Facades\Toastr;
 
-class TownController extends Controller
+class TownController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.

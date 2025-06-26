@@ -8,7 +8,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Department;
 use App\Employee;
 use DB;
-class EmployeeController extends Controller
+
+class EmployeeController extends BaseAuthorController
 {
    public function add(){
     $department = Department::where('status',1)->get();

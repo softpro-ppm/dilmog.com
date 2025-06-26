@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Deliverycharge;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
-class DeliveryChargeController extends Controller
+class DeliveryChargeController extends AdminBaseController
 {
     public function add()
     {

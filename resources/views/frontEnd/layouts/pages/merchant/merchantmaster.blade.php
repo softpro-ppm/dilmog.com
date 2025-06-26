@@ -19,7 +19,7 @@
         }
     </script>
     <!-- //Meta tag Keywords -->
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ $favicon ?? asset('favicon.png') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Custom-Files -->
     <link rel="stylesheet" href="{{ asset('frontEnd') }}/css/bootstrap4.min.css">

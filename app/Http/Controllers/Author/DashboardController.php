@@ -7,9 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Parcel;
 use App\Parceltype;
 use App\Merchant;
+use App\Logo;
 
-class DashboardController extends Controller
+class DashboardController extends BaseAuthorController
 {
+    public function __construct()
+    {
+        // Share dynamic favicon with all author views
+        $favicon = Logo::where('type', 3)->where('status', 1)->orderByDesc('id')->first();
+        view()->share('favicon', $favicon ? asset($favicon->image) : asset('favicon.png'));
+    }
+
     public function index(){
     	$agentsDue = Parcel::whereIn('status', [6, 4, 11])
         ->whereNull('agentPaystatus')
@@ -79,7 +87,8 @@ class DashboardController extends Controller
 		$data['totalReturnMercahntDue'] = $totalReturnMercahntDue;
 		$data['deliveredParcels'] = $deliveredParcels;
 		$data['pickupParcels'] = $pickupParcels;
-		$data['parceltypes'] = Parceltype::all();
+		//$data['parceltypes'] = Parceltype::all();
+		$data['parceltypes'] = Parceltype::orderBy('sl', 'asc')->get();
 
      
     	return view('backEnd.superadmin.dashboard', $data);

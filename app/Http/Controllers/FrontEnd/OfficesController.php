@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\FrontEnd\FrontEndController;
 
-class OfficesController extends Controller
+class OfficesController extends FrontEndController
 {
     public function index()
     {

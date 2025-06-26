@@ -47,7 +47,7 @@ Route::group(['namespace' => 'FrontEnd'], function () {
 
     //  new Routes
     Route::any('/web/get/store-payment', 'PaymentController@p2psubmit');
-    Route::get('/p2p', 'WebsiteController@p2p')->name('web.p2p');
+    //Route::get('/p2p', 'WebsiteController@p2p')->name('web.p2p');
     Route::get('/web/get/ppverify-payment/{reference}', 'PaymentController@ppverifypayment');
     Route::get('/web/parcel/invoice/{id}', 'FrontEndController@webinvoice');
 

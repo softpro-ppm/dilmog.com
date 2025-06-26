@@ -77,7 +77,7 @@
     color: #6c757d; /* Updated text color */
     background-color: transparent;
     font-size: 16px;
-    padding: 0 20px;
+    padding: 13px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-right: 0;
 }
@@ -93,4 +93,13 @@
     outline: none;
     box-shadow: none; /* Removed blue highlight */
     border-color: #6c757d; /* Retain consistent border color */
+}
+
+
+@media (min-width: 768px) {
+    .d-md-flex {
+        display: flex !important
+;
+        text-align: -webkit-center;
+    }
 }

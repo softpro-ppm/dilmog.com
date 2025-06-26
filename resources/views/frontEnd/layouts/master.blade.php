@@ -25,7 +25,7 @@
 
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ $favicon ?? asset('favicon.png') }}">
 
     <!-- Web Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -110,6 +110,50 @@
                 transition: none;
             }
         }
+
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .modal-header {
+            padding: 1rem 1rem 0;
+        }
+        .modal-body {
+            padding-top: 0;
+        }
+        .modal-body img {
+            max-width: 200px;
+            height: auto;
+        }
+        .btn-primary {
+            background-color: #db0022;
+            border-color: #db0022;
+        }
+        .btn-primary:hover {
+            background-color: #b3001c;
+            border-color: #b3001c;
+        }
+        .btn-outline-primary {
+            color: #db0022;
+            border-color: #db0022;
+        }
+        .btn-outline-primary:hover {
+            background-color: #db0022;
+            border-color: #db0022;
+        }
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 1rem;
+            }
+            .modal-body {
+                padding: 1rem;
+            }
+            .btn-lg {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -131,9 +175,11 @@
                                             <!-- Image Logo -->
                                             <div class="img-logo">
                                                 <a href="{{ url('/') }}">
-                                                    @foreach ($whitelogo as $wlogo)
-                                                        <img src="{{ asset($wlogo->image) }}" alt="">
-                                                    @endforeach
+                                                    @if(isset($whitelogo) && count($whitelogo))
+                                                        <img src="{{ asset($whitelogo[0]->image) }}" alt="Logo">
+                                                    @else
+                                                        <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+                                                    @endif
                                                 </a>
                                             </div>
                                         </div>
@@ -171,7 +217,7 @@
 
                                                                 <!-- <li class="nav-item"><a href="{{ url('gallery') }}">Gallery</a></li> -->
                                                                 <li class="nav-item"><a
-                                                                        href="{{ url('notice') }}">Notice</a></li>
+                                                                        href="{{ url('notice') }}">Announcements</a></li> 
                                                                 <li class="nav-item"><a
                                                                         href="{{ route('frontend.branches') }}">Hubs</a>
                                                                 </li>
@@ -332,7 +378,7 @@
         <!-- Magnipic Popup JS -->
         <script src="{{ asset('frontEnd/') }}/js/magnific-popup.min.js"></script>
         <!-- Active JS -->
-        <script src="{{ asset('frontEnd/') }}/js/counter.js"></script>
+        <script src="{{ asset('frontEnd/js/scrollup.js') }}"></script>
         <script src="{{ asset('frontEnd/') }}/js/active.js"></script>
         <script src="{{ asset('backEnd/') }}/dist/js/toastr.min.js"></script>
 
@@ -412,36 +458,54 @@
 
         <!-- LifeSure Template Scripts (should come after plugins) -->
         <script src="{{ asset('LifeSure-1.0.0/js/main.js') }}"></script>
-    </body>
 
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-</html>
-<!-- Messenger Chat Plugin Code -->
-<div id="fb-root"></div>
+        <!-- Welcome Popup Script -->
+        <script>
+            // Wait for the document to be fully loaded
+            window.addEventListener('load', function() {
+                // Initialize the modal
+                var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'), {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                
+                // Show the modal
+                welcomeModal.show();
+                
+                // For debugging
+                console.log('Modal element:', document.getElementById('welcomeModal'));
+                console.log('Bootstrap Modal object:', welcomeModal);
+            });
+        </script>
 
-<!-- Your Chat Plugin code -->
-<div id="fb-customer-chat" class="fb-customerchat">
-</div>
+        <!-- Add this before closing body tag -->
+        <style>
+            /* Ensure modal is visible */
+            .modal {
+                display: block !important;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            }
+            .modal.show {
+                opacity: 1;
+                visibility: visible;
+            }
+            .modal-backdrop {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+            .modal-backdrop.show { 
+                opacity: 0.5;
+            }
+            /* Rest of your existing modal styles */
+            .modal-content {
+                border-radius: 15px;
+                border: none;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            // ... rest of existing styles ...
+        </style>
 
-<script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "109961004701121");
-    chatbox.setAttribute("attribution", "biz_inbox");
-
-    window.fbAsyncInit = function() {
-        FB.init({
-            xfbml: true,
-            version: 'v11.0'
-        });
-    };
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<!--End of Tawk.to Script-->

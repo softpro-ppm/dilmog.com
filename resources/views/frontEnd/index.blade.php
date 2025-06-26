@@ -9,15 +9,18 @@
                     <!-- <h1 class="display-1 text-white mb-4"><span>Handled with care.</span><br>Dilmog delivers for your business.</h1>
                     <p class="mb-5 fs-5 text-white">Reliable. Fast. No weekend delivery fees.</p> -->
                     <div class="d-flex justify-content-center mt-4 banner-input-group d-none d-md-flex">
-                        <div class="input-group banner-input-group-inner">
-                            <input type="text" class="form-control banner-input" placeholder="Type your tracking number" aria-label="Tracking Number">
-                            <button class="btn btn-primary banner-track-btn" type="button">
-                                Track Parcel 
-                            </button>
-                            <button class="btn btn-outline-primary banner-book-btn" type="button">
-                                <i class="fa fa-truck me-2"></i>Book Parcel
-                            </button>
-                        </div>
+                        <form action="{{ url('/track/parcel/') }}" method="POST" class="w-100">
+                            @csrf
+                            <div class="input-group banner-input-group-inner">
+                                <input type="text" name="trackparcel" class="form-control banner-input" placeholder="Type your tracking number" aria-label="Tracking Number" required>
+                                <button class="btn btn-primary banner-track-btn" type="submit">
+                                    Track Parcel 
+                                </button>
+                                <a href="{{ url('/p2p') }}" class="btn btn-outline-primary banner-book-btn">
+                                    <i class="fa fa-truck me-2"></i>Book Parcel
+                                </a>
+                            </div>
+                        </form>
                     </div>
                     <!-- Mobile Tracking Form -->
                      <!--
@@ -193,7 +196,7 @@
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item">
                         <div class="service-img">
-                            <img src="{{ asset('assets/img/blog-1.png') }}" class="img-fluid rounded-top w-100" alt="">
+                            <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid rounded-top w-100" alt="">
                             <div class="service-icon p-3">
                                 <i class="fa fa-users fa-2x"></i>
                             </div>
@@ -336,7 +339,7 @@
                 <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="blog-item">
                         <div class="blog-img">
-                            <img src="{{ asset('assets/img/blog-1.png') }}" class="img-fluid rounded-top w-100" alt="">
+                            <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid rounded-top w-100" alt="">
                             <div class="blog-categiry py-2 px-4">
                                 <span>Business</span>
                             </div>
@@ -562,4 +565,50 @@
         </div>
     </div>
     <!-- Testimonial End -->
+
+    @include('frontEnd.layouts.partials.popup-b')
+@endsection
+
+
+
+@section('custom_js_script')
+<script>
+window.hasShownGlobalPopupB = window.hasShownGlobalPopupB || false;
+document.addEventListener('DOMContentLoaded', function() {
+    let currentPath = window.location.pathname;
+    if (currentPath !== '/' && currentPath.endsWith('/')) {
+        currentPath = currentPath.slice(0, -1);
+    }
+    currentPath = currentPath.toLowerCase();
+    const allowedPaths = ['/'].map(p => {
+        let normalizedP = p.toLowerCase();
+        if (normalizedP !== '/' && normalizedP.endsWith('/')) {
+            normalizedP = normalizedP.slice(0, -1);
+        }
+        return normalizedP;
+    });
+    if (!window.hasShownGlobalPopupB && allowedPaths.includes(currentPath)) {
+        fetch('/notices/active')
+            .then(response => response.json())
+            .then(function(notice) {
+                if (notice && notice.title && notice.description) {
+                    showGlobalPopupB({
+                        title: notice.title,
+                        message: notice.description,
+                        buttons: [
+                            {
+                                text: 'Close',
+                                class: 'btn btn-danger',
+                                onClick: function() {
+                                    bootstrap.Modal.getInstance(document.getElementById('globalPopupBModal')).hide();
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        window.hasShownGlobalPopupB = true;
+    }
+});
+</script>
 @endsection

@@ -28,8 +28,14 @@ use PhpParser\Node\Expr\Array_;
 use Session;
 use App\ParcelTypeDescribe;
 use App\Parcel;
+use App\Logo;
 
 class FrontEndController extends Controller {
+    public function __construct() {
+        $favicon = Logo::where('type', 3)->where('status', 1)->orderByDesc('id')->first();
+        view()->share('favicon', $favicon ? asset($favicon->image) : asset('favicon.png'));
+    }
+
     public function index() {
         $banner          = Banner::where('status', 1)->orderBy('id', 'DESC')->get();
         $partners        = Partner::where('status', 1)->orderBy('id', 'DESC')->get();
@@ -93,17 +99,13 @@ class FrontEndController extends Controller {
     }
 
     public function parceltrack(Request $request) {
-
         $trackparcel = Parcel::where('trackingCode', $request->trackparcel)->with('pickupcity', 'deliverycity', 'pickuptown', 'deliverytown', 'merchant', 'deliverymen', 'parceltype')->first();
-      
         if ($trackparcel) {
             $trackInfos = Parcelnote::where('parcelId', $trackparcel->id)->orderBy('id', 'ASC')->get();
-
             return view('frontEnd.layouts.pages.trackparcel', compact('trackparcel', 'trackInfos'));
         } else {
-            return redirect()->back();
+            return redirect('/');
         }
-
     }
 
     public function parceltrackget($id) {
@@ -113,16 +115,12 @@ class FrontEndController extends Controller {
             ->select('parcels.*', 'nearestzones.zonename')
             ->orderBy('id', 'DESC')
             ->first();
-
         if ($trackparcel) {
             $trackInfos = Parcelnote::where('parcelId', $trackparcel->id)->orderBy('id', 'ASC')->get();
-            // return $trackInfos;
-
             return view('frontEnd.layouts.pages.trackparcel', compact('trackparcel', 'trackInfos'));
         } else {
-            return redirect()->back();
+            return redirect('/');
         }
-
     }
 
     public function aboutus() {

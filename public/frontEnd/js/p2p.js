@@ -1,101 +1,83 @@
-
-
 function senderInfoVerification() {
-	alert('sender verified')
-	var firstErrorOccurance = '';
+    var firstErrorOccurance = '';
     var sender_name = $('#shipping-form [name="sender_name"]').val();
     var sender_mobile = $('#shipping-form [name="sender_mobile"]').val();
     var sender_email = $('#shipping-form [name="sender_email"]').val();
     var sender_pickuptown = $('#shipping-form [name="sender_pickuptown"]').val();
     var sender_pickupcity = $('#shipping-form [name="sender_pickupcity"]').val();
-    var sender_postcode = $('#shipping-form [name="sender_postcode"]').val();
-    var sender_thana = $('#shipping-form [name="sender_thana"]').val();
     var sender_address = $('#shipping-form [name="sender_address"]').val();
-    var address_type = $('#shipping-form [name="address_type"]:checked').val();
 
     console.log(sender_name);
 
     if (
-        address_type != "" && address_type != undefined && address_type != null &&
         sender_name != "" && sender_name != undefined && sender_name != null &&
         sender_mobile != "" && sender_mobile != undefined && sender_mobile != null &&
         sender_email != "" && sender_email != undefined && sender_email != null &&
         sender_pickuptown != "" && sender_pickuptown != undefined && sender_pickuptown != null &&
         sender_pickupcity != "" && sender_pickupcity != undefined && sender_pickupcity != null &&
-        sender_postcode != "" && sender_postcode != undefined && sender_postcode != null &&
-        sender_address != "" && sender_address != undefined && sender_address != null &&
-        sender_thana != "" && sender_thana != undefined && sender_thana != null
+        sender_address != "" && sender_address != undefined && sender_address != null
     ) {
 
         var email_pattern = /^[^_.-][\w-._]+@[a-zA-Z_-]+?(\.[a-zA-Z]{2,26}){1,3}$/;
         var mobile_pattern = /^(?:\+?88)?01[13-9]\d{8}$/;
         if (sender_email.match(email_pattern) == null) {
             $('.sender_email_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_email';
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_email';
         } else if (sender_mobile.match(mobile_pattern) == null) {
             $('.sender_mobile_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_mobile';
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_mobile';
         } else {
             fbq('track', 'P2PSenderInfoReceived');
             $('.sender_name_error').hide();
             $('.sender_mobile_error').hide();
             $('.sender_email_error').hide();
             $('.sender_district_error').hide();
-            $('.sender_area_error').hide();
+            $('.sender_pickupcity_error').hide();
             $('.sender_address_error').hide();
-            //document.body.scrollTop = 0;
-			//document.documentElement.scrollTop = 0;
-			firstErrorOccurance = '';
-            // slideItem('step-02');
-            $('.slide-content').hide();
+            firstErrorOccurance = '';
+            slideItem('step-02');
+            updateStepperZidrop(2);
         }
     } else {
-		
+        
         if (sender_name == '' || sender_name == undefined || sender_name == null) {
             $('.sender_name_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_name';
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_name';
         } else {
             $('.sender_name_error').hide();
         }
-		
-		if (address_type == '' || address_type == undefined || address_type == null) {
-            $('.sender_address_type_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'address_type';
-        } else {
-            $('.sender_address_type_error').hide();
-        }
-		
+        
         if (sender_mobile == '' || sender_mobile == undefined || sender_mobile == null) {
             $('.sender_mobile_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_mobile';
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_mobile';
         } else {
             $('.sender_mobile_error').hide();
         }
-		
+        
         if (sender_email == '' || sender_email == undefined || sender_email == null) {
             $('.sender_email_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_email';
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_email';
         } else {
             $('.sender_email_error').hide();
         }
-		
+        
         if (sender_pickuptown == '' || sender_pickuptown == undefined || sender_pickuptown == null) {
             $('.sender_district_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_district';
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_district';
         } else {
             $('.sender_district_error').hide();
         }
-		
+        
         if (sender_pickupcity == '' || sender_pickupcity == undefined || sender_pickupcity == null) {
-            $('.sender_area_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_area';
+            $('.sender_pickupcity_error').show();
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_pickupcity';
         } else {
-            $('.sender_area_error').hide();
+            $('.sender_pickupcity_error').hide();
         }
-		
+        
         if (sender_address == '' || sender_address == undefined || sender_address == null) {
             $('.sender_address_error').show();
-			firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_address';
+            firstErrorOccurance = (firstErrorOccurance)?firstErrorOccurance : 'sender_address';
         } else {
             $('.sender_address_error').hide();
         }
@@ -260,4 +242,387 @@ function checkNumeric(id) {
     if (id.value.match(/\D/)){
 		id.value = id.value.replace(p, "");
 	} 
+}
+
+// Form validation functions
+function validateSenderInfo() {
+    let isValid = true;
+    const senderName = $('#sender_name').val().trim();
+    const senderMobile = $('#sender_mobile').val().trim();
+    const senderEmail = $('#sender_email').val().trim();
+    const senderCity = $('#sender_pickupcity').val();
+    const senderTown = $('#sender_pickuptown').val();
+    const senderAddress = $('#sender_address').val().trim();
+
+    // Reset error messages
+    $('.invalid-feedback').hide();
+
+    // Validate sender name
+    if (!senderName) {
+        $('.sender_name_error').show();
+        isValid = false;
+    }
+
+    // Validate sender mobile (11 digit Nigerian number)
+    const mobileRegex = /^(\+234|0)[789][01]\d{8}$/;
+    if (!senderMobile || !mobileRegex.test(senderMobile.replace(/\s+/g, ''))) {
+        $('.sender_mobile_error').show();
+        isValid = false;
+    }
+
+    // Validate sender email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!senderEmail || !emailRegex.test(senderEmail)) {
+        $('.sender_email_error').show();
+        isValid = false;
+    }
+
+    // Validate sender city
+    if (!senderCity) {
+        $('.sender_pickupcity_error').show();
+        isValid = false;
+    }
+
+    // Validate sender town
+    if (!senderTown) {
+        $('.sender_district_error').show();
+        isValid = false;
+    }
+
+    // Validate sender address
+    if (!senderAddress) {
+        $('.sender_address_error').show();
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function validateRecipientInfo() {
+    let isValid = true;
+    const recipientName = $('#recivier_name').val().trim();
+    const recipientMobile = $('#recivier_mobile').val().trim();
+    const recipientCity = $('#recipient_pickupcity').val();
+    const recipientTown = $('#recipient_pickuptown').val();
+    const recipientAddress = $('#recivier_address').val().trim();
+
+    // Reset error messages
+    $('.invalid-feedback').hide();
+
+    // Validate recipient name
+    if (!recipientName) {
+        $('.recipient_name_error').show();
+        isValid = false;
+    }
+
+    // Validate recipient mobile (11 digit Nigerian number)
+    const mobileRegex = /^(\+234|0)[789][01]\d{8}$/;
+    if (!recipientMobile || !mobileRegex.test(recipientMobile.replace(/\s+/g, ''))) {
+        $('.recipient_mobile_error').show();
+        isValid = false;
+    }
+
+    // Validate recipient city
+    if (!recipientCity) {
+        $('.recipient_pickupcity_error').show();
+        isValid = false;
+    }
+
+    // Validate recipient town
+    if (!recipientTown) {
+        $('.recipient_district_error').show();
+        isValid = false;
+    }
+
+    // Validate recipient address
+    if (!recipientAddress) {
+        $('.recipient_address_error').show();
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function validateParcelInfo() {
+    let isValid = true;
+    const parcelType = $('#parcel_type').val();
+    const packageWeight = $('#package_weight').val();
+    const numberOfItems = $('#number_of_items').val();
+    const declaredValue = $('#declared_value').val();
+    const itemName = $('#item_name').val().trim();
+    const itemColor = $('#item_color').val().trim();
+    const parcelContents = $('#parcel_contents').val().trim();
+
+    // Reset error messages
+    $('.invalid-feedback').hide();
+
+    // Validate parcel type
+    if (!parcelType) {
+        $('.parcel_type_error').show();
+        isValid = false;
+    }
+
+    // Validate package weight
+    if (!packageWeight || packageWeight <= 0) {
+        $('.package_weight_error').show();
+        isValid = false;
+    }
+
+    // Validate number of items
+    if (!numberOfItems || numberOfItems < 1) {
+        $('.number_of_items_error').show();
+        isValid = false;
+    }
+
+    // Validate declared value
+    if (!declaredValue || declaredValue <= 0) {
+        $('.declared_value_error').show();
+        isValid = false;
+    }
+
+    // Validate item name
+    if (!itemName) {
+        $('.item_name_error').show();
+        isValid = false;
+    }
+
+    // Validate item color
+    if (!itemColor) {
+        $('.item_color_error').show();
+        isValid = false;
+    }
+
+    // Validate parcel contents
+    if (!parcelContents) {
+        $('.parcel_contents_error').show();
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function validateReviewInfo() {
+    let isValid = true;
+    const termsAccepted = $('#terms_conditions').is(':checked');
+
+    // Reset error messages
+    $('.invalid-feedback').hide();
+
+    // Validate terms and conditions
+    if (!termsAccepted) {
+        $('.terms_conditions_error').show();
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+// Navigation functions
+function slideItem(step) {
+    $('.slide-content').hide();
+    $('#' + step).show();
+
+    // Update stepper
+    $('.step-circle').removeClass('bg-primary text-white').addClass('bg-light text-secondary');
+    $('.step-label').removeClass('text-primary').addClass('text-secondary');
+    
+    const stepNumber = step.split('-')[1];
+    for (let i = 1; i <= stepNumber; i++) {
+        $(`.step:nth-child(${i * 2 - 1}) .step-circle`).removeClass('bg-light text-secondary').addClass('bg-primary text-white');
+        $(`.step:nth-child(${i * 2 - 1}) .step-label`).removeClass('text-secondary').addClass('text-primary');
+    }
+}
+
+// ZiDrop stepper progression functions
+function updateStepper(currentStep) {
+    // Reset all steps
+    $('.stepper-zidrop .step').removeClass('active completed');
+    
+    // Mark completed steps
+    for (let i = 1; i < currentStep; i++) {
+        $(`.stepper-zidrop .step:nth-child(${i})`).addClass('completed');
+    }
+    
+    // Mark current step as active
+    $(`.stepper-zidrop .step:nth-child(${currentStep})`).addClass('active');
+}
+
+function updateStepperZidrop(currentStep) {
+    // Reset all
+    $('.step-circle-zidrop').removeClass('active');
+    $('.step-text-zidrop').removeClass('active');
+    $('.progress-line-zidrop').removeClass('active');
+    
+    // Set active steps
+    $('.step-circle-zidrop').each(function(index) {
+        if (index + 1 <= currentStep) {
+            $(this).addClass('active');
+        }
+    });
+    
+    $('.step-text-zidrop').each(function(index) {
+        if (index + 1 <= currentStep) {
+            $(this).addClass('active');
+        }
+    });
+    
+    $('.progress-line-zidrop').each(function(index) {
+        if (index + 1 < currentStep) {
+            $(this).addClass('active');
+        }
+    });
+}
+
+function slideItem(stepId) {
+    $('.slide-content').hide();
+    $('#' + stepId).show();
+    
+    let stepNumber = 1;
+    if (stepId === 'step-02') stepNumber = 2;
+    else if (stepId === 'step-03') stepNumber = 3;
+    else if (stepId === 'step-04') stepNumber = 4;
+    
+    updateStepperZidrop(stepNumber);
+}
+
+// Form submission functions
+function senderInfoVerification() {
+    if (validateSenderInfo()) {
+        slideItem('step-02');
+    }
+}
+
+function recipientInfoVerification() {
+    if (validateRecipientInfo()) {
+        slideItem('step-03');
+    }
+}
+
+function parcelInfoVerification() {
+    if (validateParcelInfo()) {
+        updateReviewSection();
+        slideItem('step-04');
+    }
+}
+
+function updateReviewSection() {
+    // Update sender details
+    $('#sender_name_t').text($('#sender_name').val());
+    $('#sender_mobile_t').text($('#sender_mobile').val());
+    $('#sender_email_t').text($('#sender_email').val());
+    $('#sender_pickupcity_t').text($('#sender_pickupcity option:selected').text());
+    $('#sender_pickuptown_t').text($('#sender_pickuptown option:selected').text());
+    $('#sender_address_t').text($('#sender_address').val());
+
+    // Update recipient details
+    $('#recivier_name_t').text($('#recivier_name').val());
+    $('#recivier_mobile_t').text($('#recivier_mobile').val());
+    $('#recipient_pickupcity_t').text($('#recipient_pickupcity option:selected').text());
+    $('#recipient_pickuptown_t').text($('#recipient_pickuptown option:selected').text());
+    $('#recivier_address_t').text($('#recivier_address').val());
+
+    // Update parcel details
+    $('#parcel_type_t').text($('#parcel_type option:selected').text());
+    $('#package_weight_t').text($('#package_weight').val() + ' kg');
+    $('#number_of_items_t').text($('#number_of_items').val());
+    $('#item_name_t').text($('#item_name').val());
+    $('#item_color_t').text($('#item_color').val());
+    $('#parcel_contents_t').text($('#parcel_contents').val());
+
+    // Calculate charges
+    const weight = parseFloat($('#package_weight').val());
+    const declaredValue = parseFloat($('#declared_value').val());
+    const baseCharge = 1000; // Base delivery charge
+    const weightCharge = weight > 1 ? (weight - 1) * 500 : 0; // Additional charge per kg after first kg
+    const insuranceRate = 0.01; // 1% insurance rate
+    const taxRate = 0.075; // 7.5% tax rate
+
+    const deliveryCharge = baseCharge + weightCharge;
+    const insurance = declaredValue * insuranceRate;
+    const tax = (deliveryCharge + insurance) * taxRate;
+    const total = deliveryCharge + insurance + tax;
+
+    // Update charges
+    $('#delivery_charge_t').text('₦' + deliveryCharge.toLocaleString());
+    $('#insurance_t').text('₦' + insurance.toLocaleString());
+    $('#tax_t').text('₦' + tax.toLocaleString());
+    $('#total_t').text('₦' + total.toLocaleString());
+
+    // Store total amount for payment
+    $('#totalamount').val(total);
+}
+
+function confirmAndPay() {
+    if (validateReviewInfo()) {
+        // Proceed with payment
+        payWithPaystack(event);
+    }
+}
+
+// Initialize form
+$(document).ready(function() {
+    // Initialize select2
+    $('.select2').select2({
+        theme: 'bootstrap-5'
+    });
+
+    // Handle city change for sender
+    $('#sender_pickupcity').change(function() {
+        const cityId = $(this).val();
+        if (cityId) {
+            loadTowns(cityId, '#sender_pickuptown');
+        } else {
+            $('#sender_pickuptown').html('<option value="">Pickup Town</option>');
+        }
+    });
+
+    // Handle city change for recipient
+    $('#recipient_pickupcity').change(function() {
+        const cityId = $(this).val();
+        if (cityId) {
+            loadTowns(cityId, '#recipient_pickuptown');
+        } else {
+            $('#recipient_pickuptown').html('<option value="">Pickup Town</option>');
+        }
+    });
+
+    // Format mobile numbers
+    $('#sender_mobile, #recivier_mobile').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 0) {
+            if (value.startsWith('234')) {
+                value = '0' + value.substring(3);
+            }
+            if (value.length > 11) {
+                value = value.substring(0, 11);
+            }
+            $(this).val(value.replace(/(\d{4})(?=\d)/g, '$1 '));
+        }
+    });
+
+    // Format declared value
+    $('#declared_value').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 0) {
+            $(this).val(parseInt(value).toLocaleString());
+        }
+    });
+});
+
+// Load towns based on selected city
+function loadTowns(cityId, targetSelect) {
+    $.ajax({
+        url: '/api/towns/' + cityId,
+        type: 'GET',
+        success: function(response) {
+            let options = '<option value="">Pickup Town</option>';
+            response.forEach(function(town) {
+                options += `<option value="${town.id}">${town.title}</option>`;
+            });
+            $(targetSelect).html(options);
+        },
+        error: function(xhr) {
+            console.error('Error loading towns:', xhr);
+        }
+    });
 }

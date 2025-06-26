@@ -16,10 +16,16 @@ use Maatwebsite\Excel\Facades\Excel;
 use Mail;
 use Session;
 use App\Parcel;
+use App\Logo;
 
 
 class TrackingController extends Controller
 {
+    public function __construct() {
+        $favicon = Logo::where('type', 3)->where('status', 1)->orderByDesc('id')->first();
+        view()->share('favicon', $favicon ? asset($favicon->image) : asset('favicon.png'));
+    }
+
     public  function tracking(Request $request){
         if(isset($_GET['trackingCode'])){
             $track = $_GET['trackingCode'];

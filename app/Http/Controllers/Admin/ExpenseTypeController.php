@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use App\ExpenseType;
 use DB;
 use Toastr;
 
 
-class ExpenseTypeController extends Controller
+class ExpenseTypeController extends AdminBaseController
 {
    
     public function index()

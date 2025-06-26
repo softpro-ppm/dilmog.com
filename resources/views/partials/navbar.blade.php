@@ -1,11 +1,14 @@
 <!-- Spinner Start -->
+<!--
 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>
+-->
 <!-- Spinner End -->
 <!-- Topbar Start -->
+<!--
 <div class="container-fluid topbar px-0 px-lg-4 bg-light py-2 d-none d-lg-block">
     <div class="container">
         <div class="row gx-0 align-items-center">
@@ -42,6 +45,8 @@
         </div>
     </div>
 </div>
+
+-->
 <!-- Topbar End -->
 
 <!-- Updated Navbar Section -->
@@ -49,7 +54,11 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a href="/" class="navbar-brand p-0">
-                <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i> LifeSure</h1>
+                @if(isset($whitelogo) && count($whitelogo))
+                    <img src="{{ asset($whitelogo[0]->image) }}" alt="Logo" style="max-height:48px;">
+                @else
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" style="max-height:48px;">
+                @endif
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -71,7 +80,7 @@
                     </div>
                     <a href="/tracking" class="nav-item nav-link">Tracking</a>
                     <a href="/offices" class="nav-item nav-link">Our Offices</a>
-                    <a href="/blog" class="nav-item nav-link">Blog</a>
+                    <!-- <a href="/notice" class="nav-item nav-link">Announcements</a> -->
                     <a href="/shipping-plans" class="nav-item nav-link">Shipping Plans</a>
                     <div class="nav-btn px-3 d-flex align-items-center gap-2">
                         <a href="/merchant/register" class="btn rounded-pill py-2 px-4 me-2 d-flex align-items-center registration-btn fw-bold" style="font-weight:700; color:#015FC9; border:1.5px solid #015FC9; background:transparent;">

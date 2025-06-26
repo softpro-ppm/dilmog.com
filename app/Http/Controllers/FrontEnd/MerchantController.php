@@ -35,10 +35,14 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Session;
+use App\Logo;
 
 class MerchantController extends Controller
 {
-    
+    public function __construct() {
+        $favicon = Logo::where('type', 3)->where('status', 1)->orderByDesc('id')->first();
+        view()->share('favicon', $favicon ? asset($favicon->image) : asset('favicon.png'));
+    }
 
     public function registerpage()
     {
@@ -220,42 +224,44 @@ class MerchantController extends Controller
     {
         $this->validate($request, [
             'phoneOremail' => 'required',
-            'password'     => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required'
         ]);
+
+        // Verify reCAPTCHA
+        $recaptcha = $request->input('g-recaptcha-response');
+        $secret = '6LcrDKYjAAAAAP4LPKigylYnKV9k-CitOj54kK6r';
+        $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptcha}");
+        $captcha_success = json_decode($verify);
+
+        if (!$captcha_success->success) {
+            Toastr::error('Please complete the reCAPTCHA verification', 'Error');
+            return redirect()->back();
+        }
 
         $merchantChedk = Merchant::orWhere('emailAddress', $request->phoneOremail)
             ->orWhere('phoneNumber', $request->phoneOremail)
             ->first();
 
         if ($merchantChedk) {
-
             if ($merchantChedk->status == 0 || $merchantChedk->verifyToken == 0) {
                 Toastr::warning('warning', 'Your account is currently undergoing a review process. During this time, you might not be able to access your account.');
-
                 return redirect()->back();
             } else {
-
                 if (password_verify($request->password, $merchantChedk->password)) {
                     $merchantId = $merchantChedk->id;
                     Session::put('merchantId', $merchantId);
                     Toastr::success('success', 'Thanks , You are login successfully');
-
                     return redirect('/merchant/dashboard');
-
                 } else {
                     Toastr::error('Opps!', 'Sorry! your password wrong');
-
                     return redirect()->back();
                 }
-
             }
-
         } else {
             Toastr::error('Opps!', 'Opps! you have no account');
-
             return redirect()->back();
         }
-
     }
 
     public function phoneVerifyForm()
@@ -1664,7 +1670,7 @@ class MerchantController extends Controller
         if ($validMerchant) {
 
             $verifyToken                  = rand(111111, 999999);
-            $validMerchant->passwordReset = $verifyToken;
+            $validMerchant->verifyToken = $verifyToken;
             $validMerchant->save();
             Session::put('resetCustomerId', $validMerchant->id);
 
@@ -1700,9 +1706,9 @@ class MerchantController extends Controller
     {
         $validMerchant = Merchant::find(Session::get('resetCustomerId'));
 
-        if ($validMerchant->passwordReset == $request->verifyPin) {
+        if ($validMerchant->verifyToken == $request->verifyPin) {
             $validMerchant->password      = bcrypt(request('newPassword'));
-            $validMerchant->passwordReset = null;
+            $validMerchant->verifyToken = null;
             $validMerchant->save();
 
             Session::forget('resetCustomerId');

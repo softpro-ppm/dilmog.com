@@ -148,48 +148,8 @@
                 </div>
             </div>
         </div>
-       
-       <!-- Modal -->
-       <!-- Modal -->
-<div class="modal fade" id="PaymentPosterModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" style="margin-top: 100px">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <a href="" id="PosterImageA" download>
-                    <img id="PosterImage" src="" alt="" style="max-width: 100%; height: auto;">
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
     </section>
 @endsection
 @section('custom_js_script')
-    <script>
-       $(document).ready(function() {
-    // Event listener for BankPosterBTN click
-    $(document.body).on('click', '.BankPosterBTN', function(e) {
-        e.preventDefault();
-
-        // Get the poster image path from data attribute
-        var posterPath = $(this).data('poster');
-
-        if (posterPath) {
-            // Set the href and src attributes for the anchor and image
-            $('#PosterImageA').attr('href', posterPath);
-            $('#PosterImage').attr('src', posterPath);
-
-            // Show the Bootstrap modal
-            $('#PaymentPosterModal').modal('show');
-        } else {
-            alert('No poster available');
-        }
-    });
-});
-
-    </script>
+    <!-- Any custom JavaScript for this page can go here -->
 @endsection

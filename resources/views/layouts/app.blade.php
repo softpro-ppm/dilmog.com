@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ $favicon ?? asset('favicon.png') }}">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,16 +31,71 @@
     <!-- Banner Stylesheet -->
     <link href="{{ asset('assets/css/banner.css') }}" rel="stylesheet">
     
+    <!-- Add modal styles -->
+    <style>
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .modal-header {
+            padding: 1rem 1rem 0;
+        }
+        .modal-body {
+            padding-top: 0;
+        }
+        .modal-body img {
+            max-width: 200px;
+            height: auto;
+        }
+        .btn-primary {
+            background-color: #0151ab;
+            border-color: #0151ab;
+        }
+        .btn-primary:hover {
+            background-color: #0151ab;
+            border-color: #0151ab;
+        }
+        .btn-outline-primary {
+            color: #0151ab;
+            border-color: #0151ab;
+        }
+        .btn-outline-primary:hover {
+            background-color: #0151ab;
+            border-color: #0151ab;
+        }
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 1rem;
+            }
+            .modal-body {
+                padding: 1rem;
+            }
+            .btn-lg {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    @include('partials.navbar') <!-- Ensure this is included only once -->
+    <!-- Page Loader -->
+    <div id="page-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;">
+        <div class="spinner-border text-primary" style="width:3rem;height:3rem;" role="status">
+            <!-- <span class="visually-hidden">Loading...</span> -->
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+    @include('partials.navbar')
 
     <main>
         @yield('content')
     </main>
 
     @include('partials.footer')
+
+    
 
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -54,6 +109,12 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script>
+    // Hide loader when page is fully loaded
+    $(window).on('load', function() {
+        $('#page-loader').fadeOut(400);
+    });
+    </script>
 </body>
 
 </html>

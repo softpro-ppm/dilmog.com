@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Codcharge;
 use File;
 
-class CodChargeController extends Controller
+class CodChargeController extends AdminBaseController
 {
         public function add(){
     	return view('backEnd.codcharge.add');

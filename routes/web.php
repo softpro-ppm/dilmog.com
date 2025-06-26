@@ -16,13 +16,14 @@ use App\Http\Controllers\Admin\ChargeTarifController;
 use App\Http\Controllers\Admin\StatisticsDetailsController;
 use App\Http\Controllers\Superadmin\SettingsController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FrontEnd\WebsiteController;
 Auth::routes();
 
 Route::get('/test', function(){
     return view('frontEnd.layouts.pages.agent.transferreport');
 });
 
-Route::get('/p2p', 'websitecontroller@p2p')->name('web.p2p');
+Route::get('/p2p', [WebsiteController::class, 'p2p'])->name('web.p2p');
 
 Route::group(['prefix'=>'2fa'], function(){
     Route::get('/','LoginSecurityController@show2faForm');
@@ -599,11 +600,13 @@ Route::get('session/destroy', function ($sessionName) {
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::get('/services', function () {
-    return view('frontEnd.layouts.pages.service');
-});
+Route::get('/services', [App\Http\Controllers\FrontEnd\ServicesController::class, 'index'])->name('frontend.services');
 
-Route::get('/shipping-plans', function () {
-    return view('frontEnd.layouts.pages.shipping-plans');
-});
+Route::get('/shipping-plans', [App\Http\Controllers\FrontEnd\ShippingPlansController::class, 'index'])->name('frontend.shipping-plans');
+
+Route::get('/notices/active', [App\Http\Controllers\BackEnd\NoticeController::class, 'activeNotices']);
+
+// Notice Routes
+Route::get('/notice', [App\Http\Controllers\NoticeController::class, 'index'])->name('notice.index');
+Route::get('/notice/{id}', [App\Http\Controllers\NoticeController::class, 'show'])->name('notice.show');
 

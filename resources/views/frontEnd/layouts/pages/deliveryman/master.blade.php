@@ -18,7 +18,7 @@
         }
     </script>
     <!-- //Meta tag Keywords -->
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ $favicon ?? asset('favicon.png') }}">
     {{-- <script src="{{ asset('frontEnd/') }}/js/jquery_3.4.1_jquery.min.js"></script> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Custom-Files -->

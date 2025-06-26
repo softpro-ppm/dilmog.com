@@ -108,3 +108,45 @@
     </div>
   </section>
 @endsection
+
+@section('custom_js_script')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Prepare only active notices for the popup
+    var notices = [
+        @foreach($show_data as $notice)
+            @if($notice->status == 1)
+            {
+                id: "{{ $notice->id }}",
+                title: @json($notice->title),
+                status: "Active",
+                published: "{{ $notice->published == 1 ? 'Published' : 'Unpublished' }}"
+            },
+            @endif
+        @endforeach
+    ];
+
+    // Show all active notices in the popup
+    if (notices.length > 0) {
+        var html = '<ul style="text-align:left;">';
+        notices.forEach(function(n) {
+            html += '<li><strong>' + n.title + '</strong> (' + n.published + ')</li>';
+        });
+        html += '</ul>';
+        showGlobalPopupB({
+            title: 'Active Notices',
+            message: html,
+            buttons: [
+                {
+                    text: 'OK',
+                    class: 'btn-primary',
+                    onClick: function() {
+                        bootstrap.Modal.getInstance(document.getElementById('globalPopupBModal')).hide();
+                    }
+                }
+            ]
+        });
+    }
+});
+</script>
+@endsection

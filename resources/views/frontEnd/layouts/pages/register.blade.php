@@ -1,4 +1,5 @@
-@extends('frontEnd.layouts.master') @section('title', 'Register')
+@extends('frontEnd.layouts.master') @section('title', 'Merchant Registration | Dilmog Logistics')
+@section('title','Merchant Registration | Dilmog Logistics') 
 @section('content')
 <!-- Spinner Loader Start -->
 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -7,278 +8,463 @@
     </div>
 </div>
 <!-- Spinner Loader End -->
+<!-- Updated Netflix-style design -->
+<style>
+html, body {
+    overflow-x: hidden;
+    background: url('/logo/login_bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+.middle-header {
+    transition: none;
+    display: none;
+}
+.footer {
+    background: var(--bs-dark);
+    display: none;
+}
+.copyright {
+    display: none;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 0;
+    margin-top: 0 !important;
+}
+.glass-card {
+    background: rgba(0,0,0,0.65);
+    border-radius: 4px;
+    padding: 48px 40px 36px 40px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.glass-card h2 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+}
+.glass-card form {
+    width: 100%;
+}
+.glass-card input[type="email"],
+.glass-card input[type="text"],
+.glass-card input[type="password"],
+.glass-card input[type="tel"] {
+    background: #333;
+    color: #fff;
+    border: 1.5px solid #cfd8dc;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 12px 14px;
+    margin-bottom: 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: none;
+    height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.glass-card input[type="email"]:focus,
+.glass-card input[type="text"]:focus,
+.glass-card input[type="password"]:focus,
+.glass-card input[type="tel"]:focus {
+    border-color: #1976d2;
+    outline: none;
+    box-shadow: 0 0 0 2px #1976d233;
+}
+.glass-card .form-group {
+    margin-bottom: 12px;
+}
+.glass-card .form-check-label {
+    color: #fff;
+}
+.glass-card .submit {
+    width: 100%;
+    height: 48px;
+    padding: 0;
+    background: #015fc9;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.glass-card .submit:hover {
+    background: #0151ab;
+    color: #fff;
+}
+.glass-card .or-divider {
+    width: 100%;
+    text-align: center;
+    color: #b3b3b3;
+    margin: 18px 0 16px 0;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.glass-card .alt-btn {
+    width: 100%;
+    padding: 12px 0;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.glass-card .alt-btn:hover {
+    background: #444;
+}
+.glass-card .options-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #b3b3b3;
+}
+.glass-card .options-row label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.glass-card .options-row a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+.glass-card .options-row a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+.glass-card .register-link {
+    color: #b3b3b3;
+    font-size: 15px;
+    margin-top: 18px;
+    text-align: left;
+    width: 100%;
+}
+.glass-card .register-link a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 4px;
+}
+.glass-card .register-link a:hover {
+    text-decoration: underline;
+}
+.back-to-top-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 56px;
+    height: 56px;
+    background: #0066d9;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 4px 16px rgba(0,102,217,0.18);
+    z-index: 9999;
+    transition: opacity 0.3s, visibility 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    text-decoration: none;
+}
+.back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    display: flex !important;
+}
+.back-to-top-btn:hover {
+    background: #004ea8;
+    color: #fff;
+}
+.merchant-logo {
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    padding: 24px 0 0 0;
+    position: static;
+    background: none;
+    box-shadow: none;
+    z-index: 10;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.merchant-logo img {
+    /* max-width: 140px; */
+    height: auto;
+    display: block;
+    margin-top: 5px !important;
+    max-height: 48px !important;
+}
+@media (max-width: 600px) {
+    html, body {
+        background: #000 !important;
+        color: #fff !important;
+    }
+    body::before {
+        display: none !important;
+    }
+    .login-container {
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        background: #000 !important;
+    }
+    .glass-card {
+        padding: 32px 24px 24px 24px !important;
+    }
+    .glass-card input[type="email"],
+    .glass-card input[type="text"],
+    .glass-card input[type="password"],
+    .glass-card input[type="tel"] {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        height: 48px !important;
+        font-size: 1rem !important;
+        padding: 0 16px !important;
+        box-sizing: border-box !important;
+        margin-bottom: 10px !important;
+        background: #181818 !important;
+        color: #fff !important;
+        border: 1.5px solid #444 !important;
+        border-radius: 8px !important;
+        transition: border-color 0.2s;
+    }
+    .glass-card input[type="email"]:focus,
+    .glass-card input[type="text"]:focus,
+    .glass-card input[type="password"]:focus,
+    .glass-card input[type="tel"]:focus {
+        border-color: #e50914 !important;
+        outline: none !important;
+    }
+    .merchant-logo {
+        justify-content: flex-start !important;
+        padding: 0 0 0px 0 !important;
+    }
+    .merchant-logo img {
+        margin-top: 5px !important;
+        max-height: 48px !important;
+    }
+    .glass-card h2 {
+        color: #fff !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 20px !important;
+        text-align: left !important;
+    }
+    .glass-card .submit {
+        background: #015fc9 !important;
+        color: #fff !important;
+        border: none !important;
+    }
+    .glass-card .submit:hover {
+        background: #0151ab !important;
+        color: #fff !important;
+    }
+    .glass-card .or-divider {
+        color: #fff !important;
+        font-size: 1rem !important;
+        margin: 12px 0 !important;
+        font-weight: 500 !important;
+    }
+    .glass-card .alt-btn {
+        background: #333 !important;
+        color: #fff !important;
+        border-radius: 4px !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        margin-bottom: 12px !important;
+        height: 44px !important;
+    }
+    .glass-card .register-link,
+    .glass-card .options-row {
+        color: #fff !important;
+        font-size: 1rem !important;
+        margin-top: 10px !important;
+        text-align: left !important;
+    }
+    .glass-card .register-link a,
+    .glass-card .options-row a {
+        color: #fff !important;
+        text-decoration: underline !important;
+        font-weight: 500 !important;
+        margin-left: 0 !important;
+    }
+    .glass-card .form-check-label {
+        color: #fff !important;
+        font-size: 1rem !important;
+        font-weight: 400 !important;
+    }
+    .glass-card .form-check-input {
+        width: 18px !important;
+        height: 18px !important;
+        margin-right: 8px !important;
+    }
+    .glass-card .form-group {
+        margin-bottom: 10px !important;
+    }
+    .back-to-top-btn {
+        display: none !important;
+    }
+    .intl-tel-input {
+        width: 100% !important;
+    }
+    .intl-tel-input .flag-container,
+    .intl-tel-input .selected-flag {
+        height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        padding: 0 8px !important;
+        background: #181818 !important;
+        border-radius: 8px 0 0 8px !important;
+        border: none !important;
+    }
+    .intl-tel-input .selected-flag {
+        border: 1.5px solid #444 !important;
+        border-right: none !important;
+    }
+    .intl-tel-input input[type="tel"] {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        height: 48px !important;
+        line-height: 48px !important;
+        font-size: 1rem !important;
+        padding: 0 64px !important;
+        box-sizing: border-box !important;
+        margin-bottom: 10px !important;
+        background: #181818 !important;
+        color: #fff !important;
+        border: 1.5px solid #444 !important;
+        border-radius: 8px !important;
+        transition: border-color 0.2s;
+    }
+    .intl-tel-input input[type="tel"]::placeholder {
+        color: #aaa !important;
+        line-height: 48px !important;
+        opacity: 1 !important;
+    }
+    .intl-tel-input input[type="tel"]:focus {
+        border-color: #e50914 !important;
+        outline: none !important;
+    }
+    .iti input, .iti input[type=text], .iti input[type=tel] {
+        padding-left: 50px !important;
+    }
 
-    <style>
-        body {
-            background: #f8f9fa url('https://i.postimg.cc/W11cDBzH/desk.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
-        .middle-header, .footer, .copyright { display: none; }
-        .register-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 20px;
-            border: 1px solid rgba(219, 0, 34, 0.18);
-            padding: 40px 30px 30px 30px;
-            max-width: 450px;
-            width: 100%;
-        }
-        .glass-card h2 {
-            color: #222b50;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .glass-card .form-group {
-            margin-bottom: 20px;
-        }
-        .glass-card input[type="email"],
-        .glass-card input[type="password"],
-        .glass-card input[type="text"],
-        .glass-card input[type="tel"] {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 2px solid #e0e0e0;
-            background: rgba(255,255,255,0.7);
-            margin-bottom: 10px;
-            font-size: 16px;
-            outline: none;
-            transition: border 0.2s, box-shadow 0.2s;
-        }
-        .glass-card input:focus {
-            border: 2px solid #db0022;
-            box-shadow: 0 0 0 2px #db0022;
-        }
-        .glass-card .submit, .glass-card .btn-primary {
-            background: #fff;
-            color: #222;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 18px;
-            padding: 12px 0;
-            border: none;
-            width: 100%;
-            box-shadow: none;
-            text-align: center;
-            transition: background 0.2s, color 0.2s, border 0.2s;
-            display: block;
-            margin: 0 auto 10px auto;
-            letter-spacing: 0.5px;
-        }
-        .glass-card .submit:hover, .glass-card .btn-primary:hover {
-            background: #f8f9fa;
-            color: #222;
-            border: 1px solid #222;
-        }
-        .glass-card .form-check-label a {
-            color: #db0022;
-            text-decoration: underline;
-        }
-        @media (max-width: 500px) {
-            .glass-card {
-                padding: 30px 10px;
-            }
-        }
-        .mobile-register-text h5 {
-            color: #0066d9;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-        .back-to-top-btn {
-            position: fixed;
-            right: 30px;
-            bottom: 30px;
-            width: 56px;
-            height: 56px;
-            background: #0066d9;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 4px 16px rgba(0,102,217,0.18);
-            z-index: 9999;
-            transition: opacity 0.3s, visibility 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            text-decoration: none;
-        }
-        .back-to-top-btn.show {
-            opacity: 1;
-            visibility: visible;
-            display: flex !important;
-        }
-        .back-to-top-btn:hover {
-            background: #004ea8;
-            color: #fff;
-        }
-    </style>
-    <!-- Breadcrumb -->
-  
-    <!-- / End Breadcrumb -->
-    <!-- Contact Us -->
-    <section class="contact-us">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm-8">
-                    <div class="mobile-register">
-                        <div class="mobile-register-text">
-                            <h5>Register Now</h5>
-                        </div>
-                        <?php /*
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <!--<li class="nav-item">-->
-                            <!--    <a class="nav-link" id="phone-tab" data-toggle="tab" href="#phone" role="tab" aria-controls="phone" aria-selected="true">Mobile register</a>-->
-                            <!--</li>-->
-                            <li class="nav-item">
-                                <a class="nav-link active" id="email-tab" data-toggle="tab" href="#email" role="tab"
-                                    aria-controls="email" aria-selected="false">Email register</a>
-                            </li>
-                        </ul>
-                        */ ?>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
-                                <div class="text-center">
-                                    <h3 class="h5 text-muted text-uppercase">become a merchant</h3>
-                                </div>
-                                <div class="">
-                                    <form action="{{ url('auth/merchant/register') }}" method="POST">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="companyName"
-                                                        required="" placeholder="Name of Business" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="firstName"
-                                                        required="" placeholder="Your Name" />
-                                                </div>
-                                            </div>
-                                        </div>
+}
+@media (min-width: 601px) {
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .merchant-logo {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .login-container {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}
+</style>
 
-                                        <div class="form-group">
-                                            <input type="text" name="phoneNumber" class="form-control" required=""
-                                                placeholder="01XXXXXXXXX" />
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="password" name="password" class="form-control"
-                                                        required="" placeholder="Password" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="password" name="confirmed" id="confirmed"
-                                                        class="form-control" required=""
-                                                        placeholder="Confirm Password" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-check pl-4">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1"
-                                                value="1" name="agree" />
-                                            <label class="form-check-label" for="exampleCheck1">I agree to
-                                                <a href="{{ url('termscondition') }}">terms and condition.</a></label>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <button type="submit" class="submit">register</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade show active" id="email" role="tabpanel"
-                                aria-labelledby="email-tab">
-                                <div class="text-center">
-                                    <h3 class="h5 text-muted text-uppercase">become a merchant</h3>
-                                </div>
-                                <div class="">
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <ul class="p-0 m-0" style="list-style: none">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-
-                                    <div class="register-container">
-                                        <div class="glass-card">
-                                            <h2>Merchant Register</h2>
-                                            <form action="{{ url('auth/merchant/register') }}" method="POST" id="registerForm">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control" required id="email_data" name="emailAddress" placeholder="Email" value="{{ old('emailAddress') }}" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="button" class="btn btn-primary" id="sent_mail" style="width:100%;background-color: #af251b;border: 2px solid #af251b !important;border-radius: 4px !important;">Get OTP</button>
-                                                </div>
-                                                <div id="emailError"></div>
-                                                <div class="form-group">
-                                                    <input type="tel" name="otp" id="otp_val" class="form-control" pattern="[0-9]{6}" placeholder="OTP" readonly required value="" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" required id="companyName_val" name="companyName" placeholder="Name of Business" readonly value="{{ old('companyName') }}" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="tel" name="phoneNumber" id="phoneNumber_val" class="form-control" placeholder="Enter your phone number" required readonly />
-                                                </div>
-                                                <div class="form-group">
-                                                <div class="form-row" style="display: flex; gap: 12px;">
-                                                    <div style="flex: 1;">
-                                                        <input type="password" name="password" class="form-control" required placeholder="Password" />
-                                                    </div>
-                                                    <div style="flex: 1;">
-                                                        <input type="password" name="confirmed" id="confirmed" class="form-control" required placeholder="Confirm Password" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                <div class="form-check mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" value="1" name="agree" />
-                                                    <label class="form-check-label" for="exampleCheck1">I agree to <a href="{{ url('termscondition') }}">terms and condition.</a></label>
-                                                </div>
-                                                <button type="submit" class="submit">Register</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="container">
+    <div class="merchant-logo" style="padding: 48px 0 0 0;">
+        <a href="{{ url('/') }}">
+            @if(isset($darklogo) && count($darklogo))
+                <img src="{{ asset($darklogo[0]->image) }}" alt="Merchant Logo" style="max-height:32px; width:auto; display:block;">
+            @else
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Merchant Logo" style="max-height:32px; width:auto; display:block;">
+            @endif
+        </a>
+    </div>
+</div>
+    
+<div class="login-container">
+    <div class="glass-card">
+        <h2 class="">Merchant Register</h2>
+        <form action="{{ url('auth/merchant/register') }}" method="POST" id="registerForm">
+            @csrf
+            <div class="row">
+                <div class="form-group col-12 col-sm-6">
+                    <input type="email" class="form-control" required id="email_data" name="emailAddress" placeholder="Email" value="{{ old('emailAddress') }}" />
+                </div>
+                <div class="form-group col-12 col-sm-6 d-flex align-items-end">
+                    <button type="button" class="submit w-100" id="sent_mail">Get OTP</button>
+                </div>
+                <div id="emailError" class="col-12"></div>
+                <div class="form-group col-12 col-sm-6">
+                    <input type="tel" name="otp" id="otp_val" class="form-control" pattern="[0-9]{6}" placeholder="OTP" readonly required value="" />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <input type="text" class="form-control" required id="companyName_val" name="companyName" placeholder="Name of Business" readonly value="{{ old('companyName') }}" />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <input type="text" name="firstName" id="firstName_val" class="form-control" placeholder="Your Name" required readonly />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <input type="tel" name="phoneNumber" id="phoneNumber_val" class="form-control" placeholder="Enter your phone number" required readonly />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <input type="password" name="password" class="form-control" id="password_val" required placeholder="Password" readonly />
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <input type="password" name="confirmed" id="confirmed_val" class="form-control" required placeholder="Confirm Password" readonly />
+                </div>
+                <div class="form-group col-12">
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" value="1" name="agree" required />
+                        <label class="form-check-label" for="exampleCheck1">I agree to <a href="{{ url('termscondition') }}">terms and condition.</a></label>
                     </div>
                 </div>
+                <div class="form-group col-12">
+                    <button type="submit" class="submit w-100" id="dubmit_data" disabled>Register</button>
+                </div>
             </div>
+        </form>
+        <div class="register-link">
+            Already have an account? <a href="{{ url('merchant/login') }}">Login here</a>
         </div>
-    </section>
-    <!-- Scroll to Top Button Start -->
-    <a href="#" id="backToTop" class="back-to-top-btn" style="display:none;"><i class="fa fa-arrow-up"></i></a>
-    <!-- Scroll to Top Button End -->
-    <!-- Floating Button -->
-    <a href="#" id="backToTop" class="back-to-top-btn"><i class="fa fa-arrow-up"></i></a>
-    <!-- End Floating Button -->
+    </div>
+</div>
 @endsection
 
 @section('custom_js_script')
@@ -447,7 +633,7 @@
                     }).then(otp => {
                         input.value = otp.code;
                     }).catch(err => {
-                        console.log(err);
+                        // console.log(err); // Remove or comment out for production
                     });
                 });
             }
@@ -469,16 +655,21 @@
         // Show/hide back to top button
         window.addEventListener('scroll', function() {
             var btn = document.getElementById('backToTop');
-            if (window.scrollY > 200) {
-                btn.classList.add('show');
-            } else {
-                btn.classList.remove('show');
+            if (btn) {
+                if (window.scrollY > 200) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
             }
         });
         // Smooth scroll to top
-        document.getElementById('backToTop').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        var backToTopBtn = document.getElementById('backToTop');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
     </script>
 @endsection

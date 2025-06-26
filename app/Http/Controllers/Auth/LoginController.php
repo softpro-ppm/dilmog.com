@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use App\Logo;
 class LoginController extends Controller
 {
     /*
@@ -43,6 +44,10 @@ class LoginController extends Controller
         }else{
             $this->redirectTo=route('author.dashboard');     
         }
+
+        // Share dynamic favicon with all login views
+        $favicon = Logo::where('type', 3)->where('status', 1)->orderByDesc('id')->first();
+        view()->share('favicon', $favicon ? asset($favicon->image) : asset('favicon.png'));
 
         $this->middleware('guest')->except('logout');
     }

@@ -500,7 +500,7 @@ class ApiMerchant extends Controller {
     }
 
     function parcelType() {
-        $parcelTypes = Parceltype::all();
+        $parcelTypes = Parceltype::orderBy('sl', 'asc')->get();
 
         return $parcelTypes;
     }

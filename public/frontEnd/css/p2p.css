@@ -1579,3 +1579,234 @@ label {
     border-color: #007bff;
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
+
+/* ZiDrop P2P Specific Styles */
+
+/* Step Navigation */
+.step-circle-zidrop {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #6c757d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.step-circle-zidrop.active {
+    background: #db0022;
+    color: white;
+}
+
+.step-text-zidrop {
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.step-text-zidrop.active {
+    color: #db0022;
+    font-weight: 600;
+}
+
+.progress-line-zidrop {
+    height: 2px;
+    background: #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.progress-line-zidrop.active {
+    background: #db0022;
+}
+
+/* Form Controls */
+.form-group-zidrop {
+    margin-bottom: 1.5rem;
+}
+
+.form-label-zidrop {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+}
+
+.form-control-zidrop {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.form-control-zidrop:focus {
+    border-color: #db0022;
+    box-shadow: 0 0 0 0.2rem rgba(219, 0, 34, 0.1);
+    background: #fff;
+}
+
+.form-control-zidrop.is-invalid {
+    border-color: #dc3545;
+}
+
+/* Buttons */
+.btn-zidrop {
+    background: #db0022;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-zidrop:hover {
+    background: #af001c;
+    transform: translateY(-1px);
+}
+
+.btn-zidrop-primary {
+    background: #6f42c1;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-zidrop-primary:hover {
+    background: #5a359c;
+    transform: translateY(-1px);
+}
+
+.btn-zidrop-secondary {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-zidrop-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* Booking Page Heading */
+.booking-page-heading {
+    color: #db0022;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Select2 Customization for ZiDrop */
+.select2-container--default .select2-selection--single {
+    border: 2px solid #e9ecef !important;
+    border-radius: 8px !important;
+    height: 48px !important;
+    padding: 8px 12px !important;
+}
+
+.select2-container--default .select2-selection--single:focus {
+    border-color: #db0022 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #495057 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    line-height: 30px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 44px !important;
+    right: 16px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .step-circle-zidrop {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+    }
+    
+    .step-text-zidrop {
+        font-size: 12px;
+    }
+    
+    .form-control-zidrop {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+    
+    .btn-zidrop,
+    .btn-zidrop-primary,
+    .btn-zidrop-secondary {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+/* Animation for slide transitions */
+.slide-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card styling improvements */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border-radius: 12px;
+}
+
+.card-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 1rem 1.25rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Invalid feedback styling */
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #dc3545;
+}
+
+.invalid-feedback.show {
+    display: block;
+}

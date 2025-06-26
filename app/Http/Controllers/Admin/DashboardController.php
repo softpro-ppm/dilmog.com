@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Parcel;
 use App\Merchant;
 use App\Merchantpayment;
-class DashboardController extends Controller
+
+class DashboardController extends AdminBaseController
 {
     public function index(){
     

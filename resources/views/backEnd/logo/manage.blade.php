@@ -53,41 +53,36 @@
                         @foreach($show_data as $key=>$value)
                         <tr>
                           <td>{{$loop->iteration}}</td>
-                          <td><img src="{{asset($value->image)}}" class="backend_image" alt="">
-                          </td>
+                          <td><img src="{{asset($value->image)}}" class="backend_image" alt=""></td>
                           <td>@if($value->type==1) White Logo @elseif($value->type==2) Dark Logo @else Faveicon @endif</td>
                           <td>{{$value->status==1?"Active":"Inactive"}}</td>
-                          <td><ul class="action_buttons dropdown">
-                              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Action Button
-                              <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                                <li>
-                                  @if($value->status==1)
-                                  <form action="{{url('editor/logo/inactive')}}" method="POST">
+                          <td>
+                            <div class="dropdown">
+                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton{{$value->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Action Button
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{$value->id}}">
+                                @if($value->status==1)
+                                  <form action="{{url('editor/logo/inactive')}}" method="POST" style="display:inline;">
                                     @csrf
                                     <input type="hidden" name="hidden_id" value="{{$value->id}}">
-                                    <button type="submit" class="thumbs_up" title="unpublished"><i class="fa fa-thumbs-up"></i> Active</button>
+                                    <button type="submit" class="dropdown-item btn-active" title="unpublished"><i class="fa fa-thumbs-up"></i> Active</button>
                                   </form>
-                                  @else
-                                    <form action="{{url('editor/logo/active')}}" method="POST">
-                                      @csrf
-                                      <input type="hidden" name="hidden_id" value="{{$value->id}}">
-                                      <button type="submit" class="thumbs_down" title="published"><i class="fa fa-thumbs-down"></i> Inactive</button>
-                                    </form>
-                                  @endif
-                                </li>
-                                  <li>
-                                      <a class="edit_icon" href="{{url('editor/logo/edit/'.$value->id)}}" title="Edit"><i class="fa fa-edit"></i> Edit</a>
-                                  </li>
-                                  <li>
-                                    <form action="{{url('editor/logo/delete')}}" method="POST">
-                                      @csrf
-                                      <input type="hidden" name="hidden_id" value="{{$value->id}}">
-                                      <button type="submit" onclick="return confirm('Are you delete this this?')" class="trash_icon" title="Delete"><i class="fa fa-trash"></i> Delete</button>
-                                    </form>
-                                  </li>
-                                </ul>
-                              </ul>
+                                @else
+                                  <form action="{{url('editor/logo/active')}}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <input type="hidden" name="hidden_id" value="{{$value->id}}">
+                                    <button type="submit" class="dropdown-item btn-active" title="published"><i class="fa fa-thumbs-down"></i> Inactive</button>
+                                  </form>
+                                @endif
+                                <a class="dropdown-item btn-edit" href="{{url('editor/logo/edit/'.$value->id)}}" title="Edit"><i class="fa fa-edit"></i> Edit</a>
+                                <form action="{{url('editor/logo/delete')}}" method="POST" style="display:inline;">
+                                  @csrf
+                                  <input type="hidden" name="hidden_id" value="{{$value->id}}">
+                                  <button type="submit" onclick="return confirm('Are you delete this this?')" class="dropdown-item btn-delete" title="Delete"><i class="fa fa-trash"></i> Delete</button>
+                                </form>
+                              </div>
+                            </div>
                           </td>
                         </tr>
                         @endforeach

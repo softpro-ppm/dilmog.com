@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Deliverycharge;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use App\Nearestzone;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
-class NearestzoneController extends Controller {
+class NearestzoneController extends AdminBaseController {
     public function add() {
         $state = Deliverycharge::where('status', 1)->get();
 

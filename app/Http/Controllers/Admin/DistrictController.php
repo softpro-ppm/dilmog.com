@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminBaseController;
 use Brian2694\Toastr\Facades\Toastr;
 use App\District;
 
-class DistrictController extends Controller
+class DistrictController extends AdminBaseController
 {
     public function index(){
         return view('backEnd.district.add');
