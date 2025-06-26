@@ -1,6 +1,6 @@
-@extends('frontEnd.layouts.master')
-@section('title', 'P2P')
-@section('styles')
+@extends('layouts.app')
+
+@section('content')
     <link rel="stylesheet" href="{{ asset('frontEnd/') }}/css/p2p.css">
     <style>
         .booking-page .select2 {
@@ -236,11 +236,13 @@
             right: 16px !important;
         }
     </style>
-@endsection
-@section('content')
-    <style>
 
-    </style>
+    <!-- Additional dependencies for P2P form -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('backEnd/') }}/dist/css/toastr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('backEnd/') }}/dist/js/toastr.min.js"></script>
+
     <!-- Breadcrumb -->
     {{-- <div class="breadcrumbs" style="background:#db0022;">
         <div class="container">

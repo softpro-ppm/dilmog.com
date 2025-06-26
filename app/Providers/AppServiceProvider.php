@@ -226,8 +226,10 @@ class AppServiceProvider extends ServiceProvider
             ->get();
             view()->share('cancelledpickup',$cancelledpickup);
         }
-        $allnotelist = Note::get();
-        view()->share('allnotelist',$allnotelist);
+        if (Schema::hasTable('notes')) {
+            $allnotelist = Note::get();
+            view()->share('allnotelist',$allnotelist);
+        }
 
     }
 }
