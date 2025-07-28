@@ -268,6 +268,43 @@
     </section>
 
     <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'pie',
+
+            // The data for our dataset
+            data: {
+                labels: [
+                    @foreach ($parceltypes as $parceltype)
+                        '{{ $parceltype->title }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'Parcel Statistics',
+                    backgroundColor: ['#1D2941', '#5F45DA', '#670A91', '#096709', '#FFAC0E', '#AAB809',
+                        '#2094A0', '#9A8309', '#C21010'
+                    ],
+                    borderColor: ['#1D2941', '#5F45DA', '#670A91', '#096709', '#FFAC0E', '#AAB809',
+                        '#2094A0', '#9A8309', '#C21010'
+                    ],
+                    data: [
+                        @foreach ($parceltypes as $parceltype)
+                            @php
+                                $parcelcount = App\Parcel::where('status', $parceltype->id)->count();
+                            @endphp {{ $parcelcount }},
+                        @endforeach
+                    ]
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+    </script>
+
+
+    <script>
         $(document).ready(function() {
             // Function to check status and refresh time from server
             function checkAutoRefresh() {
@@ -276,12 +313,23 @@
                     method: "GET",
                     dataType: "json",
                     success: function(data) {
+
                         if (data.status === 'active') {
+                            // Display message in the UI
+                            //$('#auto-refresh-status').html('<p>' + data.message + '</p>');
+
+                            // Set the refresh interval in milliseconds (time is in minutes, so we convert)
                             let refreshTime = data.time * 1000;
+
+                            //alert('Tested ' + data.status + " " + data.time +" "+ refreshTime);
+
+                            // Trigger auto-refresh after the given time
                             setTimeout(function() {
-                                location.reload();
+                                location.reload(); // Refresh the page
                             }, refreshTime);
+
                         } else {
+                            // Display message if auto-refresh is inactive or time is not set
                             $('#auto-refresh-status').html('<p>' + data.message + '</p>');
                         }
                     },
@@ -290,6 +338,8 @@
                     }
                 });
             }
+
+            // Initial call to check the auto-refresh status
             checkAutoRefresh();
         });
     </script>
@@ -298,17 +348,36 @@
         window.onload = function() {
             var deliveredData = @json($deliveredParcels);
             var pickupData = @json($pickupParcels);
-            var deliveredDataPoints = deliveredData.map(item => ({ label: item.month, y: item.count }));
-            var pickupDataPoints = pickupData.map(item => ({ label: item.month, y: item.count }));
+
+            // Transform Laravel data to match CanvasJS format
+            var deliveredDataPoints = deliveredData.map(item => ({
+                label: item.month,
+                y: item.count
+            }));
+
+            var pickupDataPoints = pickupData.map(item => ({
+                label: item.month,
+                y: item.count
+            }));
+
+            // Get maximum values for scaling both Y-axes equally
             var maxDelivered = Math.max(...deliveredDataPoints.map(d => d.y), 0);
             var maxPickup = Math.max(...pickupDataPoints.map(d => d.y), 0);
-            var maxScale = Math.max(maxDelivered, maxPickup);
+            var maxScale = Math.max(maxDelivered, maxPickup); // Ensure both Y-axes use the same max value
+
             var chart = new CanvasJS.Chart("chartContainer", {
+                // height: 500, // Adjust this value as needed (default is ~400)
                 exportEnabled: false,
                 animationEnabled: true,
-                title: { text: "Monthly Pickup Vs Delivery" },
-                subtitles: [{ text: "" }],
-                axisX: { title: "" },
+                title: {
+                    text: "Monthly Pickup Vs Delivery"
+                },
+                subtitles: [{
+                    text: ""
+                }],
+                axisX: {
+                    title: ""
+                },
                 axisY: {
                     title: "Pickup Parcels",
                     titleFontColor: "#2A5D8A",
@@ -316,7 +385,7 @@
                     labelFontColor: "#2A5D8A",
                     tickColor: "#2A5D8A",
                     includeZero: true,
-                    maximum: maxScale
+                    maximum: maxScale // Set the same max scale
                 },
                 axisY2: {
                     title: "Delivered Parcels",
@@ -325,16 +394,38 @@
                     labelFontColor: "#145A32",
                     tickColor: "#145A32",
                     includeZero: true,
-                    maximum: maxScale
+                    maximum: maxScale // Set the same max scale
                 },
-                toolTip: { shared: true },
-                legend: { cursor: "pointer", itemclick: toggleDataSeries },
-                data: [
-                    { type: "column", name: "Pickup", axisYType: "secondary", color: "#2A5D8A", showInLegend: true, yValueFormatString: "#,##0.# Parcels", dataPoints: pickupDataPoints },
-                    { type: "column", name: "Delivered", color: "#145A32", showInLegend: true, yValueFormatString: "#,##0.# Parcels", dataPoints: deliveredDataPoints }
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    itemclick: toggleDataSeries
+                },
+                data: [{
+                        type: "column",
+                        name: "Pickup",
+                        axisYType: "secondary",
+                        color: "#2A5D8A",
+                        showInLegend: true,
+                        yValueFormatString: "#,##0.# Parcels",
+                        dataPoints: pickupDataPoints
+                    },
+                    {
+                        type: "column",
+                        name: "Delivered",
+                        color: "#145A32",
+                        showInLegend: true,
+                        yValueFormatString: "#,##0.# Parcels",
+                        dataPoints: deliveredDataPoints
+                    }
+
                 ]
             });
+
             chart.render();
+
             function toggleDataSeries(e) {
                 if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
                     e.dataSeries.visible = false;

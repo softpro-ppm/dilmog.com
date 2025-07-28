@@ -1,6 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('frontEnd.layouts.master')
+@section('title', 'P2P')
+@section('styles')
     <link rel="stylesheet" href="{{ asset('frontEnd/') }}/css/p2p.css">
     <style>
         .booking-page .select2 {
@@ -72,179 +72,14 @@
             color: #535050 !important;
             font-family: 'Poppins' !important;
         }
-        .header-banner {
-            background-image: url('/assets/img/bg-breadcrumb.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 75vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .header-banner .banner-title {
-            color: #fff;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .header-banner .banner-desc {
-            color: #e0e0e0;
-            font-size: 1.2rem;
-            margin-bottom: 0;
-        }
-        .stepper { gap: 0.5rem; }
-        .step-circle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 600; }
-        .step-label { font-size: 1rem; font-weight: 500; }
-        .step.active .step-circle, .step .step-circle.bg-primary { background: #db0022 !important; color: #fff !important; }
-        .step-line { height: 4px; min-width: 30px; border-radius: 2px; }
-        .invalid-feedback { display: none; color: #dc3545; font-size: 0.95rem; }
-        input:invalid, select:invalid, textarea:invalid { border-color: #dc3545; }
-        @media (max-width: 768px) { .stepper { flex-direction: column; gap: 0.25rem; } .step-line { min-width: 4px; height: 30px; } }
-        
-        /* ZiDrop Exact Match Styling */
-        .step-circle-zidrop {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #e9ecef;
-            color: #6c757d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 600;
-            border: 2px solid #e9ecef;
-        }
-        .step-circle-zidrop.active {
-            background: #6f42c1;
-            color: white;
-            border-color: #6f42c1;
-        }
-        .step-text-zidrop {
-            font-size: 14px;
-            color: #6c757d;
-            font-weight: 500;
-        }
-        .step-text-zidrop.active {
-            color: #6f42c1;
-            font-weight: 600;
-        }
-        .progress-line-zidrop {
-            height: 2px;
-            background: #e9ecef;
-            border-radius: 1px;
-        }
-        .progress-line-zidrop.active {
-            background: #6f42c1;
-        }
-        .form-label-zidrop {
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 8px;
-            display: block;
-            font-size: 14px;
-        }
-        .form-control-zidrop {
-            padding: 12px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            font-size: 14px;
-            width: 100%;
-            transition: border-color 0.3s ease;
-            background: #fff;
-        }
-        .form-control-zidrop:focus {
-            border-color: #6f42c1;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(111, 66, 193, 0.1);
-        }
-        .form-group-zidrop {
-            margin-bottom: 24px;
-        }
-        .btn-zidrop {
-            background: #c41e3a;
-            color: white;
-            border: none;
-            padding: 12px 40px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease;
-        }
-        .btn-zidrop:hover {
-            background: #a01729;
-            color: white;
-        }
-        .btn-outline-secondary {
-            background: transparent;
-            color: #6c757d;
-            border: 1px solid #6c757d;
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-        .btn-outline-secondary:hover {
-            background: #6c757d;
-            color: white;
-        }
-        .invalid-feedback {
-            display: none;
-            color: #dc3545;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-        .invalid-feedback.show {
-            display: block;
-        }
-        
-        /* Input Group Styling for Nigerian Flag */
-        .input-group-text {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px 0 0 4px;
-            padding: 12px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .input-group .form-control-zidrop {
-            border-radius: 0 4px 4px 0;
-            border-left: none;
-        }
-        .input-group .form-control-zidrop:focus {
-            border-left: 1px solid #6f42c1;
-        }
-        
-        /* Select2 Styling to match ZiDrop */
-        .select2-container--default .select2-selection--single {
-            height: 45px !important;
-            border: 1px solid #e0e0e0 !important;
-            border-radius: 4px !important;
-        }
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 43px !important;
-            padding-left: 16px !important;
-            color: #333 !important;
-            font-size: 14px !important;
-        }
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 43px !important;
-            right: 16px !important;
-        }
     </style>
+@endsection
+@section('content')
+    <style>
 
-    <!-- Additional dependencies for P2P form -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('backEnd/') }}/dist/css/toastr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ asset('backEnd/') }}/dist/js/toastr.min.js"></script>
-
+    </style>
     <!-- Breadcrumb -->
-    {{-- <div class="breadcrumbs" style="background:#db0022;">
+    <div class="breadcrumbs" style="background:#db0022;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -261,643 +96,637 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <!-- / End Breadcrumb -->
 
-    <!-- P2P Form Container -->
-    <section class="py-5" style="background: #f8f9fa;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-10">
-                    <!-- Navigation Tabs -->
-                    <div class="card border-0 shadow-sm mb-4">
-                        <div class="card-body p-0">
-                            <div class="d-flex">
-                                <a href="{{ url('/') }}" class="flex-fill text-center py-3 text-decoration-none border-end" style="color: #6c757d;">
-                                    <i class="fa-solid fa-magnifying-glass me-2"></i>Track Order
-                                </a>
-                                <div class="flex-fill text-center py-3" style="background: #f8f9fa; color: #6f42c1; font-weight: 600; border-bottom: 3px solid #6f42c1;">
-                                    <i class="fa fa-car me-2"></i>Book P2P
-                                </div>
+    <!-- quickTech-price -->
+    <section class="quickTech-price pt-5 pb-5" style="margin-bottom: -80px">
+        <div class="container-fluid">
+
+            <section id="booking-page" class="booking-page">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="booking-page-link">
+                                <ul>
+                                    <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i> Track
+                                            Order</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-car"></i> Book P2P</a></li>
+                                </ul>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Main Form Card -->
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4">
                             <form id="shipping-form" class="shipping-form">
-                                <input type="hidden" id="totalamount" name="totalamount" value="0">
-                                <!-- Progress Steps -->
-                                <div class="d-flex justify-content-between align-items-center mb-4 px-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="step-circle-zidrop active me-2">1</div>
-                                        <span class="step-text-zidrop active">Sender</span>
-                                    </div>
-                                    <div class="flex-grow-1 mx-3">
-                                        <div class="progress-line-zidrop active"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="step-circle-zidrop me-2">2</div>
-                                        <span class="step-text-zidrop">Recipient</span>
-                                    </div>
-                                    <div class="flex-grow-1 mx-3">
-                                        <div class="progress-line-zidrop"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="step-circle-zidrop me-2">3</div>
-                                        <span class="step-text-zidrop">Parcel Details</span>
-                                    </div>
-                                    <div class="flex-grow-1 mx-3">
-                                        <div class="progress-line-zidrop"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="step-circle-zidrop me-2">4</div>
-                                        <span class="step-text-zidrop">Review</span>
-                                    </div>
-                                </div>                                <!-- Sender Details -->
+
+                                <!--step-01 -->
                                 <div class="slide-content" id="step-01" style="display: block;">
-                                    <h2 class="mb-4" style="color: #333; font-weight: 600; font-size: 24px;">Sender Details</h2>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Sender Name <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="text" name="sender_name" id="sender_name" placeholder="Enter sender name">
-                                                <div class="invalid-feedback sender_name_error">Sender name required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Sender Mobile No. <span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text" style="background: #fff; border: 1px solid #e0e0e0; padding: 12px 8px;">
-                                                        🇳🇬
-                                                    </span>
-                                                    <input class="form-control form-control-zidrop" name="sender_mobile" id="sender_mobile" placeholder="0802 123 4567" style="border-left: none;">
-                                                </div>
-                                                <div class="invalid-feedback sender_mobile_error">Sender mobile required, 11 digit, Nigerian number</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Email <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="email" name="sender_email" id="sender_email" placeholder="Enter sender email">
-                                                <div class="invalid-feedback sender_email_error">Sender email required and valid format</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Pickup City <span class="text-danger">*</span></label>
-                                                <select class="select2 form-control form-control-zidrop" name="sender_pickupcity" id="sender_pickupcity" required>
-                                                    <option value="" selected>Pickup City</option>
-                                                    @foreach ($wcities as $key => $value)
-                                                        <option value="{{ $value->id }}" data-title="{{ $value->title }}">{{ $value->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="invalid-feedback sender_pickupcity_error">Sender City Required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Pickup Town <span class="text-danger">*</span></label>
-                                                <select class="select2 form-control form-control-zidrop" name="sender_pickuptown" id="sender_pickuptown" required>
-                                                    <option value="" selected>Pickup Town</option>
-                                                </select>
-                                                <div class="invalid-feedback sender_district_error">Sender Town Required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Sender Address <span class="text-danger">*</span></label>
-                                                <textarea maxlength="200" placeholder="Enter complete pickup address" class="form-control form-control-zidrop" name="sender_address" id="sender_address" rows="3"></textarea>
-                                                <div class="invalid-feedback sender_address_error">Sender address required</div>
-                                            </div>
-                                        </div>
+                                    <h1 class="booking-page-heading">Sender Details</h1>
+                                    <div class="step-nav">
+                                        <ul>
+                                            <li class="active" onclick="slideItem('step-01');">Sender</li>
+                                            <li onclick="senderInfoVerification();">Recipient</li>
+                                            <li onclick="recivierInfoVerifaction();">Parcel Details</li>
+                                            <li onclick="parcelDetailVerifiaction();">Review</li>
+                                        </ul>
                                     </div>
-                                    <div class="text-end mt-4">
-                                        <button type="button" class="btn-zidrop" onclick="senderInfoVerification();">Continue</button>
+                                    <div class="form-group">
+                                        <label class="form-label">Sender Name <sup>*</sup></label>
+                                        <input class="form-control" value="" type="text" name="sender_name"
+                                            id="sender_name" placeholder="Enter sender name">
+                                        <p class="promo-failure sender_name_error" style="display:none;"> Sender name
+                                            required</p>
                                     </div>
-                                </div>                                <!-- Recipient Details -->
+                                    <div class="form-group">
+                                        <label class="form-label">Sender Mobile No.<sup>*</sup></label>
+                                        <input class="form-control" name="sender_mobile" id="sender_mobile"
+                                            onblur="checkMobile(this.value);" placeholder="0802 123 4567"
+                                            value="">
+                                            <div class="wp2p_nigeria_flag"></div>
+                                        <p class="promo-failure sender_mobile_error" style="display:none;"> Sender mobile
+                                            required,
+                                            11 digit, Nigerian number
+                                        </p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Email <sup>*</sup></label>
+                                        <input class="form-control" type="text" name="sender_email" id="sender_email"
+                                            onblur="checkEmailType(this.value);" value=""
+                                            placeholder="Enter sender email">
+                                        <p class="promo-failure sender_email_error" style="display:none;"> Sender email
+                                            required and
+                                            valid format</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Pickup City<sup>*</sup></label>
+                                        <div class="select-style">
+
+                                            <select class=" select2 form-control" value="" name="sender_pickupcity"
+                                                id="sender_pickupcity" required="required">
+                                                <option value="" selected="selected">Pickup City</option>
+                                                @foreach ($wcities as $key => $value)
+                                                    <option value="{{ $value->id }}" data-title="{{ $value->title }}">
+                                                        {{ $value->title }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <p class="promo-failure sender_pickupcity_error" style="display:none;"> Sender
+                                            City Required</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Pickup Town<sup>*</sup></label>
+                                        <div class="select-style">
+
+                                            <select type="text" class="select2 form-control"
+                                                value="{{ old('sender_pickuptown') }}" name="sender_pickuptown"
+                                                id="sender_pickuptown" required="required">
+                                                <option value="" selected="selected">Pickup Town</option>
+                                            </select>
+                                        </div>
+                                        <p class="promo-failure sender_district_error" style="display:none;"> Sender
+                                            Town Required </p>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="form-label">Sender Address <sup>*</sup></label>
+                                        <textarea maxlength="200" placeholder="Enter sender address" class="form-control" name="sender_address"
+                                            id="sender_address" rows="5"></textarea>
+                                        <p class="promo-failure sender_address_error" style="display:none;"> Sender
+                                            address required
+                                        </p>
+                                    </div>
+
+                                    <a class="common-btn" onclick="senderInfoVerification();">CONTINUE</a>
+                                </div>
+                                <!--step-02 -->
                                 <div class="slide-content" id="step-02" style="display: none;">
-                                    <h2 class="mb-4" style="color: #333; font-weight: 600; font-size: 24px;">Recipient Details</h2>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Recipient Name <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="text" name="recivier_name" id="recivier_name" placeholder="Enter recipient name">
-                                                <div class="invalid-feedback recipient_name_error">Recipient Name required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Recipient Mobile No. <span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text" style="background: #fff; border: 1px solid #ddd; padding: 12px 8px;">
-                                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiByeD0iMiIgZmlsbD0iIzAwODAwMCIvPgo8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iNS4zMzMzMyIgcng9IjIiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+" alt="NG Flag" width="20" height="13" style="margin-right: 4px;">
-                                                        🇳🇬
-                                                    </span>
-                                                    <input class="form-control form-control-zidrop" type="text" name="recivier_mobile" id="recivier_mobile" placeholder="0802 123 4567" style="border-left: none;">
-                                                </div>
-                                                <div class="invalid-feedback recipient_mobile_error">Recipient mobile required, 11 digit, Nigerian number</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Recipient City <span class="text-danger">*</span></label>
-                                                <select class="select2 form-control form-control-zidrop" name="recipient_pickupcity" id="recipient_pickupcity" required>
-                                                    <option value="" selected>Delivery City</option>
-                                                    @foreach ($wcities as $key => $value)
-                                                        <option value="{{ $value->id }}" data-title="{{ $value->title }}">{{ $value->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="invalid-feedback recipient_pickupcity_error">Recipient City Required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Recipient Town <span class="text-danger">*</span></label>
-                                                <select class="select2 form-control form-control-zidrop" name="recipient_pickuptown" id="recipient_pickuptown" required>
-                                                    <option value="" selected>Select Town</option>
-                                                </select>
-                                                <div class="invalid-feedback recipient_pickuptown_error">Recipient Town Required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Recipient Address <span class="text-danger">*</span></label>
-                                                <textarea maxlength="200" placeholder="Enter complete delivery address" class="form-control form-control-zidrop" name="recivier_address" id="recivier_address" rows="3"></textarea>
-                                                <div class="invalid-feedback recipient_address_error">Recipient Address required</div>
-                                            </div>
-                                        </div>
+                                    <h1 class="booking-page-heading">Recipient Details</h1>
+                                    <div class="step-nav">
+                                        <ul>
+                                            <li class="active done" onclick="slideItem('step-01');">Sender</li>
+                                            <li class="active" onclick="slideItem('step-02');">Recipient</li>
+                                            <li onclick="recivierInfoVerifaction();">Parcel Details</li>
+                                            <li onclick="parcelDetailVerifiaction();">Review</li>
+                                        </ul>
                                     </div>
-                                    <div class="d-flex justify-content-between mt-4">
-                                        <button type="button" class="btn btn-outline-secondary" onclick="slideItem('step-01');">Previous</button>
-                                        <button type="button" class="btn-zidrop" onclick="recivierInfoVerifaction();">Continue</button>
+                                    <div class="form-group">
+                                        <label class="form-label">Recipient Name <sup>*</sup></label>
+                                        <input class="form-control" type="text" name="recivier_name"
+                                            id="recivier_name" placeholder="Enter recipient name">
+                                        <p class="promo-failure recipient_name_error" style="display:none;"> Recipient
+                                            Name required
+                                        </p>
                                     </div>
-                                </div>                                <!-- Parcel Details -->
-                                <div class="slide-content" id="step-03" style="display: none;">
-                                    <h2 class="mb-4" style="color: #333; font-weight: 600; font-size: 24px;">Parcel Details</h2>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">What do you want to send? <span class="text-danger">*</span></label>
-                                                <select class="select2 form-control form-control-zidrop" name="parcel_type" id="parcel_type" required>
-                                                    <option value="" selected>Select Parcel Type</option>
-                                                    <option value="regular">Regular</option>
-                                                    <option value="liquid">Liquid</option>
-                                                    <option value="fragile">Fragile</option>
-                                                </select>
-                                                <div class="invalid-feedback parcel_type_error">Parcel type required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Package weight (KG) <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="number" step="0.01" min="0.1" name="package_weight" id="package_weight" placeholder="Enter weight in KG">
-                                                <div class="invalid-feedback package_weight_error">Weight required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Number of Items <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="number" min="1" name="number_of_items" id="number_of_items" placeholder="Enter number of items">
-                                                <div class="invalid-feedback number_of_items_error">Number of items required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Declared Value (₦) <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="number" min="0" name="declared_value" id="declared_value" placeholder="Enter declared value">
-                                                <div class="invalid-feedback declared_value_error">Declared value required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Item Name <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="text" name="item_name" id="item_name" placeholder="Enter item name">
-                                                <div class="invalid-feedback item_name_error">Item name required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">Color <span class="text-danger">*</span></label>
-                                                <input class="form-control form-control-zidrop" type="text" name="item_color" id="item_color" placeholder="Enter item color">
-                                                <div class="invalid-feedback item_color_error">Color required</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group-zidrop">
-                                                <label class="form-label-zidrop">What does this parcel contain? <span class="text-danger">*</span></label>
-                                                <textarea class="form-control form-control-zidrop" name="parcel_contents" id="parcel_contents" rows="3" placeholder="Describe the contents of your parcel"></textarea>
-                                                <div class="invalid-feedback parcel_contents_error">Parcel contents required</div>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Recipient Mobile No.<sup>*</sup></label>
+                                        <input class="form-control"  type="text"
+                                            onblur="checkMobile(this.value)" name="recivier_mobile" id="recivier_mobile"
+                                            placeholder="0802 123 4567">
+                                            <div class="wp2pr_nigeria_flag"></div>
+                                        <p class="promo-failure recipient_mobile_error" style="display:none;"> Recipient
+                                            mobile
+                                            required, 11 digit, Bangladeshi
+                                            number</p>
                                     </div>
-                                    <div class="d-flex justify-content-between mt-4">
-                                        <button type="button" class="btn btn-outline-secondary" onclick="slideItem('step-02');">Previous</button>
-                                        <button type="button" class="btn-zidrop" onclick="parcelDetailVerifiaction();">Continue</button>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Recipient City<sup>*</sup></label>
+                                        <div class="select-style">
+
+                                            <select class=" select2 form-control"
+                                                value="{{ old('recipient_pickupcity') }}" name="recipient_pickupcity"
+                                                id="recipient_pickupcity" required="required">
+                                                <option value="" selected="selected">Pickup City</option>
+                                                @foreach ($wcities as $key => $value)
+                                                    <option value="{{ $value->id }}"> {{ $value->title }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <p class="promo-failure recipient_pickupcity_error" style="display:none;"> Sender
+                                            City Required</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Recipient Town<sup>*</sup></label>
+                                        <div class="select-style">
+
+                                            <select type="text" class="select2 form-control"
+                                                value="{{ old('recipient_pickuptown') }}" name="recipient_pickuptown"
+                                                id="recipient_pickuptown" required="required">
+                                                <option value="" selected="selected">Pickup Town</option>
+                                            </select>
+                                        </div>
+                                        <p class="promo-failure recipient_pickuptown_error" style="display:none;"> Sender
+                                            Town Required </p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Recipient Address <sup>*</sup></label>
+                                        <textarea maxlength="200" placeholder="Enter Recipient address" class="form-control" name="recivier_address"
+                                            id="recivier_address" rows="3"></textarea>
+                                        <p class="promo-failure recipient_address_error" style="display:none;"> Recipient
+                                            Address
+                                            required</p>
+                                    </div>
+
+
+                                    <div class="btn-wrap">
+                                        <button class="common-btn prev" type="button"
+                                            onclick="slideItem('step-01');">PREVIOUS</button>
+                                        <button class="common-btn" type="button"
+                                            onclick="recivierInfoVerifaction();">CONTINUE</button>
                                     </div>
                                 </div>
-                                    <!-- Review -->
-                                    <div class="slide-content" id="step-04" style="display: none;">
-                                        <h2 class="booking-page-heading mb-4">Review &amp; Confirm</h2>
-                                        <div class="row g-4">
-                                            <!-- Sender Details -->
-                                            <div class="col-md-6">
-                                                <div class="card h-100">
-                                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                                        <h5 class="mb-0">Sender Details</h5>
-                                                        <button type="button" class="btn btn-link" onclick="slideItem('step-01');">Edit</button>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <ul class="list-unstyled mb-0">
-                                                            <li class="mb-2">
-                                                                <strong>Name:</strong>
-                                                                <span id="sender_name_t"></span>
-                                                            </li>
-                                                            <li class="mb-2">
-                                                                <strong>Mobile:</strong>
-                                                                <span id="sender_mobile_t"></span>
-                                                            </li>
-                                                            <li class="mb-2">
-                                                                <strong>Email:</strong>
-                                                                <span id="sender_email_t"></span>
-                                                            </li>
-                                                            <li class="mb-2">
-                                                                <strong>City:</strong>
-                                                                <span id="sender_pickupcity_t"></span>
-                                                            </li>
-                                                            <li class="mb-2">
-                                                                <strong>Town:</strong>
-                                                                <span id="sender_pickuptown_t"></span>
-                                                            </li>
-                                                            <li>
-                                                                <strong>Address:</strong>
-                                                                <span id="sender_address_t"></span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Recipient Details -->
-                                            <div class="col-md-6">
-                                                <div class="card h-100">
-                                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                                        <h5 class="mb-0">Recipient Details</h5>
-                                                        <button type="button" class="btn btn-link" onclick="slideItem('step-02');">Edit</button>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <ul class="list-unstyled mb-0">
-                                                            <li class="mb-2">
-                                                                <strong>Name:</strong>
-                                                                <span id="recivier_name_t"></span>
-                                                            </li>
-                                                            <li class="mb-2">
-                                                                <strong>Mobile:</strong>
-                                                                <span id="recivier_mobile_t"></span>
-                                                            </li>
-                                                            <li class="mb-2">
-                                                                <strong>City:</strong>
-                                                                <span id="recipient_pickupcity_t"></span>
-                                                            </li>
-                                                            <li class="mb-2">
-                                                                <strong>Town:</strong>
-                                                                <span id="recipient_pickuptown_t"></span>
-                                                            </li>
-                                                            <li>
-                                                                <strong>Address:</strong>
-                                                                <span id="recivier_address_t"></span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Parcel Details -->
-                                            <div class="col-12">
-                                                <div class="card">
-                                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                                        <h5 class="mb-0">Parcel Details</h5>
-                                                        <button type="button" class="btn btn-link" onclick="slideItem('step-03');">Edit</button>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <ul class="list-unstyled mb-0">
-                                                                    <li class="mb-2">
-                                                                        <strong>Parcel Type:</strong>
-                                                                        <span id="parcel_type_t"></span>
-                                                                    </li>
-                                                                    <li class="mb-2">
-                                                                        <strong>Weight:</strong>
-                                                                        <span id="package_weight_t"></span>
-                                                                    </li>
-                                                                    <li class="mb-2">
-                                                                        <strong>Items:</strong>
-                                                                        <span id="number_of_items_t"></span>
-                                                                    </li>
-                                                                    <li class="mb-2">
-                                                                        <strong>Item Name:</strong>
-                                                                        <span id="item_name_t"></span>
-                                                                    </li>
-                                                                    <li class="mb-2">
-                                                                        <strong>Color:</strong>
-                                                                        <span id="item_color_t"></span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <strong>Contents:</strong>
-                                                                        <span id="parcel_contents_t"></span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <ul class="list-unstyled mb-0">
-                                                                    <li class="mb-2">
-                                                                        <strong>Declared Value:</strong>
-                                                                        <span id="declared_value_t"></span>
-                                                                    </li>
-                                                                    <li class="mb-2">
-                                                                        <strong>Delivery Charge:</strong>
-                                                                        <span id="delivery_charge_t"></span>
-                                                                    </li>
-                                                                    <li class="mb-2">
-                                                                        <strong>Insurance:</strong>
-                                                                        <span id="insurance_t"></span>
-                                                                    </li>
-                                                                    <li class="mb-2">
-                                                                        <strong>Tax:</strong>
-                                                                        <span id="tax_t"></span>
-                                                                    </li>
-                                                                    <li class="h5 mb-0 mt-3">
-                                                                        <strong>Total:</strong>
-                                                                        <span id="total_t" class="text-primary"></span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Terms & Payment -->
-                                            <div class="col-12">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="form-check mb-4">
-                                                            <input class="form-check-input" type="checkbox" id="terms_conditions" name="terms_conditions" required>
-                                                            <label class="form-check-label" for="terms_conditions">
-                                                                I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a>
-                                                            </label>
-                                                            <div class="invalid-feedback terms_conditions_error">You must agree to the terms and conditions</div>
-                                                        </div>
-
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <button type="button" class="btn btn-secondary btn-lg" onclick="slideItem('step-03');">Previous</button>
-                                                            <button type="button" class="btn btn-primary btn-lg px-5" onclick="confirmAndPay();">Confirm & Pay</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <!--step-03 -->
+                                <div class="slide-content" id="step-03" style="display: none;">
+                                    <h1 class="booking-page-heading">Parcel Details</h1>
+                                    <div class="step-nav">
+                                        <ul>
+                                            <li class="active done" onclick="slideItem('step-01');">Sender</li>
+                                            <li class="active done" onclick="slideItem('step-02');">Recipient</li>
+                                            <li class="active" onclick="slideItem('step-03');">Parcel Details</li>
+                                            <li onclick="parcelDetailVerifiaction();">Review</li>
+                                        </ul>
                                     </div>
-                                </form>
+                                    <div class="form-group">
+                                        <label class="form-label">What do you want to send?<sup>*</sup></label>
+                                        <div class="select-style">
+                                            <select name="parcel_type" id="parcel_type" required>
+                                                <option value="">Select Parcel Type</option>
+                                                <option value="1" data-title="Regular">Regular</option>
+                                                <option value="2" data-title="Liquid">Liquid</option>
+                                                <option value="3" data-title="Fragile">Fragile</option>
+                                            </select>
+                                        </div>
+                                        <p class="promo-failure parcel_type_error" style="display:none;"> Parcel type
+                                            required</p>
+                                    </div>
+                                    <p id="parcel_type_hint" style="display:none"></p>
+                                    <div class="form-group" id="parcel_weight_inner">
+                                        <label class="form-label">Package weight (KG) <sup>*</sup></label>
+                                        <input type="number" class="calculate parcel_weight form-control"
+                                            name="parcel_weight" id="parcel_weight" placeholder="Weight in KG"
+                                            required="required">
+
+                                        <p class="promo-failure weight_error" style="display:none;"> Weight required</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Number of Item<sup>*</sup></label>
+                                        <input class="form-control" type="number" name="number_of_item" value="1"
+                                            id="number_of_item" required>
+                                        <input class="form-control" type="hidden" name="campaign_discount">
+
+                                    </div>
+                                    <div class="form-group" id="parcel_contain_inner">
+                                        <label class="form-label">Declared Value <sup>*</sup></label>
+                                        <input class="form-control CommaSeperateValueSet" type="text" name="product_value"
+                                            id="product_value" required>
+                                        <p class="promo-failure product_value_error" style="display:none;"> Declared Value
+                                            required
+                                        </p>
+                                    </div>
+                                    <div class="form-group" id="parcel_contain_inner">
+                                        <label class="form-label">Item Name<sup>*</sup></label>
+                                        <input class="form-control" type="text" name="item_name" id="item_name"
+                                            required>
+                                        <p class="promo-failure item_name_error" style="display:none;"> Item Name required
+                                        </p>
+                                    </div>
+                                    <div class="form-group" id="parcel_contain_inner">
+                                        <label class="form-label">Color<sup>*</sup></label>
+                                        <input class="form-control"type="text" name="color" id="color" required>
+                                        <p class="promo-failure color_error" style="display:none;"> Color required
+                                        </p>
+                                    </div>
+                                    <div class="form-group" id="parcel_contain_inner">
+                                        <label class="form-label">What does this parcel contain?<sup>*</sup></label>
+                                        <input class="form-control" name="parcel_contain" id="parcel_contain" required>
+                                        <p class="promo-failure parcel_contain_error" style="display:none;"> Parcel
+                                            contain required
+                                        </p>
+                                    </div>
+                                    <div class="btn-wrap">
+                                        <button class="common-btn prev" type="button"
+                                            onclick="slideItem('step-02');">PREVIOUS</button>
+                                        <button class="common-btn" type="button"
+                                            onclick="parcelDetailVerifiaction();">CONTINUE</button>
+                                    </div>
+                                </div>
+                                <!--step-04 -->
+                                <div class="slide-content" id="step-04" style="display: none;">
+                                    <h1 class="booking-page-heading">Review &amp; Confirm</h1>
+                                    <div class="step-nav">
+                                        <ul>
+                                            <li class="active done" onclick="slideItem('step-01');">Sender</li>
+                                            <li class="active done" onclick="slideItem('step-02');">Recipient</li>
+                                            <li class="active done" onclick="slideItem('step-03');">Parcel Details</li>
+                                            <li class="active" onclick="slideItem('step-04');">Review</li>
+                                        </ul>
+                                    </div>
+                                    <h2>How would you like it delivered?</h2>
+
+
+                                    <h2 class="booking-info-heading">Sender Details <a href="#"
+                                            onclick="slideItem('step-01');"><i class="icon-pencil"></i> Edit</a></h2>
+                                    <div class="booking-info">
+                                        <ul>
+
+                                            <li>Name<h6 id="sender_name_t"></h6>
+                                            </li>
+                                            <li>Mobile Number<h6 id="sender_mobile_t"></h6>
+                                            </li>
+                                            <li>Email Number<h6 id="sender_email_t"></h6>
+                                            </li>
+                                            <li>Pickup City<h6 id="sender_pickupcity_t"></h6>
+                                            </li>
+                                            <li>Pickup Town<h6 id="sender_pickuptown_t"></h6>
+                                            </li>
+                                            <li>Address<h6 id="sender_address_t"></h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h2 class="booking-info-heading">Recipient Details <a href="#"
+                                            onclick="slideItem('step-02');"><i class="icon-pencil"></i> Edit</a></h2>
+                                    <div class="booking-info">
+                                        <ul>
+                                            <li>Name<h6 id="recivier_name_t"></h6>
+                                            </li>
+                                            <li>Mobile Number<h6 id="recivier_mobile_t"></h6>
+                                            </li>
+                                            <li>Reciver City<h6 id="recipient_pickupcity_t"></h6>
+                                            </li>
+                                            <li>Reciver Town<h6 id="recipient_pickuptown_t"></h6>
+                                            </li>
+                                            <li>Address<h6 id="recivier_address_t"></h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h2 class="booking-info-heading">Parcel Details <a href="#"
+                                            onclick="slideItem('step-03');"><i class="icon-pencil"></i> Edit</a></h2>
+                                    <div class="booking-info booking-parcel-info">
+                                        <ul>
+                                            <li>Courier Type<h6 id="parcel_type_t"></h6>
+                                            </li>
+                                            <li id="package_weight_title">Package weight <h6 id="parcel_weight_t"></h6>
+                                            </li>
+                                            <li id="number_of_item_title">Number of item <h6 id="number_of_item_t"></h6>
+                                            </li>
+                                            <li>Item Name <h6 id="item_name_t"></h6>
+                                            </li>
+                                            <li>Color <h6 id="color_t"></h6>
+                                            </li>
+                                            <li>Parcel Contain <h6 id="parcel_contain_t"></h6>
+                                            </li>
+                                            <li>Declared Value <h6 id="product_value_t"></h6>
+                                            </li>
+
+                                            <li>Delivery Charge<h6 id="delivery_charge_t"></h6>
+                                            </li>
+                                            {{-- <li>COD Charge<strong id="cod_charge_t"></strong></li> --}}
+                                            <li>Tax<h6 id="tax_t"></h6>
+                                            </li>
+                                            <li>Insurance<h6 id="insurance_t"></h6>
+                                            </li>
+                                            <li>Total<h6 id="total_t"></h6>
+                                            </li>
+                                            {{-- <li>Declared Value<strong id="declared_value"> </strong></li>
+                                            <li>Packaging Service Charge<strong id="packaging_service_charge_value">
+                                            </strong></li> --}}
+                                            {{-- <li>Product Type<strong id="product_type"></strong></li>
+                                            <li class="discount_val" style="display:none"><span
+                                                id="discount_static">Discount</span><strong style="color:red;"
+                                                id="product_discount"></strong></li> --}}
+                                        </ul>
+                                        <input type="hidden" name="totalamount" id="totalamount">
+                                    </div>
+                                    <div class="form-group check-terms">
+                                        <label class="checkbox">
+                                            <input type="checkbox" value="0" name="terms_and_condition"
+                                                id="termsCheckbox" required class="mt-1">
+                                            <span class="checkmark"></span>
+                                            I agree to the &nbsp;<a href="{{ url('termscondition') }}"
+                                                target="_blank">Terms &amp;
+                                                Conditions</a>
+                                        </label>
+                                        <p class="promo-failure terms_condition_error" style="display:none;"> T&amp;C
+                                            required</p>
+                                    </div>
+                                    <a href="#booking-page" class="common-btn" onclick="payWithPaystack(event)">CONFIRM
+                                        &amp;
+                                        PAY</a>
+                                </div>
+
+                                <!-- otp -->
+
+                                {{-- <section class="otp" id="otp_section_booking" style="display:none;">
+                                    <div class="otp-content">
+                                        <h2 class="booking-page-heading">Verify yourself</h2>
+                                        <h6>We’ve sent you a 4 digit verification code to your mobile no.
+                                            <a href="javascript:void(0)"><span
+                                                    id="sender_mobile_number">+8801681844033</span>
+                                            </a><a onclick="gotoSenderDetail();" href="javascript:void(0)"><i
+                                                    class="icon-pencil"></i></a>
+                                        </h6>
+                                        <div class="otp-input">
+                                            <div class="otp-box"><input type="tel" id="otp0"
+                                                    class="form-control inputBox" maxlength="1" autocomplete="off"
+                                                    autofocus="" data-next="1" placeholder="-"></div>
+                                            <div class="otp-box"> <input type="tel" id="otp1"
+                                                    class="form-control inputBox" maxlength="1" autocomplete="off"
+                                                    data-next="2" placeholder="-"></div>
+                                            <div class="otp-box"><input type="tel" id="otp2"
+                                                    class="form-control inputBox" maxlength="1" autocomplete="off"
+                                                    data-next="3" placeholder="-"></div>
+                                            <div class="otp-box"><input type="tel" id="otp3"
+                                                    class="form-control inputBox" maxlength="1" autocomplete="off"
+                                                    data-next="4" placeholder="-"></div>
+                                        </div>
+                                        <div class="mobile_message" style="display:none; color:green;"></div>
+                                        <div class="mobile_wrong" style="display:none; color:red;"></div>
+                                        <button class="common-btn" type="button" onclick="bookingFormSubmit();">CONTINUE
+                                            TO
+                                            PAY</button>
+                                        <p>Resend code in 00:<span id="timer"></span></p>
+                                        <p>Didn’t recived a code? <a href="javascript:void(0);" id="resend_otp">Resend
+                                                OTP</a></p>
+
+                                        <p>Your Account will create under ecourier p2p.</p>
+                                    </div>
+                                </section> --}}
+
+                                <!-- payment page  -->
+
+                                {{-- <section class="payment-method" style="display:none;">
+                                    <div class="boolean-check">
+                                        <h2 class="booking-page-heading">Choose Payment Method</h2>
+                                        <ul>
+                                            <li>
+                                                <label class="radio"><input type="radio" value="bkash"
+                                                        name="payment"> <span class="radio-mark"></span> bKash
+                                                    <img src="https://ecourier.com.bd/wp-content/themes/ecourier-2.0/images/bkash.svg"
+                                                        alt=""></label>
+                                            </li>
+
+                                            <li>
+                                                <label class="radio"><input type="radio" value="nagad"
+                                                        name="payment"> <span class="radio-mark"></span> Nagad
+                                                    <img src="https://ecourier.com.bd/wp-content/themes/ecourier-2.0/images/nagad-logo-vertical.wine.svg"
+                                                        alt=""></label>
+                                            </li>
+                                            <li>
+                                                <label class="radio"><input type="radio" value="upay"
+                                                        name="payment"> <span class="radio-mark"></span> Upay
+                                                    <img src="https://ecourier.com.bd/wp-content/themes/ecourier-2.0/images/upay_logo.svg"
+                                                        alt=""></label>
+                                            </li>
+                                            <li>
+                                                <label class="radio"><input type="radio" value="sslcomm"
+                                                        name="payment"> <span class="radio-mark"></span> Card/Others
+                                                    <img src="https://ecourier.com.bd/wp-content/themes/ecourier-2.0/images/visa-master-amex.svg"
+                                                        alt=""></label>
+                                            </li>
+
+                                        </ul>
+                                        <p class="promo-failure payment_method_error" style="display:none;"> Payment
+                                            Method Required
+                                        </p>
+                                        <a class="common-btn" onclick="processPayment();" name="">CONFIRM PAY</a>
+                                    </div>
+                                </section> --}}
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
+
     </section>
-
-    <!-- Terms & Conditions Modal -->
-    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="termsModalLabel">Terms & Conditions</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h6>1. Service Agreement</h6>
-                    <p>By using our P2P delivery service, you agree to comply with all applicable laws and regulations.</p>
-                    
-                    <h6>2. Prohibited Items</h6>
-                    <p>The following items are strictly prohibited:</p>
-                    <ul>
-                        <li>Illegal substances and drugs</li>
-                        <li>Weapons and ammunition</li>
-                        <li>Hazardous materials</li>
-                        <li>Perishable items without proper packaging</li>
-                        <li>Items exceeding weight limits</li>
-                    </ul>
-
-                    <h6>3. Insurance and Liability</h6>
-                    <p>We provide basic insurance coverage based on the declared value of your parcel. Additional insurance may be purchased for high-value items.</p>
-
-                    <h6>4. Delivery Timeframes</h6>
-                    <p>Delivery times are estimates and may vary based on:</p>
-                    <ul>
-                        <li>Distance between pickup and delivery locations</li>
-                        <li>Weather conditions</li>
-                        <li>Traffic conditions</li>
-                        <li>Customs clearance (if applicable)</li>
-                    </ul>
-
-                    <h6>5. Claims and Disputes</h6>
-                    <p>Any claims for lost or damaged items must be filed within 7 days of delivery. We will investigate and process claims according to our insurance policy.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 @section('custom_js_script')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         $(document).ready(function() {
-            console.log('jQuery ready!');
-            // Initialize select2
-            $('.select2').select2();
-            
-            // Update step navigation
-            function updateStepNavigation(currentStep) {
-                $('.step-circle-zidrop, .step-text-zidrop, .progress-line-zidrop').removeClass('active');
-                
-                if (currentStep >= 1) {
-                    $('.step-circle-zidrop:eq(0), .step-text-zidrop:eq(0)').addClass('active');
-                }
-                if (currentStep >= 2) {
-                    $('.step-circle-zidrop:eq(1), .step-text-zidrop:eq(1), .progress-line-zidrop:eq(0)').addClass('active');
-                }
-                if (currentStep >= 3) {
-                    $('.step-circle-zidrop:eq(2), .step-text-zidrop:eq(2), .progress-line-zidrop:eq(1)').addClass('active');
-                }
-                if (currentStep >= 4) {
-                    $('.step-circle-zidrop:eq(3), .step-text-zidrop:eq(3), .progress-line-zidrop:eq(2)').addClass('active');
-                }
+            document.getElementById('termsCheckbox').addEventListener('change', function() {
+                this.value = this.checked ? 1 : 0;
+            });
+            // Function to load dropdown options from an AJAX call
+            function loadDropdown(url, targetSelect, defaultOptionText) {
+                var selectElement = $(targetSelect);
+                selectElement.empty().append('<option selected disabled>Loading...</option>');
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        selectElement.empty().append('<option value="" selected disabled>' +
+                            defaultOptionText + '</option>');
+                        $.each(data, function(key, value) {
+                            selectElement.append('<option value="' + value.id +
+                                '" data-title="' + value.title + '">' + value.title +
+                                '</option>');
+                        });
+                    },
+                    error: function() {
+                        alert('Failed to load data. Please try again.');
+                    }
+                });
             }
-
-            // Sender Pickup City -> Town
+            // Handler for sender city change
             $('#sender_pickupcity').on('change', function() {
                 var city_id = $(this).val();
-                console.log('Sender city changed:', city_id);
+                if (city_id) {
+                    // Load towns for sender city
+                    loadDropdown("{{ url('/web/get-town') }}/" + city_id,
+                        'select[name="sender_pickuptown"]', 'Pickup Town');
+
+                    // Load delivery cities and tarrif information
+                    $.ajax({
+                        url: "{{ url('/web/get-tarrif/') }}/" + city_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            var deliveryCitySelect = $('select[name="recipient_pickupcity"]');
+                            deliveryCitySelect.empty().append(
+                                '<option value="" selected="selected" disabled>Delivery City</option>'
+                            );
+                            $.each(data, function(key, value) {
+                                deliveryCitySelect.append('<option value="' + value
+                                    .delivery_cities_id +
+                                    '" data-deliverycharge="' + value
+                                    .deliverycharge +
+                                    '" data-codcharge="' + value.codcharge +
+                                    '" data-tax="' + value.tax +
+                                    '" data-title="' + value.deliverycity.title +
+                                    '" data-insurance="' + value.insurance +
+                                    '" data-cityid="' + value.delivery_cities_id +
+                                    '" data-extradeliverycharge="' + value
+                                    .extradeliverycharge + '">' +
+                                    value.deliverycity.title + '</option>');
+                            });
+                        },
+                        error: function() {
+                            alert('Failed to load tarrif data. Please try again.');
+                        }
+                    });
+                } else {
+                    alert('Please select a valid city.');
+                }
+            });
+            // Handler for recipient city change
+            $('#recipient_pickupcity').on('change', function() {
+                var city_id = $(this).val();
+
                 if (city_id) {
                     $.ajax({
-                        url: '/web/get-town/' + city_id,
-                        type: 'GET',
-                        dataType: 'json',
+                        url: "{{ url('/web/get-town') }}/" +
+                        city_id, // Make sure the URL is correct
+                        type: "GET",
+                        dataType: "json",
                         success: function(data) {
-                            console.log('Sender towns loaded:', data);
-                            var selectElement = $('select[name="sender_pickuptown"]');
-                            selectElement.empty().append('<option value="" selected>Pickup Town</option>');
-                            if (data && data.length > 0) {
-                                $.each(data, function(key, value) {
-                                    selectElement.append('<option value="' + value.id + '" data-title="' + value.title + '" data-towncharge="' + (value.deliverycharge || 0) + '">' + value.title + '</option>');
-                                });
-                            } else {
-                                selectElement.append('<option value="" disabled>No towns found</option>');
-                            }
-                            selectElement.trigger('change');
+                            var deliveryTownSelect = $('select[name="recipient_pickuptown"]');
+                            deliveryTownSelect.empty().append(
+                                '<option value="" selected="selected" disabled>Delivery Town</option>'
+                            );
+                            $.each(data, function(key, value) {
+                                deliveryTownSelect.append('<option value="' + value.id + '" data-towncharge="' + value.towncharge + '" data-title="' + value.title + '">' +
+                                    value.title + '</option>');
+                            });
                         },
-                        error: function(xhr, status, error) {
-                            console.error('Sender towns AJAX error:', error, xhr.responseText);
+                        error: function() {
                             alert('Failed to load town data. Please try again.');
                         }
                     });
                 } else {
-                    console.log('No city selected for sender');
+                    alert('Please select a valid city.');
                 }
             });
 
-            // Recipient Pickup City -> Town
-            $('#recipient_pickupcity').on('change', function() {
-                var city_id = $(this).val();
-                console.log('Recipient city changed:', city_id);
-                if (city_id) {
-                    $.ajax({
-                        url: '/web/get-town/' + city_id,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            console.log('Recipient towns loaded:', data);
-                            var selectElement = $('select[name="recipient_pickuptown"]');
-                            selectElement.empty().append('<option value="" selected>Pickup Town</option>');
-                            if (data && data.length > 0) {
-                                $.each(data, function(key, value) {
-                                    selectElement.append('<option value="' + value.id + '" data-title="' + value.title + '" data-towncharge="' + (value.deliverycharge || 0) + '">' + value.title + '</option>');
-                                });
-                            } else {
-                                selectElement.append('<option value="" disabled>No towns found</option>');
-                            }
-                            selectElement.trigger('change');
-                        },
-                        error: function(xhr, status, error) {
-                            console.log('AJAX error:', error, xhr.responseText);
-                            alert('Failed to load town data. Please try again.');
-                        }
-                    });
-                }
-            });
 
-            // Load city tariffs when city changes
-            $('#recipient_pickupcity').on('change', function() {
-                var city_id = $(this).val();
-                if (city_id) {
-                    $.ajax({
-                        url: '/web/get-tarrif/' + city_id,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            console.log('City tariffs loaded:', data);
-                            if (data && data.length > 0) {
-                                var cityData = data[0];
-                                $('#recipient_pickupcity option:selected').attr({
-                                    'data-deliverycharge': cityData.deliverycharge || 0,
-                                    'data-extradeliverycharge': cityData.extradeliverycharge || 0,
-                                    'data-codcharge': cityData.codcharge || 0,
-                                    'data-tax': cityData.tax || 0,
-                                    'data-insurance': cityData.insurance || 0
-                                });
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.log('Tariff AJAX error:', error);
-                        }
-                    });
-                }
-            });
         });
 
-        // Validation Functions
+        // Data validation 
         function senderInfoVerification() {
-            console.log('senderInfoVerification called');
             var firstErrorOccurance = '';
             var sender_name = $('#shipping-form [name="sender_name"]').val();
             var sender_mobile = $('#shipping-form [name="sender_mobile"]').val();
             var sender_email = $('#shipping-form [name="sender_email"]').val();
-            var sender_pickupcity = $('#shipping-form [name="sender_pickupcity"]').val();
             var sender_pickuptown = $('#shipping-form [name="sender_pickuptown"]').val();
+            var sender_pickupcity = $('#shipping-form [name="sender_pickupcity"]').val();
             var sender_address = $('#shipping-form [name="sender_address"]').val();
 
-            console.log('Sender data:', {sender_name, sender_mobile, sender_email, sender_pickupcity, sender_pickuptown, sender_address});
-
-            // Clear previous errors
-            $('.invalid-feedback').hide();
-            $('.form-control').removeClass('is-invalid');
-
-            if (sender_name && sender_mobile && sender_email && sender_pickupcity && 
-                sender_pickuptown && sender_address && 
-                checkMobile(sender_mobile) && checkEmailType(sender_email)) {
-                
-                console.log('Sender validation passed, moving to step 2');
+            if (
+                sender_name != "" && sender_name != undefined && sender_name != null &&
+                sender_mobile != "" && sender_mobile != undefined && sender_mobile != null &&
+                sender_email != "" && sender_email != undefined && sender_email != null &&
+                sender_pickuptown != "" && sender_pickuptown != undefined && sender_pickuptown != null &&
+                sender_pickupcity != "" && sender_pickupcity != undefined && sender_pickupcity != null &&
+                sender_address != "" && sender_address != undefined && sender_address != null
+            ) {
+                // fbq('track', 'P2PSenderInfoReceived');
+                $('.sender_name_error').hide();
+                $('.sender_mobile_error').hide();
+                $('.sender_email_error').hide();
+                $('.sender_pickupcity_error').hide();
+                $('.sender_pickuptown_error').hide();
+                $('.sender_address_error').hide();
+                //document.body.scrollTop = 0;
+                //document.documentElement.scrollTop = 0;
+                firstErrorOccurance = '';
                 slideItem('step-02');
-                updateStepNavigation(2);
-                $('html, body').animate({ scrollTop: 0 }, 'fast');
+                // Scroll to top with animation
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'fast'); // Smooth scroll to top when moving to the next step
+
             } else {
-                console.log('Sender validation failed');
-                // Show validation errors
-                if (!sender_name) {
+                if (sender_name == '' || sender_name == undefined || sender_name == null) {
                     $('.sender_name_error').show();
-                    $('[name="sender_name"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'sender_name';
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'sender_name';
+                } else {
+                    $('.sender_name_error').hide();
                 }
-                if (!sender_mobile) {
+                if (sender_mobile == '' || sender_mobile == undefined || sender_mobile == null) {
                     $('.sender_mobile_error').show();
-                    $('[name="sender_mobile"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'sender_mobile';
-                }
-                if (!sender_email) {
-                    $('.sender_email_error').show();
-                    $('[name="sender_email"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'sender_email';
-                }
-                if (!sender_pickupcity) {
-                    $('.sender_pickupcity_error').show();
-                    $('[name="sender_pickupcity"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'sender_pickupcity';
-                }
-                if (!sender_pickuptown) {
-                    $('.sender_district_error').show();
-                    $('[name="sender_pickuptown"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'sender_pickuptown';
-                }
-                if (!sender_address) {
-                    $('.sender_address_error').show();
-                    $('[name="sender_address"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'sender_address';
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'sender_mobile';
+                } else {
+                    $('.sender_mobile_error').hide();
                 }
 
-                if (firstErrorOccurance) {
-                    console.log('First error field:', firstErrorOccurance);
-                    $('[name="' + firstErrorOccurance + '"]').focus();
-                    $('html, body').animate({
-                        scrollTop: $('[name="' + firstErrorOccurance + '"]').offset().top - 100
-                    }, 'fast');
+                if (sender_email == '' || sender_email == undefined || sender_email == null) {
+                    $('.sender_email_error').show();
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'sender_email';
+                } else {
+                    $('.sender_email_error').hide();
                 }
+
+                if (sender_pickuptown == '' || sender_pickuptown == undefined || sender_pickuptown == null) {
+                    $('.sender_district_error').show();
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'sender_district';
+                } else {
+                    $('.sender_district_error').hide();
+                }
+
+                if (sender_pickupcity == '' || sender_pickupcity == undefined || sender_pickupcity == null) {
+                    $('.sender_area_error').show();
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'sender_area';
+                } else {
+                    $('.sender_area_error').hide();
+                }
+
+                if (sender_address == '' || sender_address == undefined || sender_address == null) {
+                    $('.sender_address_error').show();
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'sender_address';
+                } else {
+                    $('.sender_address_error').hide();
+                }
+                //console.log(sender_name);
+            }
+
+            if (firstErrorOccurance) {
+                $('[name="' + firstErrorOccurance + '"]').focus();
+                $('html, body').animate({
+                    scrollTop: $('[name="' + firstErrorOccurance + '"]').offset().top - 100 + 'px'
+                }, 'fast');
+
             }
         }
 
@@ -907,200 +736,264 @@
             var recivier_mobile = $('#shipping-form [name="recivier_mobile"]').val();
             var recipient_pickupcity = $('#shipping-form [name="recipient_pickupcity"]').val();
             var recipient_pickuptown = $('#shipping-form [name="recipient_pickuptown"]').val();
-            var recivier_address = $('#shipping-form [name="recivier_address"]').val();
-
-            // Clear previous errors
-            $('.invalid-feedback').hide();
-            $('.form-control').removeClass('is-invalid');
-
-            if (recivier_name && recivier_mobile && recipient_pickupcity && 
-                recipient_pickuptown && recivier_address && checkMobile(recivier_mobile)) {
-                
+            var recivier_address = $("#shipping-form [name='recivier_address']").val();
+            if (
+                recivier_name != "" && recivier_name != undefined && recivier_name != null &&
+                recivier_mobile != "" && recivier_mobile != undefined && recivier_mobile != null &&
+                recipient_pickupcity != "" && recipient_pickupcity != undefined && recipient_pickupcity != null &&
+                recipient_pickuptown != "" && recipient_pickuptown != undefined && recipient_pickuptown != null &&
+                recivier_address != "" && recivier_address != undefined && recivier_address != null
+            ) {
+                // fbq('track', 'P2PRecipentInfoReceived');
+                $('.recipient_name_error').hide();
+                $('.recipient_mobile_error').hide();
+                $('.recipient_pickupcity_error').hide();
+                $('.recipient_pickuptown_error').hide();
+                $('.recipient_address_error').hide();
                 slideItem('step-03');
-                updateStepNavigation(3);
-                $('html, body').animate({ scrollTop: 0 }, 'fast');
+                // Scroll to top with animation
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'fast'); // Smooth scroll to top when moving to the next step
             } else {
-                // Show validation errors
-                if (!recivier_name) {
+                if (recivier_name == '' || recivier_name == undefined || recivier_name == null) {
                     $('.recipient_name_error').show();
-                    $('[name="recivier_name"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'recivier_name';
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'recivier_name';
+                } else {
+                    $('.recipient_name_error').hide();
                 }
-                if (!recivier_mobile) {
+                if (recivier_mobile == '' || recivier_mobile == undefined || recivier_mobile == null) {
                     $('.recipient_mobile_error').show();
-                    $('[name="recivier_mobile"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'recivier_mobile';
-                }
-                if (!recipient_pickupcity) {
-                    $('.recipient_pickupcity_error').show();
-                    $('[name="recipient_pickupcity"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'recipient_pickupcity';
-                }
-                if (!recipient_pickuptown) {
-                    $('.recipient_pickuptown_error').show();
-                    $('[name="recipient_pickuptown"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'recipient_pickuptown';
-                }
-                if (!recivier_address) {
-                    $('.recipient_address_error').show();
-                    $('[name="recivier_address"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'recivier_address';
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'recivier_mobile';
+                } else {
+                    $('.recipient_mobile_error').hide();
                 }
 
-                if (firstErrorOccurance) {
-                    $('[name="' + firstErrorOccurance + '"]').focus();
-                    $('html, body').animate({
-                        scrollTop: $('[name="' + firstErrorOccurance + '"]').offset().top - 100
-                    }, 'fast');
+                if (recipient_pickupcity == '' || recipient_pickupcity == undefined || recipient_pickupcity == null) {
+                    $('.recipient_pickupcity_error').show();
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'recipient_pickupcity';
+                } else {
+                    $('.recipient_district_error').hide();
                 }
+                if (recipient_pickuptown == '' || recipient_pickuptown == undefined || recipient_pickuptown == null) {
+                    $('.recipient_area_error').show();
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'recipient_pickuptown';
+                } else {
+                    $('.recipient_area_error').hide();
+                }
+                if (recivier_address == '' || recivier_address == undefined || recivier_address == null) {
+                    $('.recipient_address_error').show();
+                    firstErrorOccurance = (firstErrorOccurance) ? firstErrorOccurance : 'recivier_address';
+                } else {
+                    $('.recipient_address_error').hide();
+                }
+
+            }
+            if (firstErrorOccurance) {
+                $('[name="' + firstErrorOccurance + '"]').focus();
+                $('html, body').animate({
+                    scrollTop: $('[name="' + firstErrorOccurance + '"]').offset().top - 100 + 'px'
+                }, 'fast');
+
             }
         }
-
+        // Parcel Data validation 
         function parcelDetailVerifiaction() {
             var firstErrorOccurance = '';
-            var parcel_type = $('#shipping-form [name="parcel_type"]').val();
-            var package_weight = $('#shipping-form [name="package_weight"]').val();
-            var number_of_items = $('#shipping-form [name="number_of_items"]').val();
-            var declared_value = convertCommaSeparatedToNumber($('#shipping-form [name="declared_value"]').val());
+            // Parcel Details
+            var parcel_type = $('#shipping-form [name="parcel_type"] option:selected').data('title');
+            var weight = $('#shipping-form [name="parcel_weight"]').val();
+            var number_of_item = $('#shipping-form [name="number_of_item"]').val();
             var item_name = $('#shipping-form [name="item_name"]').val();
-            var item_color = $('#shipping-form [name="item_color"]').val();
-            var parcel_contents = $('#shipping-form [name="parcel_contents"]').val();
+            var color = $('#shipping-form [name="color"]').val();
+            var parcel_contain = $('#shipping-form [name="parcel_contain"]').val();
+            var product_value = convertCommaSeparatedToNumber($('#shipping-form [name="product_value"]').val());
 
-            // Default values
-            if (!number_of_items) number_of_items = 1;
-            if (!package_weight) package_weight = 1;
+            // Default values for weight and number_of_item
+            if (!number_of_item) number_of_item = 1;
+            if (!weight) weight = 1;
 
-            // Clear previous errors
-            $('.invalid-feedback').hide();
-            $('.form-control').removeClass('is-invalid');
+            // Receiver Details
+            var recivier_name = $('#shipping-form [name="recivier_name"]').val();
+            var recivier_mobile = $('#shipping-form [name="recivier_mobile"]').val();
+            var recipient_pickupcity = $('#shipping-form [name="recipient_pickupcity"] option:selected').data('title');
+            var recipient_pickuptown = $('#shipping-form [name="recipient_pickuptown"] option:selected').data('title');
+            var recivier_address = $("#shipping-form [name='recivier_address']").val();
 
-            if (parcel_type && package_weight && number_of_items && declared_value && 
-                item_name && item_color && parcel_contents) {
-                
-                // Update review section
+            // Sender Details
+            var sender_name = $('#shipping-form [name="sender_name"]').val();
+            var sender_mobile = $('#shipping-form [name="sender_mobile"]').val();
+            var sender_email = $('#shipping-form [name="sender_email"]').val();
+            var sender_pickuptown = $('#shipping-form [name="sender_pickuptown"] option:selected').data('title');
+            var sender_pickupcity = $('#shipping-form [name="sender_pickupcity"] option:selected').data('title');
+            var sender_address = $('#shipping-form [name="sender_address"]').val();
+
+            // Validation
+            if (
+                parcel_type && weight && number_of_item &&
+                product_value && item_name && color && parcel_contain
+            ) {
+                // Parcel Details
                 $('#parcel_type_t').html(parcel_type);
-                $('#package_weight_t').html(package_weight + ' kg');
-                $('#number_of_items_t').html(number_of_items);
-                $('#declared_value_t').html('₦ ' + checkNan(CurrencyFormatted(declared_value)));
+                $('#parcel_weight_t').html(weight + ' (kg)'); // Fixed concatenation issue
+                $('#number_of_item_t').html(number_of_item);
                 $('#item_name_t').html(item_name);
-                $('#item_color_t').html(item_color);
-                $('#parcel_contents_t').html(parcel_contents);
+                $('#color_t').html(color);
+                $('#parcel_contain_t').html(parcel_contain);
+                $('#product_value_t').html('₦ ' + checkNan(CurrencyFormatted(product_value)));
 
-                // Update sender and recipient details
-                $('#sender_name_t').html($('#sender_name').val());
-                $('#sender_mobile_t').html($('#sender_mobile').val());
-                $('#sender_email_t').html($('#sender_email').val());
-                $('#sender_pickupcity_t').html($('#sender_pickupcity option:selected').text());
-                $('#sender_pickuptown_t').html($('#sender_pickuptown option:selected').text());
-                $('#sender_address_t').html($('#sender_address').val());
+                // Receiver Details
+                $('#recivier_name_t').html(recivier_name);
+                $('#recivier_mobile_t').html(recivier_mobile);
+                $('#recipient_pickupcity_t').html(recipient_pickupcity);
+                $('#recipient_pickuptown_t').html(recipient_pickuptown);
+                $('#recivier_address_t').html(recivier_address);
 
-                $('#recivier_name_t').html($('#recivier_name').val());
-                $('#recivier_mobile_t').html($('#recivier_mobile').val());
-                $('#recipient_pickupcity_t').html($('#recipient_pickupcity option:selected').text());
-                $('#recipient_pickuptown_t').html($('#recipient_pickuptown option:selected').text());
-                $('#recivier_address_t').html($('#recivier_address').val());
+                // Sender Details
+                $('#sender_name_t').html(sender_name);
+                $('#sender_mobile_t').html(sender_mobile);
+                $('#sender_email_t').html(sender_email);
+                $('#sender_pickupcity_t').html(sender_pickupcity);
+                $('#sender_pickuptown_t').html(sender_pickuptown);
+                $('#sender_address_t').html(sender_address);
 
-                // Calculate charges
-                var stateCharge = parseInt($('#recipient_pickupcity option:selected').attr('data-deliverycharge')) || 0;
-                var extraCharge = parseInt($('#recipient_pickupcity option:selected').attr('data-extradeliverycharge')) || 0;
-                var zoneCharge = parseInt($('#recipient_pickuptown option:selected').attr('data-towncharge')) || 0;
-                var taxPercent = parseFloat($('#recipient_pickupcity option:selected').attr('data-tax')) || 0;
-                var insurancePercent = parseFloat($('#recipient_pickupcity option:selected').attr('data-insurance')) || 0;
+                // Calculation
+                var stateCharge = parseInt($('select[name="recipient_pickupcity"] option:selected').attr(
+                    'data-deliverycharge')) || 0;
+                var extraCharge = parseInt($('select[name="recipient_pickupcity"] option:selected').attr(
+                    'data-extradeliverycharge')) || 0;
+                var cod = parseInt($('select[name="recipient_pickupcity"] option:selected').attr('data-codcharge')) || 0;
+                var zoneCharge = parseInt($('select[name="recipient_pickuptown"] option:selected').attr(
+                    'data-towncharge')) || 0;
+                console.log(zoneCharge);
+                var taxPercent = parseFloat($('select[name="recipient_pickupcity"] option:selected').attr('data-tax')) || 0;
+                var insurancePercent = parseFloat($('select[name="recipient_pickupcity"] option:selected').attr(
+                    'data-insurance')) || 0;
+                var cash = convertCommaSeparatedToNumber($("input[name='product_value']").val()) || 0;
 
-                extraCharge = parseInt(package_weight) > 1 ? (parseInt(package_weight) * extraCharge) - extraCharge : 0;
-                var charge = stateCharge + extraCharge + zoneCharge;
+                extraCharge = parseInt(weight) > 1 ? (parseInt(weight) * extraCharge) - extraCharge : 0;
+                charge = stateCharge + extraCharge + zoneCharge;
 
-                $('#delivery_charge_t').text('₦ ' + checkNan(CurrencyFormatted(charge)));
+                var formatCharge = CurrencyFormatted(charge);
+                $("#delivery_charge_t").text('₦ ' + checkNan(formatCharge));
 
+                // Tax Calculation
                 var tax = charge * (taxPercent / 100);
-                $('#tax_t').text('₦ ' + checkNan(CurrencyFormatted(tax)));
+                $("#tax_t").text('₦ ' + checkNan(CurrencyFormatted(tax)));
 
-                var insurance = declared_value * (insurancePercent / 100);
-                $('#insurance_t').text('₦ ' + checkNan(CurrencyFormatted(insurance)));
+                // Insurance Calculation
+                var insurance = cash * (insurancePercent / 100);
+                $("#insurance_t").text('₦ ' + checkNan(CurrencyFormatted(insurance)));
 
+                // Total Calculation
                 var total = charge + tax + insurance;
-                $('#totalamount').val(total);
-                $('#total_t').text('₦ ' + checkNan(CurrencyFormatted(total)));
+                $("#totalamount").val(charge + tax + insurance);
+                $("#total_t").text('₦ ' + checkNan(CurrencyFormatted(total)));
 
+                // Proceed to next step
                 slideItem('step-04');
-                updateStepNavigation(4);
-                $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+                // Scroll to top with animation
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'fast'); // Smooth scroll to top when moving to the next step
             } else {
-                // Show validation errors
+                // Error Handling inline
                 if (!parcel_type) {
                     $('.parcel_type_error').show();
-                    $('[name="parcel_type"]').addClass('is-invalid');
                     firstErrorOccurance = firstErrorOccurance || 'parcel_type';
+                } else {
+                    $('.parcel_type_error').hide();
                 }
-                if (!package_weight) {
-                    $('.package_weight_error').show();
-                    $('[name="package_weight"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'package_weight';
+
+                if (!weight) {
+                    $('.weight_error').show();
+                    firstErrorOccurance = firstErrorOccurance || 'weight';
+                } else {
+                    $('.weight_error').hide();
                 }
-                if (!number_of_items) {
-                    $('.number_of_items_error').show();
-                    $('[name="number_of_items"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'number_of_items';
+
+                if (!number_of_item) {
+                    $('.number_of_item_error').show();
+                    firstErrorOccurance = firstErrorOccurance || 'number_of_item';
+                } else {
+                    $('.number_of_item_error').hide();
                 }
-                if (!declared_value) {
-                    $('.declared_value_error').show();
-                    $('[name="declared_value"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'declared_value';
+
+                if (!product_value) {
+                    $('.product_value_error').show();
+                    firstErrorOccurance = firstErrorOccurance || 'product_value';
+                } else {
+                    $('.product_value_error').hide();
                 }
+
                 if (!item_name) {
                     $('.item_name_error').show();
-                    $('[name="item_name"]').addClass('is-invalid');
                     firstErrorOccurance = firstErrorOccurance || 'item_name';
+                } else {
+                    $('.item_name_error').hide();
                 }
-                if (!item_color) {
-                    $('.item_color_error').show();
-                    $('[name="item_color"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'item_color';
+
+                if (!color) {
+                    $('.color_error').show();
+                    firstErrorOccurance = firstErrorOccurance || 'color';
+                } else {
+                    $('.color_error').hide();
                 }
-                if (!parcel_contents) {
-                    $('.parcel_contents_error').show();
-                    $('[name="parcel_contents"]').addClass('is-invalid');
-                    firstErrorOccurance = firstErrorOccurance || 'parcel_contents';
+
+                if (!parcel_contain) {
+                    $('.parcel_contain_error').show();
+                    firstErrorOccurance = firstErrorOccurance || 'parcel_contain';
+                } else {
+                    $('.parcel_contain_error').hide();
                 }
 
                 if (firstErrorOccurance) {
                     $('[name="' + firstErrorOccurance + '"]').focus();
                     $('html, body').animate({
-                        scrollTop: $('[name="' + firstErrorOccurance + '"]').offset().top - 100
+                        scrollTop: $('[name="' + firstErrorOccurance + '"]').offset().top - 100 + 'px'
                     }, 'fast');
                 }
             }
         }
 
-        function confirmAndPay() {
-            var terms_conditions = $('#terms_conditions').is(':checked');
-            
-            if (!terms_conditions) {
-                $('.terms_conditions_error').show();
-                $('#terms_conditions').addClass('is-invalid');
-                toastr.error("Please agree to the Terms & Conditions before proceeding.");
-                return false;
-            }
-            
-            $('.terms_conditions_error').hide();
-            $('#terms_conditions').removeClass('is-invalid');
-            
-            // Trigger Paystack payment
-            payWithPaystack();
-        }
-
+        // all needed
         function slideItem(step) {
+            // Hide all steps
             $('.slide-content').hide();
+
+            // Show the selected step
             $('#' + step).show();
+
+            // Update navigation indicators (if applicable)
+            // $('.step-nav ul li').removeClass('active');
+            // $('.step-nav ul li').each(function() {
+            //     if ($(this).text().trim() === step) {
+            //         $(this).addClass('active');
+            //     }
+            // });
         }
 
         function checkMobile(mobile) {
-            return true; // Simplified for now
+            // Updated regex pattern to match numbers starting with 08 and followed by 10 digits
+            // var mobile_pattern = /^08[0-9]{9}$/;
+
+            // if (mobile.match(mobile_pattern) == null) {
+            //     $('.sender_mobile_error').css('display', 'block');
+            // } else {
+            //     $('.sender_mobile_error').css('display', 'none');
+            // }
+            return true;
         }
 
-        function checkEmailType(email) {
+        function checkEmailType(mobile) {
+
             var email_pattern = /^[^_.-][\w-._]+@[a-zA-Z_-]+?(\.[a-zA-Z]{2,26}){1,3}$/;
-            return email.match(email_pattern) !== null;
+            if (mobile.match(email_pattern) == null) {
+                $('.sender_email_error').show();
+            } else {
+                $('.sender_email_error').hide();
+            }
         }
 
         function CurrencyFormatted(number) {
@@ -1131,7 +1024,7 @@
             while (fraction.length < decimalplaces) {
                 fraction += "0";
             }
-            var temparray = new Array();
+            temparray = new Array();
             while (integer.length > 3) {
                 temparray.unshift(integer.substr(-3));
                 integer = integer.substr(0, integer.length - 3);
@@ -1148,18 +1041,19 @@
             }
             return total;
         }
-
-        function convertCommaSeparatedToNumber(value) {
-            if (!value) return 0;
-            return Number(String(value).replace(/,/g, '')) || 0;
-        }
+       
     </script>
     
     {{-- Payment --}}
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function payWithPaystack() {
+        const paymentForm = document.getElementById('shipping-form');
+        paymentForm.addEventListener("submit", payWithPaystack, false);
+
+        function payWithPaystack(e) {
+            e.preventDefault();
+
             let total = parseFloat(convertCommaSeparatedToNumber($("#totalamount").val()));
             if (isNaN(total) || total <= 0) {
                 alert('Invalid total amount.');
@@ -1183,13 +1077,20 @@
 
             // Fetch parcel information
             let parcel_type = document.getElementById("parcel_type").value.trim();
-            let package_weight = parseFloat(document.getElementById("package_weight").value);
-            let number_of_items = parseInt(document.getElementById("number_of_items").value);
-            let declared_value = convertCommaSeparatedToNumber(document.getElementById("declared_value").value);
+            let parcel_weight = parseFloat(document.getElementById("parcel_weight").value);
+            let number_of_item = parseInt(document.getElementById("number_of_item").value);
+            var product_value = document.getElementById("product_value").value;
+                product_value = convertCommaSeparatedToNumber(product_value);
+                console.log('product value: ' + product_value);
             let item_name = document.getElementById("item_name").value.trim();
-            let item_color = document.getElementById("item_color").value.trim();
-            let parcel_contents = document.getElementById("parcel_contents").value.trim();
-            let terms_conditions = document.getElementById("terms_conditions").checked;
+            let color = document.getElementById("color").value.trim();
+            let terms_and_condition = document.getElementById("termsCheckbox").value;
+            if (!termsCheckbox.checked) {
+                // alert("Please agree to the Terms & Conditions before proceeding.");
+                toastr.error("Please agree to the Terms & Conditions before proceeding.");
+                return false; // Prevent further action
+            }
+            let parcel_contain = document.getElementById("parcel_contain").value.trim();
 
             // Basic validation for required fields
             if (!sender_email || !sender_name || !receiver_name || !receiver_mobile) {
@@ -1198,12 +1099,15 @@
             }
 
             let handler = PaystackPop.setup({
+               
+                // key: '<?= $results->public ?>', 
                 key: 'pk_test_9e185aac0936fd9313529f6471cdc37873adc730', 
                 email: sender_email,
                 phone: sender_mobile,
                 amount: total * 100, // Convert amount to kobo
-                ref: 'Zi_' + Math.floor(Math.random() * 9999) + '_' + Math.floor(Math.random() * 99999999),
-                language: "en",
+                ref: 'Zi_' + Math.floor(Math.random() * 9999) + '_' + Math.floor(Math.random() *
+                    99999999), // Unique reference
+                language: "en", // Optional language property
 
                 onClose: function() {
                     alert('Payment window closed.');
@@ -1221,9 +1125,11 @@
                                 // Store payment data
                                 $.ajaxSetup({
                                     headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                            'content')
                                     }
                                 });
+                                console.log(paymentResponse);
 
                                 $.ajax({
                                     type: "GET",
@@ -1244,23 +1150,77 @@
                                         recipient_pickuptown: recipient_pickuptown,
                                         recivier_address: receiver_address,
                                         parcel_type: parcel_type,
-                                        parcel_weight: package_weight,
-                                        number_of_item: number_of_items,
-                                        product_value: declared_value,
+                                        parcel_weight: parcel_weight,
+                                        number_of_item: number_of_item,
+                                        product_value: product_value,
                                         item_name: item_name,
-                                        color: item_color,
-                                        parcel_contain: parcel_contents,
-                                        terms_and_condition: terms_conditions,
+                                        color: color,
+                                        parcel_contain: parcel_contain,
+                                        terms_and_condition: terms_and_condition,
                                     },
                                     success: function(res) {
-                                        toastr.success("Your transaction completed successfully!");
+                                        //console.log(res.status);
+                                        // Swal.fire({
+                                        //     icon: res.status === true ?
+                                        //         'success' : 'error',
+                                        //     title: res.status === true ?
+                                        //         'Transaction completed successfully!' :
+                                        //         'Transaction failed!',
+                                        //     toast: true,
+                                        //     position: 'top-end',
+                                        //     showConfirmButton: false,
+                                        //     timer: 3000,
+                                        //     timerProgressBar: true,
+
+                                        // });
+                                        // const Toast = Swal.mixin({
+                                        //     toast: true,
+                                        //     position: 'top-end',
+                                        //     showConfirmButton: false,
+                                        //     timer: 3000,
+                                        //     timerProgressBar: true,
+                                        //     didOpen: (toast) => {
+                                        //         toast.addEventListener(
+                                        //             'mouseenter', Swal
+                                        //             .stopTimer
+                                        //             ); // Pause on hover
+                                        //         toast.addEventListener(
+                                        //             'mouseleave', Swal
+                                        //             .resumeTimer
+                                        //             ); // Resume on mouse leave
+                                        //     }
+                                        // });
+
+                                        // Call Toast.fire based on the transaction status
+                                        // Toast.fire({
+                                        //     icon: res.status === true ?
+                                        //         'success' : 'error',
+                                        //     title: res.status === true ?
+                                        //         'Your transaction completed successfully!' :
+                                        //         'Transaction failed!'
+                                        // });
+                                        // Toast.fire({
+                                        //     icon: 'success',
+                                        //     title: 'Your transaction completed successfully!!'
+                                        // })
+                                        toastr.success(
+                                            "Your transaction completed successfully!"
+                                            );
+
                                         setTimeout(function() {
                                             window.location.reload();
-                                        }, 2000);
-                                        $('html, body').animate({ scrollTop: 0 }, 'fast');
+                                        }, 2000); // 3000 milliseconds = 3 seconds
+                                        $('html, body').animate({
+                                            scrollTop: 0
+                                        },
+                                        'fast'); // Smooth scroll to top when moving to the next step
+
                                     },
                                     error: function(err) {
-                                        alert('Failed to store payment data. Please try again.');
+                                        //console.error('Error storing payment data:', err);
+                                        alert(
+                                            'Failed to store payment data. Please try again.'
+                                        );
                                     }
                                 });
                             } else {
@@ -1268,6 +1228,7 @@
                             }
                         },
                         error: function(err) {
+                            //console.error('Payment verification error:', err);
                             alert('Error verifying payment. Please try again.');
                         }
                     });
@@ -1276,11 +1237,19 @@
 
             handler.openIframe();
         }
-
+    </script>
+    <script type="text/javascript">
         $(document).ready(function() {
             @if (session()->has('open_url') && session()->get('open_url') != '')
                 window.open('{{ session()->get('open_url') }}', '_blank');
             @endif
         });
+
+        function convertCommaSeparatedToNumber(value) {
+                if (!value) return 0; // Return 0 for empty or undefined values
+                // Convert the value to a string, remove commas, and parse as a number
+                return Number(String(value).replace(/,/g, '')) || 0;
+            }
     </script>
+
 @endsection

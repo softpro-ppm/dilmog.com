@@ -42,7 +42,7 @@ Route::group(['namespace' => 'FrontEnd'], function () {
     // Deliveryman Operation
     Route::get('deliveryman/login', 'DeliverymanController@loginform');
     Route::post('auth/deliveryman/login', 'DeliverymanController@login');
-    Route::get('deliveryman/forget/password', 'DeliverymanController@passreset'); 
+    Route::get('deliveryman/forget/password', 'DeliverymanController@passreset');
     Route::post('auth/deliveryman/password/reset', 'DeliverymanController@passfromreset');
     Route::get('/deliveryman/resetpassword/verify', 'DeliverymanController@resetpasswordverify');
     Route::post('auth/deliveryman/reset/password', 'DeliverymanController@saveResetPassword');

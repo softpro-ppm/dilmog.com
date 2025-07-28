@@ -19,7 +19,7 @@
         }
     </script>
     <!-- //Meta tag Keywords -->
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ $favicon ?? asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Custom-Files -->
     <link rel="stylesheet" href="{{ asset('frontEnd') }}/css/bootstrap4.min.css">
@@ -81,7 +81,7 @@
                     <li> <a href="{{ url('merchant/parcels ') }}"> >> My All Parcel</a> </li>
 
 
-                    @foreach(($parceltypes ?? []) as $parceltype)
+                    @foreach ($parceltypes as $parceltype)
                     @if($parceltype->id == 11)
                       @continue
                       @endif
@@ -185,13 +185,19 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ url('/merchant/parcel/bulk-upload') }}">
+                                <i class="fas fa-upload"></i>
+                                Bulk Upload
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ url('merchant/parcels ') }}">
                                 <i class="fas fa-box"></i>
                                 All Shipment
                             </a>
                         </li>
 
-                        @foreach(($parceltypes ?? []) as $parceltype)
+                        @foreach ($parceltypes as $parceltype)
                         @if($parceltype->id == 11)
                       @continue
                       @endif
@@ -338,7 +344,7 @@
                         <div class="row">
                             <div class="col-sm-12" style="background-color:#17263A; padding-top:7px;" onmouseover="document.getElementById('noticeMarquee').stop();" onmouseout="document.getElementById('noticeMarquee').start();">
                                 <marquee id="noticeMarquee" style="font-weight: bold; color: white;" class="marqueeTagDIv">
-                                    {{ $merchantNotice->title ?? '' }}
+                                    {{ $merchantNotice->title }}
                                 </marquee>
                             </div>
                         </div>
@@ -445,7 +451,7 @@
                                             value="{{ old('reciveZone') }}" name="reciveZone"
                                             placeholder="Delivery Area" required="required">
                                             <option value="">Delivery Area...</option>
-                                            @foreach(($areas ?? []) as $area)
+                                            @foreach ($areas as $area)
                                                 <option value="{{ $area->id }}">{{ $area->zonename }}</option>
                                             @endforeach
                                         </select>
@@ -527,7 +533,7 @@
                                             value="{{ old('reciveZone') }}" name="reciveZone"
                                             placeholder="Delivery Area" required="required">
                                             <option value="">Delivery Area...</option>
-                                            @foreach(($areas ?? []) as $area)
+                                            @foreach ($areas as $area)
                                                 <option value="{{ $area->id }}">{{ $area->zonename }}</option>
                                             @endforeach
                                         </select>
@@ -657,7 +663,70 @@
                     .appendTo('#example_wrapper .col-md-6:eq(11)');
             });
         </script>
-        
+        <script>
+            // function calculate_result() {
+            //     $.ajax({
+            //         type: "GET",
+            //         url: "{{ url('cost/calculate/result') }}",
+            //         dataType: "html",
+            //         success: function(deliverycharge) {
+            //             $('.calculate_result').html(deliverycharge)
+            //         }
+            //     });
+            // }
+
+            // $('.calculate').on('keyup paste click', function() {
+            //     var packageid = $('.package').val();
+            //     var cod = $('.cod').val();
+            //     var weight = $('.weight').val() ? $('.weight').val() : 1;
+            //     var reciveZone = $('.reciveZone').val();
+            //     // console.log(reciveZone)
+            //     if (packageid, cod, weight, reciveZone) {
+            //         $.ajax({
+            //             cache: false,
+            //             type: "GET",
+            //             url: "{{ url('cost/calculate') }}/" + packageid + '/' + cod + '/' + weight + '/' + reciveZone,
+            //             dataType: "json",
+            //             success: function(deliverycharge) {
+            //                 return calculate_result();
+            //             }
+            //         });
+            //     }
+            // });
+            // $('#reciveZone').on('change', function() {
+            //     var packageid = $('.package').val();
+            //     var cod = $('.cod').val();
+            //     var weight = $('.weight').val() ? $('.weight').val() : 1;
+            //     var reciveZone = $('.reciveZone').val();
+            //     // console.log(reciveZone)
+            //     if (packageid, cod, weight, reciveZone) {
+            //         $.ajax({
+            //             cache: false,
+            //             type: "GET",
+            //             url: "{{ url('cost/calculate') }}/" + packageid + '/' + cod + '/' + weight + '/' + reciveZone,
+            //             dataType: "json",
+            //             success: function(deliverycharge) {
+            //                 return calculate_result();
+            //             }
+            //         });
+            //     }
+            // });
+
+            // $('.package').on('change', function() {
+            //     var id = $(this).val();
+            //     if (id) {
+            //         $.ajax({
+            //             cache: false,
+            //             type: "GET",
+            //             url: "{{ url('delivery/charge') }}/" + id,
+            //             dataType: "json",
+            //             success: function(deliverycharge) {
+            //                 return calculate_result();
+            //             }
+            //         });
+            //     }
+            // });
+        </script>
         <script>
             flatpickr(".flatDate", {});
         </script>

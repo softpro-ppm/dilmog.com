@@ -537,21 +537,25 @@
                                             <td>{{ $value->formatted_date }}</td>
                                             <td>{{ $value->formatted_time }}</td>
                                             <td>
-                                                @if ($value->auto_expired == 1)
-                                                    <span class="subscription-badge expired">
-                                                        EXPIRED
-                                                    </span>
-                                                @else
-                                                    @if ($value->is_active == 1)
+
+                                                 @if ($value->is_active == 1)
                                                         <span class="subscription-badge active">
                                                             ACTIVE
                                                         </span>
-                                                    @else
+                                                @else
                                                         <span class="subscription-badge disable">
-                                                            DISABLED
+                                                            DISABLED/Expired
                                                         </span>
-                                                    @endif
                                                 @endif
+
+
+
+                                                {{-- @if ($value->auto_expired == 1)
+                                                    <span class="subscription-badge expired">
+                                                        EXPIRED
+                                                    </span>
+                                                @else --}}
+                                                   
                                             </td>
                                         </tr>
                                     @endforeach
@@ -593,7 +597,7 @@
 
             let handler = PaystackPop.setup({
 
-                key: '{{ env('PAYSTACK_PUBLIC_KEY') }}',
+                key: '<?= $results->public ?>', 
                 // key: 'pk_test_9e185aac0936fd9313529f6471cdc37873adc730',
                 email: emailAddress,
                 phone: phoneNumber,

@@ -1011,7 +1011,7 @@
             var color = $('#shipping-form [name="color"]').val();
             var parcel_contain = $('#shipping-form [name="parcel_contain"]').val();
             var product_value = $('#shipping-form [name="product_value"]').val();
-                product_value = parseFloat(convertCommaSeparatedToNumber(product_value));
+                product_value = convertCommaSeparatedToNumber(product_value);
 
             // Default values for weight and number_of_item
             if (!number_of_item) number_of_item = 1;
@@ -1070,10 +1070,13 @@
                 var cod = parseInt($('select[name="recipient_pickupcity"] option:selected').attr('data-codcharge')) || 0;
                 var zoneCharge = parseInt($('select[name="recipient_pickuptown"] option:selected').attr(
                     'data-towncharge')) || 0;
+                console.log(zoneCharge);
                 var taxPercent = parseFloat($('select[name="recipient_pickupcity"] option:selected').attr('data-tax')) || 0;
                 var insurancePercent = parseFloat($('select[name="recipient_pickupcity"] option:selected').attr(
                     'data-insurance')) || 0;
-                var cash = parseFloat(convertCommaSeparatedToNumber($("input[name='product_value']").val())) || 0;
+                console.log('insurancePercent ' + insurancePercent);
+                var cash = convertCommaSeparatedToNumber($("input[name='product_value']").val()) || 0;
+                console.log('cash ' + cash);
 
                 extraCharge = parseInt(weight) > 1 ? (parseInt(weight) * extraCharge) - extraCharge : 0;
                 charge = stateCharge + extraCharge + zoneCharge;
@@ -1087,6 +1090,7 @@
 
                 // Insurance Calculation
                 var insurance = cash * (insurancePercent / 100);
+                console.log('insurance ' + insurance);
                 $("#insurance_t").text('₦ ' + checkNan(CurrencyFormatted(insurance)));
 
                 // Total Calculation
@@ -1171,7 +1175,7 @@
             var item_name = $('#shipping-form [name="item_name"]').val();
             var color = $('#shipping-form [name="color"]').val();
             var parcel_contain = $('#shipping-form [name="parcel_contain"]').val();
-            var product_value = parseFloat(convertCommaSeparatedToNumber($('#shipping-form [name="product_value"]').val()));
+            var product_value = convertCommaSeparatedToNumber($('#shipping-form [name="product_value"]').val());
             // var discounted_value = $('#shipping-form [name="discounted_value"]').val();
 
             // Default values for weight and number_of_item
@@ -1233,10 +1237,11 @@
                 var cod = parseInt($('select[name="recipient_pickupcity"] option:selected').attr('data-codcharge')) || 0;
                 var zoneCharge = parseInt($('select[name="recipient_pickuptown"] option:selected').attr(
                     'data-towncharge')) || 0;
+                console.log(zoneCharge);
                 var taxPercent = parseFloat($('select[name="recipient_pickupcity"] option:selected').attr('data-tax')) || 0;
                 var insurancePercent = parseFloat($('select[name="recipient_pickupcity"] option:selected').attr(
                     'data-insurance')) || 0;
-                var cash = parseFloat(convertCommaSeparatedToNumber($("input[name='product_value']").val())) || 0;
+                var cash = convertCommaSeparatedToNumber($("input[name='product_value']").val()) || 0;
 
                 extraCharge = parseInt(weight) > 1 ? (parseInt(weight) * extraCharge) - extraCharge : 0;
                 charge = stateCharge + extraCharge + zoneCharge;

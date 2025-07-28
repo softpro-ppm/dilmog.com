@@ -82,6 +82,7 @@
                                                                 'parcels.merchantId',
                                                             )
                                                             ->where('parcels.merchantId', $value->id)
+                                                            ->where('parcels.merchantpayStatus', null)
                                                             ->where('parcels.status', 4)
                                                             ->sum('parcels.merchantDue');
 

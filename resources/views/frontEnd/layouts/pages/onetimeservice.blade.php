@@ -38,8 +38,8 @@
                                  <div class="col-md-12">
                                      <select class="custom-select form-control" name="area">
                                          <option selected>Select Delivery Area</option>
-                                          @foreach(($areas ?? []) as $area)
-               <option value="{{$area->id}}">{{$area->zonename}}</option>
+                                          @foreach($areas as $area)
+										    <option value="{{$area->id}}">{{$area->zonename}}</option>
 										    @endforeach
                                      </select>
                                  </div>

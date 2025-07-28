@@ -125,7 +125,7 @@ ul li {
 }
 .dashboard-button {
     border-radius: 5px;
-    background: #17263A;
+    background: #dc3545;
     box-shadow: 0 3px 10px 0 rgba(0,0,0,.28);
     padding: 8px;
     margin-bottom: 15px;
@@ -681,7 +681,7 @@ ul li {
     margin-top: 40px;
 }
 .dashboard-payment-info {
-    border-top: 5px solid #17263A;
+    border-top: 5px solid #bbc0c7;
     padding-top: 50px;
 }
 .section-padding {

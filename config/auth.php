@@ -42,10 +42,14 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+            'driver' => 'jwt',
+            'provider' => 'merchants',
             'hash' => false,
         ],
+          'merchant' => [
+        'driver' => 'jwt',
+        'provider' => 'merchants',
+    ],
     ],
 
     /*
@@ -70,6 +74,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'merchants' => [
+        'driver' => 'eloquent', 
+        'model' => App\Merchant::class,
+    ],
 
         // 'users' => [
         //     'driver' => 'database',

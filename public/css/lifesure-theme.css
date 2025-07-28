@@ -1,0 +1,675 @@
+/* LifeSure Theme - Custom CSS */
+/* Header Styles */
+.lifesure-header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.lifesure-header.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* Logo Styles */
+.lifesure-logo {
+    font-size: 32px;
+    font-weight: 700;
+    color: #007bff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.lifesure-logo:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.lifesure-logo i {
+    margin-right: 8px;
+    font-size: 28px;
+}
+
+/* Navigation Styles */
+.lifesure-nav {
+    padding: 15px 0;
+}
+
+.lifesure-nav .navbar-nav {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.lifesure-nav .nav-link {
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+    margin: 0 15px;
+    padding: 8px 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.lifesure-nav .nav-link:hover {
+    color: #007bff;
+}
+
+.lifesure-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #007bff;
+    transition: width 0.3s ease;
+}
+
+.lifesure-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Header Contact Section */
+.lifesure-contact {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.lifesure-contact .contact-info {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 25px;
+    border: 1px solid #e9ecef;
+}
+
+.lifesure-contact .phone-icon {
+    width: 40px;
+    height: 40px;
+    background: #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.lifesure-contact .phone-icon i {
+    color: #fff;
+    font-size: 16px;
+}
+
+.lifesure-contact .contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.lifesure-contact .contact-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.lifesure-contact .contact-number {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Get A Quote Button */
+.lifesure-cta-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.lifesure-cta-btn:hover {
+    background: #0056b3;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Hero Section */
+.lifesure-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 150px 0 100px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.lifesure-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.lifesure-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.lifesure-hero .welcome-text {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.lifesure-hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.lifesure-hero p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.lifesure-hero .btn-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.lifesure-hero .btn-primary {
+    background: #fff;
+    color: #007bff;
+    border: 2px solid #fff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.lifesure-hero .btn-primary:hover {
+    background: transparent;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.lifesure-hero .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.lifesure-hero .btn-outline:hover {
+    background: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Features Section */
+.lifesure-features {
+    padding: 100px 0;
+    background: #f8f9fa;
+}
+
+.lifesure-feature-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid #e9ecef;
+}
+
+.lifesure-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.lifesure-feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: #fff;
+    font-size: 30px;
+}
+
+.lifesure-feature-card h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.lifesure-feature-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lifesure-feature-card .btn-link {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lifesure-feature-card .btn-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+/* Services Section */
+.lifesure-services {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.lifesure-services h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+}
+
+.lifesure-service-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.lifesure-service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.lifesure-service-card .card-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.lifesure-service-card h5 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.lifesure-service-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lifesure-service-card .btn-primary {
+    background: #007bff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.lifesure-service-card .btn-primary:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Blog Section */
+.lifesure-blog {
+    padding: 100px 0;
+    background: #f8f9fa;
+}
+
+.lifesure-blog h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+}
+
+.lifesure-blog-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.lifesure-blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.lifesure-blog-card .card-body {
+    padding: 25px;
+}
+
+.lifesure-blog-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.lifesure-blog-card h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.lifesure-blog-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lifesure-blog-card .btn-link {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lifesure-blog-card .btn-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+/* Testimonials Section */
+.lifesure-testimonials {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.lifesure-testimonials h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+}
+
+.lifesure-testimonial-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.lifesure-testimonial-card:hover {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.lifesure-testimonial-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.lifesure-testimonial-card h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.lifesure-testimonial-card .profession {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.lifesure-testimonial-card p {
+    color: #666;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.lifesure-testimonial-stars {
+    margin-top: 15px;
+    color: #ffc107;
+}
+
+/* Footer */
+.lifesure-footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 80px 0 30px;
+}
+
+.lifesure-footer h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.lifesure-footer .footer-logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.lifesure-footer .footer-logo i {
+    margin-right: 8px;
+}
+
+.lifesure-footer p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lifesure-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.lifesure-footer ul li {
+    margin-bottom: 12px;
+}
+
+.lifesure-footer ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.lifesure-footer ul li a:hover {
+    color: #007bff;
+}
+
+.lifesure-footer .instagram-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.lifesure-footer .instagram-item {
+    aspect-ratio: 1;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.lifesure-footer .instagram-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.lifesure-footer .newsletter-form {
+    display: flex;
+    margin-top: 20px;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.lifesure-footer .newsletter-form input {
+    flex: 1;
+    border: none;
+    padding: 12px 20px;
+    outline: none;
+    font-size: 14px;
+}
+
+.lifesure-footer .newsletter-form button {
+    background: #007bff;
+    border: none;
+    color: #fff;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.lifesure-footer .newsletter-form button:hover {
+    background: #0056b3;
+}
+
+.lifesure-footer .footer-bottom {
+    border-top: 1px solid #333;
+    margin-top: 50px;
+    padding-top: 30px;
+    text-align: center;
+    color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .lifesure-nav .navbar-nav {
+        margin: 20px 0;
+    }
+    
+    .lifesure-contact {
+        margin: 15px 0;
+    }
+    
+    .lifesure-hero h1 {
+        font-size: 32px;
+    }
+    
+    .lifesure-hero .btn-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .lifesure-feature-card,
+    .lifesure-service-card,
+    .lifesure-blog-card {
+        margin-bottom: 30px;
+    }
+    
+    .lifesure-footer .instagram-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .lifesure-footer .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .lifesure-footer .newsletter-form input,
+    .lifesure-footer .newsletter-form button {
+        border-radius: 25px;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .lifesure-hero {
+        padding: 120px 0 80px;
+    }
+    
+    .lifesure-features,
+    .lifesure-services,
+    .lifesure-blog,
+    .lifesure-testimonials {
+        padding: 60px 0;
+    }
+    
+    .lifesure-footer {
+        padding: 60px 0 30px;
+    }
+}

@@ -126,7 +126,7 @@
                 <div class="contact-box-main m-top-30">
                     <div class="contact-title">
                         <h2>Contact with us</h2>
-                        <p>{{ $contact_info->address }}</p>
+                        <p>{{ $contact_info->address ?? 'Lagos, Nigeria - 100001' }}</p>
                     </div>
                     
                     <!-- Single Contact -->
@@ -135,7 +135,7 @@
                         <div class="c-icon"><i class="fa fa-phone"></i></div>
                         <div class="c-text">
                             <h4>Call Us Now</h4>
-                            <p>{{ $contact_info->phone1 }}<br></p>
+                            <p>{{ $contact_info->phone1 ?? '+234 800 000 0000' }}<br></p>
                         </div>
                     </div>                    
                     
@@ -143,7 +143,7 @@
                         <div class="c-icon"><i class="fa fa-mobile-phone"></i></div>
                         <div class="c-text">
                             <h4>Call Us Now</h4>
-                            <p>{{ $contact_info->phone2 }}<br></p>
+                            <p>{{ $contact_info->phone2 ?? '+234 800 000 0001' }}<br></p>
                         </div>
                     </div>
                     <!--/ End Single Contact -->
@@ -152,7 +152,7 @@
                         <div class="c-icon"><i class="fa fa-envelope-o"></i></div>
                         <div class="c-text">
                             <h4>Email Us</h4>
-                            <p> {{ $contact_info->email }}</p>
+                            <p> {{ $contact_info->email ?? 'info@zidrop.com' }}</p>
                         </div>
                     </div>
                     <!--/ End Single Contact 

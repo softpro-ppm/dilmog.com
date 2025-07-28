@@ -15,15 +15,13 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ChargeTarifController;
 use App\Http\Controllers\Admin\StatisticsDetailsController;
 use App\Http\Controllers\Superadmin\SettingsController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\FrontEnd\WebsiteController;
 Auth::routes();
 
 Route::get('/test', function(){
     return view('frontEnd.layouts.pages.agent.transferreport');
 });
 
-Route::get('/p2p', [WebsiteController::class, 'p2p'])->name('web.p2p');
+Route::get('/p2p', 'websitecontroller@p2p')->name('web.p2p');
 
 Route::group(['prefix'=>'2fa'], function(){
     Route::get('/','LoginSecurityController@show2faForm');
@@ -90,7 +88,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::resource('/expense-type', ExpenseTypeController::class);
 });
 
-Route::group(['as' => 'superadmin.', 'prefix' => 'superadmin', 'namespace' => 'Superadmin', 'middleware' => ['auth', 'superadmin', '2fa']], function () {
+// Route::get('/test-dashboard', function () {
+//     return 'OK';
+// })->middleware('auth:web');
+
+Route::group(['as' => 'superadmin.', 'prefix' => 'superadmin', 'namespace' => 'Superadmin', 'middleware' => ['web','auth:web', 'superadmin', '2fa']], function () {
     // superadmin dashboard
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     
@@ -523,6 +525,10 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
     Route::post('/merchant/payment/invoice-details', 'MerchantOperationController@inovicedetails');
     Route::any('/merchant/payment/return-invoice-details', 'MerchantOperationController@returninovicedetails');
     Route::post('merchant/charge-setup', 'MerchantOperationController@chargesetup');
+    Route::any('merchant/subscription/activation/{id}','MerchantOperationController@subsplanactivation');
+    Route::any('merchant/subs/disable/{plan_id}/{merchant_id}', 'MerchantOperationController@disablesubsplan');
+
+
     
         // Department Route
     Route::get('department/add', 'DepartmentController@add');
@@ -597,16 +603,6 @@ Route::get('session/destroy', function ($sessionName) {
     return response()->json(['success' => true]);
 });
 
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
-
-Route::get('/services', [App\Http\Controllers\FrontEnd\ServicesController::class, 'index'])->name('frontend.services');
-
-Route::get('/shipping-plans', [App\Http\Controllers\FrontEnd\ShippingPlansController::class, 'index'])->name('frontend.shipping-plans');
-
-Route::get('/notices/active', [App\Http\Controllers\BackEnd\NoticeController::class, 'activeNotices']);
-
-// Notice Routes
-Route::get('/notice', [App\Http\Controllers\NoticeController::class, 'index'])->name('notice.index');
-Route::get('/notice/{id}', [App\Http\Controllers\NoticeController::class, 'show'])->name('notice.show');
-
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+})->name('privacy.policy');

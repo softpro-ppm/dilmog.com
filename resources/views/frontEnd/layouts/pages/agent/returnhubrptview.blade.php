@@ -177,6 +177,7 @@
                     var merchantId = $('input[name="merchantId"]').val();
                     var cname = $('input[name="cname"]').val();
                     var UpStatusArray = $('#Upstatuss').val() ?? null;
+                    console.log(UpStatusArray);
                     // destroly datatable
                     var table33 = $('#example333').DataTable();
                     table33.destroy();
@@ -211,11 +212,14 @@
         <script>
             $(document).ready(function() {
                 $('#receiveParcel').click(function() {
+                    console.log('clicked');
                     var parcels = [];
 
                     $(':checkbox:checked').each(function(i) {
                         parcels[i] = $(this).val();
                     });
+
+                    console.log(parcels.length);
 
                     if (parcels.length === 0) {
                         alert('Alert:: Please select minimum 1 parcel');
@@ -230,7 +234,10 @@
                             success: function(response) {
                                 if (response.success == 'success') {
                                     window.location.reload();
+                                } else {
+                                    console.log(response);
                                 }
+
                             }
                         });
                     }
@@ -243,6 +250,7 @@
                 $(document.body).on('change', '.selectItemCheckbox', function(event) {
                     event.preventDefault();
                     var ischecked = $(this).is(':checked');
+                    console.log(ischecked);
                     if (!ischecked) {
                         $(this).parent().parent().removeClass('selected');
                         $("#My-Buttonn").prop('checked', false);
@@ -264,6 +272,7 @@
                 $(document.body).on('change', '#My-Buttonn', function() {
                     event.preventDefault();
                     var ischecked = $(this).is(':checked');
+                    console.log(ischecked);
                     if (!ischecked) {
                         $(".selectItemCheckbox").removeAttr('checked');
                         $("#example333 tbody tr").removeClass('selected');

@@ -16,7 +16,8 @@
 
     <link rel="stylesheet" href="{{ asset('frontEnd/') }}/css/font-awesome.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('backEnd/') }}/plugins/code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('backEnd/') }}/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
@@ -115,7 +116,7 @@
     </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" onload="startTime()">
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -444,7 +445,7 @@
                                         <a href="{{ url('2fa') }}" class="nav-link">&nbsp;&nbsp;&nbsp;
                                             {{-- <i class="fa fa-lock"></i>&nbsp; --}}
                                             <i class="fas fa-angle-right"></i>&nbsp;
-                                            <p>2 Step Varification</p>
+                                            <p>2-Step Verification</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -594,7 +595,8 @@
                                 <a href="#" class="nav-link">
                                     <i class="fas fa-users"></i>
                                     <p>
-                                        Agent
+                                        Agents/Hubs
+                                        <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
@@ -630,7 +632,7 @@
                                         <a href="{{ url('/author/agent/notice') }}" class="nav-link">&nbsp;&nbsp;
                                             <i class="fas fa-home"></i> &nbsp;
 
-                                            <p>Agent Notice</p>
+                                            <p>Agent/Hub Notice</p>
                                         </a>
                                     </li>
 
@@ -963,7 +965,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('expense-report') }}" class="nav-link">
                                         <i class="fas fa-cicle-o"></i>
-                                        <p>Expense Report</p>
+                                        <p>Expense</p>
                                     </a>
                                 </li>
                             </ul>
@@ -1065,7 +1067,7 @@
         <div class="search-product-inner" id="live_data_show"></div>
 
         <footer class="main-footer">
-            <strong>Copyright &copy;<a href="{{ url('/') }}">Zidrop Logistics</a></strong>
+            <strong>Copyright &copy;<a href="{{ url('/') }}">ZiDrop Logistics</a></strong>
         </footer>
         <!--Add/Edit Expense Modal -->
         <div class="modal fade" id="ExpensepublicModal" tabindex="-1" role="dialog"
@@ -1169,8 +1171,15 @@
         <!-- Bootstrap 4 -->
         <script src="{{ asset('backEnd/') }}/plugins/bootstrap/js/popper.min.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('backEnd/') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('backEnd/') }}/dist/js/adminlte.js"></script>
+        <!-- Summernote -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.12.1/ckeditor.js"></script>
+        <script>
+            // Replace the <textarea id="editor1"> with a CKEditor 4
+            // instance, using default configuration.
+            CKEDITOR.replace('editor1');
+        </script>
         <!-- overlayScrollbars -->
         <script src="{{ asset('backEnd/') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
         <!-- FastClick -->
@@ -1222,7 +1231,20 @@
             $(function() {
                 //Initialize Select2 Elements
                 $('.select2').select2();
-                // $('#example1').DataTable({ ... });
+                $('#example1').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+
+                });
+
             })
         </script>
         <script type="text/javascript">
@@ -1279,8 +1301,61 @@
         @yield('custom_js_scripts')
         <script>
             $(document).ready(function() {
-                // $('#example').DataTable({ ... });
-                // table.buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    "lengthMenu": [
+                        [200, 500, -1],
+                        [200, 500, "All"]
+                    ],
+                    buttons: [{
+                            extend: 'copy',
+                            text: 'Copy',
+                            exportOptions: {
+                                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+                            }
+                        },
+                        {
+                            extend: 'excel',
+                            text: 'Excel',
+                            exportOptions: {
+                                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+                            }
+                        },
+                        {
+                            extend: 'excel',
+                            text: 'D_Man',
+                            exportOptions: {
+                                columns: [1, 3, 4, 5, 7, 8, 10, 14]
+                            }
+                        },
+
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            exportOptions: {
+                                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                            }
+                        },
+
+                        {
+                            extend: 'print',
+                            text: 'Print all',
+                            exportOptions: {
+                                modifier: {
+                                    selected: null
+                                }
+                            }
+                        },
+                        {
+                            extend: 'colvis',
+                        },
+
+                    ],
+                    select: true
+                });
+
+                table.buttons().container()
+                    .appendTo('#example_wrapper .col-md-6:eq(0)');
             });
         </script>
         <!-- page script -->
@@ -1296,9 +1371,8 @@
                 //--------------
 
                 // Get context with jQuery - using jQuery's .get() method.
-                var areaChartElem = $('#areaChart').get(0);
-                if (areaChartElem) {
-                    var areaChartCanvas = areaChartElem.getContext('2d');
+                var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+
                 var areaChartData = {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                     datasets: [{
@@ -1352,14 +1426,11 @@
                     data: areaChartData,
                     options: areaChartOptions
                 })
-                }
 
                 //-------------
                 //- LINE CHART -
                 //--------------
-                var lineChartElem = $('#lineChart').get(0);
-                if (lineChartElem) {
-                    var lineChartCanvas = lineChartElem.getContext('2d');
+                var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
                 var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
                 var lineChartData = jQuery.extend(true, {}, areaChartData)
                 lineChartData.datasets[0].fill = false;
@@ -1371,15 +1442,12 @@
                     data: lineChartData,
                     options: lineChartOptions
                 })
-                }
 
                 //-------------
                 //- DONUT CHART -
                 //-------------
                 // Get context with jQuery - using jQuery's .get() method.
-                var donutChartElem = $('#donutChart').get(0);
-                if (donutChartElem) {
-                    var donutChartCanvas = donutChartElem.getContext('2d');
+                var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
                 var donutData = {
                     labels: [
                         'Chrome',
@@ -1405,15 +1473,12 @@
                     data: donutData,
                     options: donutOptions
                 })
-                }
 
                 //-------------
                 //- PIE CHART -
                 //-------------
                 // Get context with jQuery - using jQuery's .get() method.
-                var pieChartElem = $('#pieChart').get(0);
-                if (pieChartElem) {
-                    var pieChartCanvas = pieChartElem.getContext('2d');
+                var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
                 var pieData = donutData;
                 var pieOptions = {
                     maintainAspectRatio: false,
@@ -1426,14 +1491,11 @@
                     data: pieData,
                     options: pieOptions
                 })
-                }
 
                 //-------------
                 //- BAR CHART -
                 //-------------
-                var barChartElem = $('#barChart').get(0);
-                if (barChartElem) {
-                    var barChartCanvas = barChartElem.getContext('2d');
+                var barChartCanvas = $('#barChart').get(0).getContext('2d')
                 var barChartData = jQuery.extend(true, {}, areaChartData)
                 var temp0 = areaChartData.datasets[0]
                 var temp1 = areaChartData.datasets[1]
@@ -1451,14 +1513,11 @@
                     data: barChartData,
                     options: barChartOptions
                 })
-                }
 
                 //---------------------
                 //- STACKED BAR CHART -
                 //---------------------
-                var stackedBarChartElem = $('#stackedBarChart').get(0);
-                if (stackedBarChartElem) {
-                    var stackedBarChartCanvas = stackedBarChartElem.getContext('2d');
+                var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
                 var stackedBarChartData = jQuery.extend(true, {}, barChartData)
 
                 var stackedBarChartOptions = {
@@ -1479,7 +1538,6 @@
                     data: stackedBarChartData,
                     options: stackedBarChartOptions
                 })
-                }
             })
         </script>
         <script>
@@ -1577,33 +1635,6 @@
                 // Convert the value to a string, remove commas, and parse as a number
                 return Number(String(value).replace(/,/g, '')) || 0;
             }
-        </script>
-
-        <script>
-            $(document).ready(function() {
-                var table = $('#example1').DataTable({
-                    // your existing options here, or leave empty if already initialized elsewhere
-                });
-                // Fix for Bootstrap dropdowns after DataTable redraws
-                $('#example1').on('draw.dt', function() {
-                    // No extra JS needed for Bootstrap 4 dropdowns, but this ensures event is handled
-                    // If you have custom JS for dropdowns, re-initialize here
-                });
-            });
-        </script>
-
-        <!-- Remove ALL other jQuery and Bootstrap JS includes above this line -->
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- DataTables -->
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script>
-        $(document).ready(function() {
-            if (!$.fn.DataTable.isDataTable('#example1')) {
-                $('#example1').DataTable();
-            }
-        });
         </script>
 
 </body>

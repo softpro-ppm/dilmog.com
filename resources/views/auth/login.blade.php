@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="icon" type="image/png" sizes="96x96" href="{{ $favicon ?? asset('favicon.png') }}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
   <title>Admin Login :: Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('backEnd/')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{{asset('backEnd/')}}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
@@ -27,10 +27,7 @@
     
 <div class="login-box">
   <div class="login-logo">
-      @php
-          $logo = \App\Logo::where('type', 1)->where('status', 1)->orderByDesc('id')->first();
-      @endphp
-      <img src="{{ $logo ? asset($logo->image) : asset('uploads/logo/logo.png') }}" alt="www.zidrop.com" style="width:250px;height:75px;"><br>
+      <img src="{{ asset('uploads/logo/logo.png') }}" alt="www.zidrop.com" style="width:250px;height:75px;"><br>
     <a href="{{url('login')}}" target="_blank"><h1 style="font-size:150%;">Admin Login</h1></a>
   </div>
   
@@ -96,10 +93,10 @@
   </div>
   
 
-  <button class="btn" style="background-color: #af251b;color:#fff" onclick="window.open('{{ url('merchant/login') }}','_blank')">Merchant</button>
-  <button class="btn" style="background-color: #af251b;color:#fff" onclick="window.open('{{ url('deliveryman/login') }}','_blank')">Deliveryman</button>
-  <button class="btn" style="background-color: #af251b;color:#fff" onclick="window.open('{{ url('agent/login') }}','_blank')">Agent</button>
-  <button class="btn" style="background-color: #af251b;color:#fff" onclick="window.open('https://zidrop.com/webmail','_blank')">_Mail_</button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/merchant/login','_blank')">Merchant</button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/deliveryman/login','_blank')">Deliveryman</button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/agent/login')"> &nbsp;Agent&nbsp; </button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/webmail','_blank')"> _Mail_ &nbsp;</button>
 
 
 
@@ -110,7 +107,7 @@
 <!-- jQuery -->
 <script src="{{asset('backEnd/')}}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('backEnd/')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 
@@ -164,28 +161,6 @@
 }
 </style>
 </head>
-
-<script>
-var i = 0;
-function move() {
-  if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("myBar");
-    var width = 10;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-        elem.innerHTML = width  + "%";
-      }
-    }
-  }
-}
-</script>
 
 </body>
 </html>
